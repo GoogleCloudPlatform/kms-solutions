@@ -23,9 +23,13 @@ from base64 import b64encode
 parser = argparse.ArgumentParser()
 
 # Add arguments
-parser.add_argument("--data_encryption_key_path", required=True, help="DEK path")
+parser.add_argument(
+    "--data_encryption_key_path", required=True, help="DEK path"
+)
 parser.add_argument("--data", required=True, help="Sensitive data")
-parser.add_argument("--aad", required=True, help="Additional Authenticated Data")
+parser.add_argument(
+    "--aad", required=True, help="Additional Authenticated Data"
+)
 
 # Parse the arguments
 args = parser.parse_args()
@@ -44,6 +48,6 @@ nonce = os.urandom(12)
 ciphertext = aesgcm.encrypt(nonce, data, aad)
 
 # Printing the outputs needed for decrypt process
-print(f'Ciphertext base 64: {b64encode(ciphertext)}')
-print(f'Generated IV base64 for encryption: {b64encode(nonce)}')
-print(f'Additional Authenticated Data (AAD): {aad}')
+print(f"Ciphertext base 64: {b64encode(ciphertext)}")
+print(f"Generated IV base64 for encryption: {b64encode(nonce)}")
+print(f"Additional Authenticated Data (AAD): {aad}")

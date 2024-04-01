@@ -23,8 +23,12 @@ parser = argparse.ArgumentParser()
 
 # Add arguments
 parser.add_argument("--ciphertext", required=True, help="Ciphertext in base64")
-parser.add_argument("--iv", required=True, help="Initialization Vector in base64")
-parser.add_argument("--aad", required=True, help="Additional Authenticated Data")
+parser.add_argument(
+    "--iv", required=True, help="Initialization Vector in base64"
+)
+parser.add_argument(
+    "--aad", required=True, help="Additional Authenticated Data"
+)
 parser.add_argument("--gcp_project", required=True, help="GCP Project ID")
 parser.add_argument("--gcp_location", required=True, help="GCP KMS Location")
 parser.add_argument("--gcp_keyring", required=True, help="GCP KMS Keyring")
@@ -43,7 +47,11 @@ aad = str(args.aad).encode()
 client = kms_v1.KeyManagementServiceClient()
 
 # Initialize request argument(s)
-key_identifier = f"projects/{args.gcp_project}/locations/{args.gcp_location}/keyRings/{args.gcp_keyring}/cryptoKeys/{args.gcp_key}/cryptoKeyVersions/{args.gcp_key_version}"
+key_identifier = (
+    f"projects/{args.gcp_project}/locations/{args.gcp_location}/"
+    f"keyRings/{args.gcp_keyring}/cryptoKeys/{args.gcp_key}/"
+    f"cryptoKeyVersions/{args.gcp_key_version}"
+)
 
 request = kms_v1.RawDecryptRequest(
     name=key_identifier,
