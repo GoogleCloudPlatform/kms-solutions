@@ -1,6 +1,6 @@
 module github.com/terraform-google-modules/kms-solutions/test/integration
 
-go 1.22.0
+go 1.21.0
 
 require github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.13.2
 
