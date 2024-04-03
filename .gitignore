@@ -42,6 +42,9 @@ crash.log
 # version control.
 **/*.tfvars
 
+# Add an exception for *.example.tfvars (These should be included in git)
+!*.example.tfvars
+
 credentials.json
 
 # tf lock file
