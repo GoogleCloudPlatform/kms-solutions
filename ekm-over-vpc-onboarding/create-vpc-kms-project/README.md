@@ -1,4 +1,4 @@
-# KMS and VPC projects creation module
+# KMS and VPC projects creation script
 
 ## Overview
 
