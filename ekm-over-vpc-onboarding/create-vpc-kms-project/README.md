@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module provides the Terraform infrastructure project creation for an EKM connection with all the required services enabled.
+This module provides the project infrastructure setup (creation and/or API services enabling) for an EKM connection with Terraform. Two projects will be created/configured: one for KMS and another for VPC.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
