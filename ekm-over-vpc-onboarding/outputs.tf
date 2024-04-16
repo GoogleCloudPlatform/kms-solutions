@@ -16,11 +16,35 @@
 
 output "kms_project_id" {
   description = "ID of the KMS project"
-  value       = var.create_kms_project ? module.kms_project[0].project_id : var.kms_project_id
+  value       = module.create_vpc_kms_project.kms_project_id
 }
 
 output "vpc_project_id" {
   description = "ID of the VPC project"
-  value       = var.create_vpc_project ? module.vpc_project[0].project_id : var.vpc_project_id
+  value       = module.create_vpc_kms_project.vpc_project_id
 }
 
+output "keyring" {
+  description = "Name of the keyring."
+  value       = module.ekm_resources.keyring
+}
+
+output "crypto_key" {
+  description = "Name of the crypto key created."
+  value       = module.ekm_resources.crypto_key
+}
+
+output "key_version" {
+  description = "Name of the key version created."
+  value       = module.ekm_resources.key_version
+}
+
+output "location" {
+  description = "Location of the keyring created."
+  value       = module.ekm_resources.location
+}
+
+output "ekm_connection_id" {
+  description = "ID of the EKM connection created."
+  value       = module.ekm_resources.ekm_connection_id
+}
