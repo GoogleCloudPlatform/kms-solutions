@@ -28,12 +28,8 @@ resource "null_resource" "pkcs11_docker_image_build_template" {
   provisioner "local-exec" {
     when    = create
     command = <<EOF
-gcloud builds submit --project=${var.project_id} --config=${path.module}/cloudbuild.yaml --substitutions=_LOCATION="${var.artifact_location}",_REPOSITORY="${var.artifact_repository}-${local.default_suffix}",_IMAGE="${var.artifact_image}",_VERSION="${var.artifact_version}",_KMS_KEYRING="${var.keyring}-${local.default_suffix}",_KMS_KEY="${var.key}-${local.default_suffix}",_KMS_LOCATION="${var.location}",_PKCS11_LIB_VERSION="${var.pkcs11_lib_version}",_SERVICE_ACCOUNT="${local.custom_sa_email}",_CERTIFICATE_FILE="${local.certificate_file_string}",_DIGEST_FLAG="${var.digest_flag}",_CERTIFICATE_NAME="${var.certificate_name}" ${var.docker_file_path}
-EOF
-
-#command = <<EOF
-#gcloud builds submit --project=${var.project_id} --config=${path.module}/cloudbuild.yaml --impersonate-service-account=${local.custom_sa_email} --substitutions=_LOCATION="${var.artifact_location}",_REPOSITORY="${var.artifact_repository}-${local.default_suffix}",_IMAGE="${var.artifact_image}",_VERSION="${var.artifact_version}",_KMS_KEYRING="${var.keyring}-${local.default_suffix}",_KMS_KEY="${var.key}-${local.default_suffix}",_KMS_LOCATION="${var.location}",_PKCS11_LIB_VERSION="${var.pkcs11_lib_version}",_SERVICE_ACCOUNT="${local.custom_sa_email}",_CERTIFICATE_FILE="${local.certificate_file_string}",_DIGEST_FLAG="${var.digest_flag}",_CERTIFICATE_NAME="${var.certificate_name}" ${var.docker_file_path}
-#EOF
+    gcloud builds submit --project=${var.project_id} --config=${path.module}/cloudbuild.yaml --impersonate-service-account=${local.custom_sa_email} --substitutions=_LOCATION="${var.artifact_location}",_REPOSITORY="${var.artifact_repository}-${local.default_suffix}",_IMAGE="${var.artifact_image}",_VERSION="${var.artifact_version}",_KMS_KEYRING="${var.keyring}-${local.default_suffix}",_KMS_KEY="${var.key}-${local.default_suffix}",_KMS_LOCATION="${var.location}",_PKCS11_LIB_VERSION="${var.pkcs11_lib_version}",_SERVICE_ACCOUNT="${local.custom_sa_email}",_CERTIFICATE_FILE="${local.certificate_file_string}",_DIGEST_FLAG="${var.digest_flag}",_CERTIFICATE_NAME="${var.certificate_name}" ${var.docker_file_path}
+    EOF
   }
 
   depends_on = [
@@ -42,6 +38,6 @@ EOF
     google_artifact_registry_repository.pkcs11_hsm_examples,
     google_project_iam_member.cb_service_agent,
     google_project_iam_member.sa_service_account_user,
-    # google_service_account_iam_member.cb_service_agent_impersonate
+    google_service_account_iam_member.cb_service_agent_impersonate
   ]
 }
