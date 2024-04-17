@@ -32,8 +32,6 @@ module "vpc-network" {
   ]
 }
 
-# GDU : 35.199.192.0/19
-# For TPC {PRPTST: 34.116.26.128/27, THP000: 177.222.82.0/25, THQ000: 31.177.4.128/27, GDUTST: 35.190.248.0/22}
 module "firewall_rules" {
   source  = "terraform-google-modules/network/google//modules/firewall-rules"
   version = "9.0.0"
