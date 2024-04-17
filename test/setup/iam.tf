@@ -17,6 +17,7 @@
 locals {
   int_required_roles = [
     "roles/cloudkms.admin",
+    "roles/iam.serviceAccountTokenCreator",
 
     # Needed to run verifications:
     "roles/owner"

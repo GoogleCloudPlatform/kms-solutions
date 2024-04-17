@@ -1,0 +1,9 @@
+project_id            = "REPLACE-WITH-YOUR-EXISTING-PROJECT-ID"
+keyring               = "apache-example-keyring-terraform"
+key                   = "apache-example-key-terraform"
+artifact_image        = "apache-example-image-terraform"
+artifact_location     = "us-central1"
+artifact_repository   = "apache-example-repo-terraform"
+artifact_version      = "latest"
+organization_id       = ""   # Optional. Org Policies mentioned in the README will be created if you provide this variable.
+certificate_file_path = null # Optional. This should be used when you have a certificate file signed by a Certificate Authority. If not provided, a self-signed certificate will be generated with OpenSSL. Use self-signed certificate for testing only. A self-signed certificate created this way is not appropriate for production use."

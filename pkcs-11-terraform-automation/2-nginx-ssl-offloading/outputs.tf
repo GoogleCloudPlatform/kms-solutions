@@ -14,23 +14,22 @@
  * limitations under the License.
  */
 
-module "project_ci_kms" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.5"
+output "keyring" {
+  description = "Name of the keyring."
+  value       = module.bootstrap-kms-hsm.keyring
+}
 
-  name              = "ci-kms-module"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+output "location" {
+  description = "Location of the keyring created."
+  value       = module.bootstrap-kms-hsm.location
+}
 
-  activate_apis = [
-    "cloudkms.googleapis.com",
-    "serviceusage.googleapis.com",
-    "compute.googleapis.com",
-    "iam.googleapis.com",
-    "artifactregistry.googleapis.com",
-    "cloudbuild.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
-  ]
+output "key" {
+  description = "Name of the key created."
+  value       = module.bootstrap-kms-hsm.key
+}
+
+output "project_id" {
+  description = "ID of the GCP project being used."
+  value       = module.bootstrap-kms-hsm.project_id
 }

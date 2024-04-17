@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-module "project_ci_kms" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.5"
+module "pkcs11_apache_web_server" {
+  source = "../../pkcs-11-terraform-automation/2-nginx-ssl-offloading"
 
-  name              = "ci-kms-module"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
-
-  activate_apis = [
-    "cloudkms.googleapis.com",
-    "serviceusage.googleapis.com",
-    "compute.googleapis.com",
-    "iam.googleapis.com",
-    "artifactregistry.googleapis.com",
-    "cloudbuild.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
-  ]
+  project_id       = var.project_id
+  keyring          = "sample-keyring"
+  key              = "sample-key"
+  artifact_image   = "sample-image"
+  prevent_destroy  = false
+  docker_file_path = "../../pkcs-11-terraform-automation/2-nginx-ssl-offloading"
 }
