@@ -23,7 +23,7 @@ create_kms_project = false # Set to true if you want to auto-create the KMS proj
 create_vpc_project = false # Set to true if you want to auto-create the VPC project
 
 kms_project_id        = "sample-kms-project-id" # Desired or existing project KMS name (if existing set create flag to false)
-vpc_project_id        = "sample-vpc-project-id" # Desired or existinf project VPC name (if existing set create flag to false)
+vpc_project_id        = "sample-vpc-project-id" # Desired or existing project VPC name (if existing set create flag to false)
 random_project_suffix = false                   # Set to true if you want to append a 4 random string into project ID (applies only when create flag is true)
 
 kms_project_name = "sample-kms-project-name" # (Applies only when create flag is true)
