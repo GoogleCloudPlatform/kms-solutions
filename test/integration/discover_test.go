@@ -15,11 +15,14 @@
 package test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
 )
 
 func TestAll(t *testing.T) {
+	os.Setenv("TF_LOG", "TRACE")
 	tft.AutoDiscoverAndTest(t)
+	os.Unsetenv("TF_LOG")
 }
