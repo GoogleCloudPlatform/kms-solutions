@@ -22,7 +22,7 @@ import (
 )
 
 func TestAll(t *testing.T) {
-	os.Setenv("TF_LOG", "TRACE")
+	os.Setenv("TF_LOG", "DEBUG")
 	tft.AutoDiscoverAndTest(t)
 	os.Unsetenv("TF_LOG")
 }
