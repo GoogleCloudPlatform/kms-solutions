@@ -16,6 +16,7 @@
 
 locals {
   custom_sa       = google_service_account.custom_sa.id
+  custom_sa_name  = google_service_account.custom_sa.name
   custom_sa_email = element(split("/", local.custom_sa), length(split("/", local.custom_sa)) - 1)
 }
 
@@ -69,15 +70,15 @@ data "google_project" "cloudbuild_project" {
 # }
 
 resource "google_service_account_iam_member" "cb_service_agent_impersonate" {
-  service_account_id = local.custom_sa
+  service_account_id = local.custom_sa_name
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
 }
 
 resource "google_service_account_iam_member" "self_impersonation" {
-  service_account_id = local.custom_sa
+  service_account_id = local.custom_sa_name
   role               = "roles/iam.serviceAccountTokenCreator"
-  member             = "serviceAccount:${local.custom_sa}"
+  member             = "serviceAccount:${local.custom_sa_email}"
 }
 
 resource "google_project_iam_member" "sa_service_account_user" {
