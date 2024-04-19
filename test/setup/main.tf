@@ -31,6 +31,7 @@ module "project_ci_kms" {
     "iam.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
+    "cloudresourcemanager.googleapis.com",
+    "cloudbilling.googleapis.com"
   ]
 }
