@@ -16,6 +16,7 @@ This guide provides instructions of an automation for Cloud External Key Manager
 - (Optional) An existing [GCP project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project) to create all the KMS related resources;
 
 **Note:** VPC and KMS projects are optional because this terraform automation can auto-create them for you. All you need to do is to set `create_kms_project` and `create_vpc_project` to `true` in your `terraform.tfvars` file.
+- If you would like terraform to create kms and vpc projects, please provide account user (the one you used for `gcloud auth login`) with  "roles/resourcemanager.projectCreator" iam role.
 
 **Note 2:** Your EKM provider should be placed/referenced in your VPC project. A Private IP address of the EKM or an IP address for the load balancer pointing to the EKM is required in your `terraform.tfvars` file.
 
