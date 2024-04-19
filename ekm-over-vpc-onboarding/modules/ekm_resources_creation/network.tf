@@ -25,9 +25,10 @@ module "vpc-network" {
 
   subnets = [
     {
-      subnet_name   = "${var.network_name}-subnet"
-      subnet_region = var.location
-      subnet_ip     = var.subnet_ip_cidr_range
+      subnet_name           = "${var.network_name}-subnet"
+      subnet_region         = var.location
+      subnet_ip             = var.subnet_ip_cidr_range
+      subnet_private_access = true
     }
   ]
 }
