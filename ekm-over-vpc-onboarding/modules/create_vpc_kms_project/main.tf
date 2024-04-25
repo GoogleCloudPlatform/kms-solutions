@@ -32,10 +32,6 @@ locals {
 
 }
 
-# User Credentials (Default: Current logged in user)
-data "google_client_openid_userinfo" "provider_identity" {
-}
-
 # Create KMS and VPC projects if specified
 module "kms_project" {
   count = var.create_kms_project ? 1 : 0
