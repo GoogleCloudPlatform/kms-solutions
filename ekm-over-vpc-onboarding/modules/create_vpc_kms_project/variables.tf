@@ -51,13 +51,6 @@ variable "billing_account" {
   description = "Billing Account for the customer"
 }
 
-variable "project_creator_member_email" {
-  type        = string
-  default     = ""
-  nullable    = true
-  description = "Email of the user that will be granted permissions to create resources under the projects"
-}
-
 variable "folder_id" {
   type        = string
   default     = ""
