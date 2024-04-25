@@ -58,13 +58,6 @@ variable "location" {
   description = "Location where resources will be created"
 }
 
-variable "project_creator_member_email" {
-  type        = string
-  default     = ""
-  nullable    = true
-  description = "Email of the user that will be granted permissions to create resources under the projects"
-}
-
 variable "folder_id" {
   type        = string
   default     = ""
