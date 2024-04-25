@@ -81,6 +81,6 @@ This guide provides instructions of an automation for Cloud External Key Manager
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-**Note 3:** You will need to manually set crypto-key-version to `primary version` by either using Google console or Google CLI command. 
+**Note 3:** You will need to manually set crypto-key-version to `primary version` by either using Google console or [Google CLI command](https://cloud.google.com/sdk/gcloud/reference/kms/keys/set-primary-version). 
 
 Congrats! You have successfully created all your required resources to use EKM over VPC
