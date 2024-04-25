@@ -16,6 +16,7 @@
 
 organization_id              = "REPLACE-WITH-YOUR-ORG-ID"
 billing_account              = "REPLACE-WITH-YOUR-BILLING-ACCOUNT"
+project_creator_member_email = ""            # Set if you want to grant the permissions to a different user than it is authenticated
 folder_id                    = ""            # Set if you want to create the projects in a specific GCP folder (Applies only when create flag is true)
 location                     = "us-central1" # Set if you want to create resources in a specific location
 
