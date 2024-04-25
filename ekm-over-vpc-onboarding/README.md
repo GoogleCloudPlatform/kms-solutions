@@ -59,8 +59,8 @@ This guide provides instructions of an automation for Cloud External Key Manager
 | kms\_project\_name | Name of the KMS project you would like to create | `string` | n/a | yes |
 | location | Location where resources will be created | `string` | `"us-central1"` | no |
 | network\_name | Name of the Network resource | `string` | `"vpc-network-name"` | no |
-| project\_creator\_member\_email | Email of the user that will be granted permissions to create resources under the projects | `string` | `""` | no |
 | organization\_id | The ID of the existing GCP organization | `string` | n/a | yes |
+| project\_creator\_member\_email | Email of the user that will be granted permissions to create resources under the projects | `string` | `""` | no |
 | random\_project\_suffix | If true, a suffix of 4 random characters will be appended to project names. Only applies when create project flag is true. | `bool` | `false` | no |
 | servicedirectory\_name | Service Directory resource name | `string` | `"ekm-service-directory"` | no |
 | subnet\_ip\_cidr\_range | ip\_cidr\_range for subnet resource | `string` | `"10.2.0.0/16"` | no |
