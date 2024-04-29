@@ -16,8 +16,9 @@ This guide provides instructions of an automation for Cloud External Key Manager
 - (Optional) An existing [GCP project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project) to create all the KMS related resources;
 
 **Note:** VPC and KMS projects are optional because this terraform automation can auto-create them for you. All you need to do is to set `create_kms_project` and `create_vpc_project` to `true` in your `terraform.tfvars` file.
+- If you would like terraform to create kms and vpc projects, please provide account user (the one you used for `gcloud auth login`) with  "roles/resourcemanager.projectCreator" iam role.
 
-**Note 2:** Your EKM provider should be placed/referenced in your VPC project. A Private IP address of the EKM or an IP address for the load balancer pointing to the EKM is required in your `terraform.tfvars` file.
+**Note 2:** Your EKM provider should be placed/referenced in your VPC project. A Private IP address of the EKM or an IP address for the load balancer pointing to the EKM is required in your `terraform.tfvars` file. You will need to edit `modules/create_ekm_resources/network.tf` file for any forwarding-rule resources you would like to add
 
 ## Deploy infrastructure
 
@@ -79,3 +80,7 @@ This guide provides instructions of an automation for Cloud External Key Manager
 | vpc\_project\_id | ID of the VPC project |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+**Note 3:** You will need to manually set crypto-key-version to `primary version` by either using Google console or [Google CLI command](https://cloud.google.com/sdk/gcloud/reference/kms/keys/set-primary-version).
+
+Congrats! You have successfully created all your required resources to use EKM over VPC

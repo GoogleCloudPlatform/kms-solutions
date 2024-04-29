@@ -73,6 +73,7 @@ resource "google_kms_crypto_key" "vpc_key" {
   }
   skip_initial_version_creation = true
   crypto_key_backend            = google_kms_ekm_connection.ekm_main_resource.id
+  depends_on                    = [google_service_directory_service.sd_service]
 }
 resource "google_kms_crypto_key_version" "vpc_crypto_key_version" {
   crypto_key = google_kms_crypto_key.vpc_key.id

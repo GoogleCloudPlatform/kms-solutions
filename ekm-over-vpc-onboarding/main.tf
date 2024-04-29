@@ -17,17 +17,16 @@
 module "create_vpc_kms_project" {
   source = "./modules/create_vpc_kms_project"
 
-  organization_id              = var.organization_id
-  folder_id                    = var.folder_id
-  kms_project_name             = var.kms_project_name
-  kms_project_id               = var.kms_project_id
-  vpc_project_name             = var.vpc_project_name
-  vpc_project_id               = var.vpc_project_id
-  billing_account              = var.billing_account
-  project_creator_member_email = var.project_creator_member_email
-  create_kms_project           = var.create_kms_project
-  create_vpc_project           = var.create_vpc_project
-  random_project_suffix        = var.random_project_suffix
+  organization_id       = var.organization_id
+  folder_id             = var.folder_id
+  kms_project_name      = var.kms_project_name
+  kms_project_id        = var.kms_project_id
+  vpc_project_name      = var.vpc_project_name
+  vpc_project_id        = var.vpc_project_id
+  billing_account       = var.billing_account
+  create_kms_project    = var.create_kms_project
+  create_vpc_project    = var.create_vpc_project
+  random_project_suffix = var.random_project_suffix
 }
 
 module "ekm_resources" {

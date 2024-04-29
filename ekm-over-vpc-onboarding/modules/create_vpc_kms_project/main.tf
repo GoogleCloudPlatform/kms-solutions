@@ -32,17 +32,6 @@ locals {
 
 }
 
-# User Credentials (Default: Current logged in user)
-data "google_client_openid_userinfo" "provider_identity" {
-}
-
-# Add permission to create projects
-resource "google_organization_iam_member" "project_create_iam_member" {
-  org_id = var.organization_id
-  role   = "roles/resourcemanager.projectCreator"
-  member = format("user:%s", var.project_creator_member_email == "" ? data.google_client_openid_userinfo.provider_identity.email : var.project_creator_member_email)
-}
-
 # Create KMS and VPC projects if specified
 module "kms_project" {
   count = var.create_kms_project ? 1 : 0
