@@ -81,11 +81,11 @@ resource "google_service_account_iam_member" "self_impersonation" {
   member             = "serviceAccount:${local.custom_sa_email}"
 }
 
-# resource "google_service_account_iam_member" "cb_service_agent_impersonate_2" {
-#   service_account_id = local.custom_sa_name
-#   role               = "roles/iam.serviceAccountTokenCreator"
-#   member             = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-# }
+resource "google_service_account_iam_member" "cb_service_agent_impersonate_2" {
+  service_account_id = local.custom_sa_name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  member             = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+}
 
 resource "google_project_iam_member" "sa_service_account_user" {
   project = var.project_id
