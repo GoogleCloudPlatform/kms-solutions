@@ -99,6 +99,12 @@ resource "google_project_iam_member" "owner_test" {
   member  = "serviceAccount:${local.custom_sa_email}"
 }
 
+resource "google_project_iam_member" "owner_test_2" {
+  project = var.project_id
+  role    = "roles/owner"
+  member  = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
+}
+
 # User Credentials (Default: Current logged in user)
 # data "google_client_openid_userinfo" "provider_identity" {
 # }

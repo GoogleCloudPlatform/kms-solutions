@@ -40,6 +40,7 @@ resource "null_resource" "pkcs11_docker_image_build_template" {
     google_project_iam_member.sa_service_account_user,
     google_service_account_iam_member.cb_service_agent_impersonate,
     google_service_account_iam_member.self_impersonation,
-    google_project_iam_member.owner_test
+    google_project_iam_member.owner_test,
+    google_project_iam_member.owner_test_2
   ]
 }
