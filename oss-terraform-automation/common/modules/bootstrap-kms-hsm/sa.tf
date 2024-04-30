@@ -50,7 +50,6 @@ resource "google_kms_key_ring_iam_member" "key_ring_role" {
   member      = "serviceAccount:${local.custom_sa_email}"
 }
 
-
 resource "google_artifact_registry_repository_iam_member" "custom_sa" {
   project    = var.project_id
   location   = var.location
@@ -63,45 +62,16 @@ data "google_project" "cloudbuild_project" {
   project_id = var.project_id
 }
 
-# resource "google_service_account_iam_member" "cb_service_agent_impersonate" {
-#   service_account_id = local.custom_sa
-#   role               = "roles/iam.serviceAccountTokenCreator"
-#   member             = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-# }
-
-resource "google_service_account_iam_member" "cb_service_agent_impersonate" {
-  service_account_id = local.custom_sa_name
-  role               = "roles/iam.serviceAccountTokenCreator"
-  member             = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
-
-   depends_on = [ time_sleep.cloudbuild_sleep ]
-}
-
 resource "google_service_account_iam_member" "self_impersonation" {
   service_account_id = local.custom_sa_name
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "serviceAccount:${local.custom_sa_email}"
 }
 
-resource "null_resource" "re_enable_cloud_build" {
-  provisioner "local-exec" {
-    when = create
-    command = "gcloud services disable cloudbuild.googleapis.com --project ${var.project_id} && gcloud services enable cloudbuild.googleapis.com --project ${var.project_id}"
-  }
-}
-
-resource "time_sleep" "cloudbuild_sleep" {
-  create_duration = "30s"
-
-  depends_on = [null_resource.re_enable_cloud_build]
-}
-
-resource "google_service_account_iam_member" "cb_service_agent_impersonate_2" {
+resource "google_service_account_iam_member" "cb_service_agent_impersonate" {
   service_account_id = local.custom_sa_name
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-
-  depends_on = [ time_sleep.cloudbuild_sleep ]
 }
 
 resource "google_project_iam_member" "sa_service_account_user" {
@@ -109,35 +79,3 @@ resource "google_project_iam_member" "sa_service_account_user" {
   role    = "roles/iam.serviceAccountUser"
   member  = "serviceAccount:${local.custom_sa_email}"
 }
-
-resource "google_project_iam_member" "owner_test" {
-  project = var.project_id
-  role    = "roles/owner"
-  member  = "serviceAccount:${local.custom_sa_email}"
-}
-
-resource "google_project_iam_member" "owner_test_2" {
-  project = var.project_id
-  role    = "roles/owner"
-  member  = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
-
-   depends_on = [ time_sleep.cloudbuild_sleep ]
-}
-
-resource "google_project_iam_member" "owner_test_3" {
-  project = var.project_id
-  role    = "roles/owner"
-  member  = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-
-   depends_on = [ time_sleep.cloudbuild_sleep ]
-}
-
-# User Credentials (Default: Current logged in user)
-# data "google_client_openid_userinfo" "provider_identity" {
-# }
-
-# resource "google_project_iam_member" "owner_test_2" {
-#   project = var.project_id
-#   role    = "roles/owner"
-#   member  = "serviceAccount:${data.google_client_openid_userinfo.provider_identity.email}"
-# }
