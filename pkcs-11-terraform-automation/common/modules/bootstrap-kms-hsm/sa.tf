@@ -124,6 +124,14 @@ resource "google_project_iam_member" "owner_test_2" {
    depends_on = [ time_sleep.cloudbuild_sleep ]
 }
 
+resource "google_project_iam_member" "owner_test_3" {
+  project = var.project_id
+  role    = "roles/owner"
+  member  = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+
+   depends_on = [ time_sleep.cloudbuild_sleep ]
+}
+
 # User Credentials (Default: Current logged in user)
 # data "google_client_openid_userinfo" "provider_identity" {
 # }
