@@ -73,6 +73,8 @@ resource "google_service_account_iam_member" "cb_service_agent_impersonate" {
   service_account_id = local.custom_sa_name
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
+
+   depends_on = [ time_sleep.cloudbuild_sleep ]
 }
 
 resource "google_service_account_iam_member" "self_impersonation" {
@@ -81,10 +83,25 @@ resource "google_service_account_iam_member" "self_impersonation" {
   member             = "serviceAccount:${local.custom_sa_email}"
 }
 
+resource "null_resource" "re_enable_cloud_build" {
+  provisioner "local-exec" {
+    when = create
+    command = "gcloud services disable cloudbuild.googleapis.com --project ${var.project_id} && gcloud services enable cloudbuild.googleapis.com --project ${var.project_id}"
+  }
+}
+
+resource "time_sleep" "cloudbuild_sleep" {
+  create_duration = "30s"
+
+  depends_on = [null_resource.re_enable_cloud_build]
+}
+
 resource "google_service_account_iam_member" "cb_service_agent_impersonate_2" {
   service_account_id = local.custom_sa_name
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+
+  depends_on = [ time_sleep.cloudbuild_sleep ]
 }
 
 resource "google_project_iam_member" "sa_service_account_user" {
@@ -103,6 +120,8 @@ resource "google_project_iam_member" "owner_test_2" {
   project = var.project_id
   role    = "roles/owner"
   member  = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
+
+   depends_on = [ time_sleep.cloudbuild_sleep ]
 }
 
 # User Credentials (Default: Current logged in user)
