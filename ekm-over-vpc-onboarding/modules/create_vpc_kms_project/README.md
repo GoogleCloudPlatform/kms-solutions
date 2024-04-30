@@ -16,7 +16,6 @@ This module provides the project infrastructure setup (creation and/or API servi
 | kms\_project\_id | ID of the KMS project you would like to create | `string` | `""` | no |
 | kms\_project\_name | Name of the KMS project you would like to create | `string` | n/a | yes |
 | organization\_id | The ID of the existing GCP organization | `string` | n/a | yes |
-| project\_creator\_member\_email | Email of the user that will be granted permissions to create resources under the projects | `string` | `""` | no |
 | random\_project\_suffix | If true, a suffix of 4 random characters will be appended to project names. Only applies when create project flag is true. | `bool` | `false` | no |
 | vpc\_project\_id | ID of the VPC project, default to same as KMS | `string` | `""` | no |
 | vpc\_project\_name | Name of the VPC project, default to same as KMS | `string` | `""` | no |
