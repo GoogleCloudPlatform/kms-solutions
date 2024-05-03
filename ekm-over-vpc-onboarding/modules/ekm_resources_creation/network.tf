@@ -17,7 +17,7 @@
 #Network & Subnet creation
 module "vpc-network" {
   source       = "terraform-google-modules/network/google"
-  version      = "~> 8.0"
+  version      = "~> 9.0"
   project_id   = data.google_project.vpc_project.number
   network_name = var.network_name
   mtu          = 1460
