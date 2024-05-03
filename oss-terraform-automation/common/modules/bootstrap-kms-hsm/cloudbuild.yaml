@@ -1,0 +1,45 @@
+# Copyright 2024 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "--network=cloudbuild",
+        "--build-arg",
+        "PROJECT_ID=$PROJECT_ID",
+        "--build-arg",
+        "KEYRING_NAME=${_KMS_KEYRING}",
+        "--build-arg",
+        "KEY_NAME=${_KMS_KEY}",
+        "--build-arg",
+        "LOCATION=${_KMS_LOCATION}",
+        "--build-arg",
+        "PKCS11_LIB_VERSION=${_PKCS11_LIB_VERSION}",
+        "--build-arg",
+        "CERTIFICATE_FILE=${_CERTIFICATE_FILE}",
+        "--build-arg",
+        "CERTIFICATE_NAME=${_CERTIFICATE_NAME}",
+        "--build-arg",
+        "DIGEST_FLAG=${_DIGEST_FLAG}",
+        "-t",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_VERSION}",
+        ".",
+      ]
+images:
+  - "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}"
+serviceAccount: 'projects/$PROJECT_ID/serviceAccounts/${_SERVICE_ACCOUNT}'
+options:
+  logging: CLOUD_LOGGING_ONLY

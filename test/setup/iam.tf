@@ -17,6 +17,8 @@
 locals {
   int_required_roles = [
     "roles/cloudkms.admin",
+    "roles/iam.serviceAccountTokenCreator",
+    "roles/iam.serviceAccountUser",
 
     # Needed to run verifications:
     "roles/owner"
@@ -39,4 +41,11 @@ resource "google_project_iam_member" "int_test" {
 
 resource "google_service_account_key" "int_test" {
   service_account_id = google_service_account.int_test.id
+}
+
+resource "google_project_service_identity" "cb_sa" {
+  provider = google-beta
+
+  project = module.project_ci_kms.project_id
+  service = "cloudbuild.googleapis.com"
 }

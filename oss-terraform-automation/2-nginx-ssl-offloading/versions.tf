@@ -14,24 +14,13 @@
  * limitations under the License.
  */
 
-module "project_ci_kms" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.5"
+terraform {
+  required_version = ">= 1.5.7"
+  required_providers {
 
-  name              = "ci-kms-module"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
-
-  activate_apis = [
-    "cloudkms.googleapis.com",
-    "serviceusage.googleapis.com",
-    "compute.googleapis.com",
-    "iam.googleapis.com",
-    "artifactregistry.googleapis.com",
-    "cloudbuild.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "cloudbilling.googleapis.com"
-  ]
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 5.11, < 6"
+    }
+  }
 }
