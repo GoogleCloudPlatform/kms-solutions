@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM nginx:1.24.0-bullseye
+FROM nginx:1.25.0-bullseye
 
 # Install the OpenSSL PKCS #11 library
 RUN apt-get update && apt-get install -y libengine-pkcs11-openssl wget curl opensc
