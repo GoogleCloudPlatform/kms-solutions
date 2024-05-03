@@ -41,7 +41,7 @@ resource "google_project_service" "apis_to_enable" {
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "2.2.3"
+  version = "2.3.0"
 
   keyring              = "${var.keyring}-${local.default_suffix}"
   location             = var.location
