@@ -48,7 +48,11 @@ module "regular_service_perimeter_dry_run" {
   policy                      = var.access_context_manager_policy_id
   perimeter_name              = var.perimeter_name
   description                 = "EKM Perimeter shielding projects"
-  access_levels               = [module.access_level_members[0].name]
+  access_levels_dry_run       = [module.access_level_members[0].name]
   restricted_services_dry_run = local.restricted_services
   resources_dry_run           = [module.vpc_project[0].project_number, module.kms_project[0].project_number]
+
+  shared_resources = {
+    all = [module.vpc_project[0].project_number, module.kms_project[0].project_number]
+  }
 }
