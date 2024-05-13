@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-module "bootstrap" {
+module "consumer_bootstrap" {
   source = "../../share-encrypted-data-with-partners/consumer/0-bootstrap"
 
   project_id                 = var.project_id
@@ -22,4 +22,25 @@ module "bootstrap" {
   key                        = "simple-example-key"
   import_job_public_key_path = "./wrapping-key.pem"
   prevent_destroy            = false
+}
+
+
+resource "null_resource" "testing_only_dek" {
+
+  provisioner "local-exec" {
+    when    = create
+    command = "openssl rand 32 > ./random_datakey.bin"
+  }
+
+}
+
+module "producer_key_wrap" {
+  source = "../../share-encrypted-data-with-partners/producer/"
+
+  key_encryption_key_path  = "./wrapping-key.pem"
+  data_encryption_key_path = "./random_datakey.bin"
+  wrapped_key_path         = "./wrapped-key"
+
+  depends_on = [null_resource.testing_only_dek]
+
 }
