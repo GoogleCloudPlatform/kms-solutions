@@ -24,3 +24,9 @@ variable "crypto_key_algorithm_import" {
   type        = string
   default     = "aes-256-gcm"
 }
+
+variable "bootstrap_state_file_path" {
+  description = "Path of the 0-bootstrap module state file"
+  type        = string
+  default     = "../0-bootstrap/terraform.tfstate"
+}

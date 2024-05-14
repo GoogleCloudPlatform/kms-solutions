@@ -18,7 +18,7 @@ data "terraform_remote_state" "bootstrap" {
   backend = "local"
 
   config = {
-    path = "../0-bootstrap/terraform.tfstate"
+    path = var.bootstrap_state_file_path
   }
 }
 

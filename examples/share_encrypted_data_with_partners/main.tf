@@ -37,6 +37,8 @@ module "producer_key_wrap" {
 module "consumer_key_import" {
   source = "../../share-encrypted-data-with-partners/consumer/1-key-import"
 
-  wrapped_key_path = "./wrapped-key"
+  wrapped_key_path          = "./wrapped-key"
+  bootstrap_state_file_path = "./terraform.tfstate"
+
   depends_on = [module.producer_key_wrap]
 }
