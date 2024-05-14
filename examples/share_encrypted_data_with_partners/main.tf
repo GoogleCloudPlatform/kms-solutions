@@ -30,4 +30,6 @@ module "producer_key_wrap" {
   key_encryption_key_path  = "./wrapping-key.pem"
   data_encryption_key_path = "./random_example_datakey.bin"
   wrapped_key_path         = "./wrapped-key"
+
+  depends_on = [ module.consumer_bootstrap ]
 }
