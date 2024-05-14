@@ -31,5 +31,12 @@ module "producer_key_wrap" {
   data_encryption_key_path = "./random_example_datakey.bin"
   wrapped_key_path         = "./wrapped-key"
 
-  depends_on = [ module.consumer_bootstrap ]
+  depends_on = [module.consumer_bootstrap]
+}
+
+module "consumer_key_import" {
+  source = "../../share-encrypted-data-with-partners/consumer/1-key-import"
+
+  wrapped_key_path = "./wrapped-key"
+  depends_on = [module.producer_key_wrap]
 }
