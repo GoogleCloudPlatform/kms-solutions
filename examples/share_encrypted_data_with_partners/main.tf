@@ -28,7 +28,7 @@ module "producer_key_wrap" {
   source = "../../share-encrypted-data-with-partners/producer/"
 
   key_encryption_key_path  = "./wrapping-key.pem"
-  data_encryption_key_path = "./random_example_datakey.bin"
+  data_encryption_key_path = "./testing_only_dek.bin.index"
   wrapped_key_path         = "./wrapped-key"
 
   depends_on = [module.consumer_bootstrap]
