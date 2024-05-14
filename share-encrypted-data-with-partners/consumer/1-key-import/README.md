@@ -37,6 +37,11 @@ This module provides the key import process for an existing import job and raw e
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | crypto\_key\_algorithm\_import | Algorithm to use when creating a crypto key version through import. See more: https://cloud.google.com/sdk/gcloud/reference/kms/keys/versions/import. | `string` | `"aes-256-gcm"` | no |
+| import\_job\_id | ID of the import job created in 0-bootstrap module | `string` | n/a | yes |
+| key | Name of the key to be created. | `string` | n/a | yes |
+| keyring | Name of the keyring to be created. | `string` | n/a | yes |
+| location | Location for the keyring. For available KMS locations see: https://cloud.google.com/kms/docs/locations. | `string` | `"us-central1"` | no |
+| project\_id | GCP project ID to use for the creation of resources. | `string` | n/a | yes |
 | wrapped\_key\_path | Path to the wrapped key file. | `string` | n/a | yes |
 
 ## Outputs

@@ -25,8 +25,28 @@ variable "crypto_key_algorithm_import" {
   default     = "aes-256-gcm"
 }
 
-variable "bootstrap_state_file_path" {
-  description = "Path of the 0-bootstrap module state file"
+variable "project_id" {
+  description = "GCP project ID to use for the creation of resources."
   type        = string
-  default     = "../0-bootstrap/terraform.tfstate"
+}
+
+variable "location" {
+  description = "Location for the keyring. For available KMS locations see: https://cloud.google.com/kms/docs/locations."
+  type        = string
+  default     = "us-central1"
+}
+
+variable "keyring" {
+  description = "Name of the keyring to be created."
+  type        = string
+}
+
+variable "key" {
+  description = "Name of the key to be created."
+  type        = string
+}
+
+variable "import_job_id" {
+  description = "ID of the import job created in 0-bootstrap module"
+  type        = string
 }

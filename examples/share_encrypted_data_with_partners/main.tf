@@ -37,8 +37,11 @@ module "producer_key_wrap" {
 module "consumer_key_import" {
   source = "../../share-encrypted-data-with-partners/consumer/1-key-import"
 
-  wrapped_key_path          = "./wrapped-key"
-  bootstrap_state_file_path = "./terraform.tfstate"
+  project_id       = var.project_id
+  keyring          = module.consumer_bootstrap.keyring
+  key              = module.consumer_bootstrap.key
+  wrapped_key_path = "./wrapped-key"
+  import_job_id    = module.consumer_bootstrap.import_job_id
 
   depends_on = [module.producer_key_wrap]
 }
