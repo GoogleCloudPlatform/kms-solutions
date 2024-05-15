@@ -17,10 +17,10 @@
 module "apache_web_server" {
   source = "../../oss-terraform-automation/1-apache-web-server"
 
-  project_id                 = var.project_id
-  keyring                    = "simple-example-keyring"
-  key                        = "simple-example-key"
-  prevent_destroy            = false
-  artifact_image             = "sample-image"
-  docker_file_path           = "../../oss-terraform-automation/1-apache-web-server/"
+  project_id       = var.project_id
+  keyring          = "simple-example-keyring"
+  key              = "simple-example-key"
+  prevent_destroy  = false
+  artifact_image   = "sample-image"
+  docker_file_path = "../../oss-terraform-automation/1-apache-web-server/"
 }
