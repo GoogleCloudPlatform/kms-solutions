@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-resource "null_resource" "re_enable_cloud_build" {
-  provisioner "local-exec" {
-    when    = create
-    command = "gcloud services disable cloudbuild.googleapis.com --project ${var.project_id} && gcloud services enable cloudbuild.googleapis.com --project ${var.project_id} && sleep 30"
-  }
-}
-
 module "bootstrap-kms-hsm" {
   source = "../common/modules/bootstrap-kms-hsm"
 
