@@ -17,7 +17,7 @@
 resource "null_resource" "re_enable_cloud_build" {
   provisioner "local-exec" {
     when    = create
-    command = "gcloud services enable cloudbuild.googleapis.com --project ${var.project_id} && sleep 30"
+    command = "gcloud services disable cloudbuild.googleapis.com --project ${var.project_id} && gcloud services enable cloudbuild.googleapis.com --project ${var.project_id} && sleep 30"
   }
 }
 
