@@ -32,6 +32,12 @@ resource "google_project_iam_member" "cb_sa_logging" {
   member  = "serviceAccount:${local.custom_sa_email}"
 }
 
+resource "google_project_iam_member" "sa_cloudbuild_builder" {
+  project = var.project_id
+  role    = "roles/cloudbuild.builds.builder"
+  member  = "serviceAccount:${local.custom_sa_email}"
+}
+
 resource "google_project_iam_member" "cb_service_agent" {
   project = var.project_id
   role    = "roles/cloudbuild.serviceAgent"
@@ -79,11 +85,5 @@ resource "google_service_account_iam_member" "cb_service_agent_impersonate" {
 resource "google_project_iam_member" "sa_service_account_user" {
   project = var.project_id
   role    = "roles/iam.serviceAccountUser"
-  member  = "serviceAccount:${local.custom_sa_email}"
-}
-
-resource "google_project_iam_member" "sa_owner" {
-  project = var.project_id
-  role    = "roles/owner"
   member  = "serviceAccount:${local.custom_sa_email}"
 }
