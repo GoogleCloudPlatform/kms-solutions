@@ -46,7 +46,7 @@ data "google_client_config" "default" {}
 
 resource "terracurl_request" "poke" {
   name   = "poke-cb"
-  url    = "https://cloudbuild.googleapis.com/v1/projects/${module.project.project_id}/locations/us-central1/builds"
+  url    = "https://cloudbuild.googleapis.com/v1/projects/${module.project_ci_kms.project_id}/locations/us-central1/builds"
   method = "POST"
   headers = {
     Authorization = "Bearer ${data.google_client_config.default.access_token}"
