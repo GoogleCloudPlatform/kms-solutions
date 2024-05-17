@@ -69,5 +69,5 @@ resource "google_artifact_registry_repository" "pkcs11_hsm_examples" {
   description   = "This repo stores images of the PKCS #11 library usage examples using Cloud HSM."
   format        = "DOCKER"
 
-  depends_on = [[time_sleep.enable_projects_apis_sleep]
+  depends_on = [time_sleep.enable_projects_apis_sleep]
 }
