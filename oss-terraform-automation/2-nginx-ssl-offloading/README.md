@@ -91,5 +91,6 @@ This guide provides instructions for setting up a GCP infrastructure with NGINX 
 | keyring | Name of the keyring. |
 | location | Location of the keyring created. |
 | project\_id | ID of the GCP project being used. |
+| vm\_hostname | Name of the hostname created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

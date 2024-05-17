@@ -39,5 +39,6 @@
 | location | Location of the keyring. |
 | project\_id | ID of the GCP project being used. |
 | suffix | A suffix used as an identifier for resources. (e.g., suffix for KMS Key, Keyring, SAs, etc.) |
+| vm\_hostname | Name of the hostname created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
