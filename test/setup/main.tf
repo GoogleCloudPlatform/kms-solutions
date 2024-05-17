@@ -56,4 +56,9 @@ resource "terracurl_request" "poke" {
   depends_on = [
     module.project_ci_kms
   ]
+  lifecycle {
+    ignore_changes = [
+      headers,
+    ]
+  }
 }
