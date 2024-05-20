@@ -162,3 +162,33 @@ variable "ekm_connection_key_path" {
   type        = string
   description = "Each Cloud EKM key version contains either a key URI or a key path. This is a unique identifier for the external key material that Cloud EKM uses when requesting cryptographic operations using the key. When key_management_mode is CLOUD_KMS, this variable will be equals to crypto_space_path"
 }
+
+variable "access_context_manager_policy_id" {
+  type        = string
+  default     = ""
+  description = "Access context manager access policy ID. Used only when enable_vpc_sc flag is true. If empty, a new access context manager access policy will be created."
+}
+
+variable "enable_vpc_sc" {
+  type        = bool
+  default     = true
+  description = "VPC Service Controls define a security perimeter around Google Cloud resources to constrain data within a VPC and mitigate data exfiltration risks. VPC SC structure will be created only when both create project flags (create_kms_project and create_vpc_project) are true."
+}
+
+variable "access_level_members_name" {
+  type        = string
+  default     = "ekm_vpc_sc_access_level_member"
+  description = "Description of the AccessLevel and its use. Does not affect behavior."
+}
+
+variable "access_level_members" {
+  type        = list(string)
+  default     = []
+  description = "Condition - An allowed list of members (users, service accounts). The signed-in identity originating the request must be a part of one of the provided members. If not specified, a request may come from any user (logged in/not logged in, etc.). Formats: user:{emailid}, serviceAccount:{emailid}."
+}
+
+variable "perimeter_name" {
+  type        = string
+  default     = "ekm_perimeter"
+  description = "Name of the perimeter. Should be one unified string. Must only be letters, numbers and underscores."
+}

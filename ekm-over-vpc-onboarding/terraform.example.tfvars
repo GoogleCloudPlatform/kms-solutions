@@ -34,3 +34,5 @@ external_provider_hostname = "REPLACE-WITH-YOUR-EKM-HOSTNAME"
 external_provider_raw_der  = "REPLACE-WITH-YOUR-RAW-DER"  # The raw certificate bytes in DER format. A base64-encoded string. For more info see: https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.ekmConnections#Certificate
 external_key_manager_ip    = "REPLACE-WITH-YOUR-EKM-IP"   # Set with a Private IP address of the EKM or an IP address for the load balancer pointing to the EKM
 ekm_connection_key_path    = "REPLACE-WITH-YOUR-KEY-PATH" # Set with Cloud EKM key version.
+
+access_level_members = ["user:REPLACE-WITH-YOUR-USER-EMAIL"] # Set to add your user to the VPC SC perimeter. This will be used only when both create project flags are true.access_context_manager_policy_id = "value"
