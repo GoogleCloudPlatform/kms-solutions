@@ -14,27 +14,10 @@
  * limitations under the License.
  */
 
-data "terraform_remote_state" "bootstrap" {
-  backend = "local"
-
-  config = {
-    path = "../0-bootstrap/terraform.tfstate"
-  }
-}
-
-locals {
-  project_id    = data.terraform_remote_state.bootstrap.outputs.project_id
-  import_job_id = data.terraform_remote_state.bootstrap.outputs.import_job_id
-  keyring       = data.terraform_remote_state.bootstrap.outputs.keyring
-  key           = data.terraform_remote_state.bootstrap.outputs.key
-  location      = data.terraform_remote_state.bootstrap.outputs.location
-}
-
-
 // Import wrapped key into the existing import job in Cloud KMS
 resource "null_resource" "gcloud-import-wrapped-key-into-an-existing-job" {
 
   provisioner "local-exec" {
-    command = "gcloud kms keys versions import --import-job ${local.import_job_id} --location ${local.location} --keyring ${local.keyring} --key ${local.key} --algorithm ${var.crypto_key_algorithm_import} --wrapped-key-file ${var.wrapped_key_path} --project ${local.project_id}"
+    command = "gcloud kms keys versions import --import-job ${var.import_job_id} --location ${var.location} --keyring ${var.keyring} --key ${var.key} --algorithm ${var.crypto_key_algorithm_import} --wrapped-key-file ${var.wrapped_key_path} --project ${var.project_id}"
   }
 }
