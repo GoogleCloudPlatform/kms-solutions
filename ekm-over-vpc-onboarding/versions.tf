@@ -16,4 +16,8 @@
 
 terraform {
   required_version = ">= 1.5.7"
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:ekm-over-vpc-onboarding"
+  }
 }

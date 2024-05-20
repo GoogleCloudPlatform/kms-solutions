@@ -29,4 +29,8 @@ terraform {
       version = "5.29.1"
     }
   }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:ekm-over-vpc-onboarding-submodule-ekm-creation"
+  }
 }
