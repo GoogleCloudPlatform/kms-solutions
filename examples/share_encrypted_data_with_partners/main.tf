@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-module "bootstrap" {
+module "consumer_bootstrap" {
   source = "../../share-encrypted-data-with-partners/consumer/0-bootstrap"
 
   project_id                 = var.project_id
@@ -22,4 +22,26 @@ module "bootstrap" {
   key                        = "simple-example-key"
   import_job_public_key_path = "./wrapping-key.pem"
   prevent_destroy            = false
+}
+
+module "producer_key_wrap" {
+  source = "../../share-encrypted-data-with-partners/producer/"
+
+  key_encryption_key_path  = "./wrapping-key.pem"
+  data_encryption_key_path = "./testing_only_dek.bin.index"
+  wrapped_key_path         = "./wrapped-key"
+
+  depends_on = [module.consumer_bootstrap]
+}
+
+module "consumer_key_import" {
+  source = "../../share-encrypted-data-with-partners/consumer/1-key-import"
+
+  project_id       = var.project_id
+  keyring          = module.consumer_bootstrap.keyring
+  key              = module.consumer_bootstrap.key
+  wrapped_key_path = "./wrapped-key"
+  import_job_id    = module.consumer_bootstrap.import_job_id
+
+  depends_on = [module.producer_key_wrap]
 }
