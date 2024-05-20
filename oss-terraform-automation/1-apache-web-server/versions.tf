@@ -23,4 +23,8 @@ terraform {
       version = ">= 5.11, < 6"
     }
   }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:oss-apache-web-server"
+  }
 }

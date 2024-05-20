@@ -72,6 +72,8 @@ resource "google_service_account_iam_member" "cb_service_agent_impersonate" {
   service_account_id = local.custom_sa_name
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+
+  depends_on = [google_project_service.apis_to_enable]
 }
 
 resource "google_project_iam_member" "sa_service_account_user" {

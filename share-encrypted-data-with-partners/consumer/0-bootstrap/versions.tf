@@ -38,4 +38,8 @@ terraform {
       version = "0.11.1"
     }
   }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:share-encrypted-data-with-partners-consumer-bootstrap"
+  }
 }
