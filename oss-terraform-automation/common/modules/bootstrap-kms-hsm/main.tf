@@ -52,6 +52,8 @@ module "kms" {
   key_protection_level = "HSM"
   key_rotation_period  = ""
   prevent_destroy      = var.prevent_destroy
+
+  depends_on = [google_project_service.apis_to_enable]
 }
 
 resource "google_artifact_registry_repository" "pkcs11_hsm_examples" {
@@ -60,4 +62,6 @@ resource "google_artifact_registry_repository" "pkcs11_hsm_examples" {
   repository_id = "${var.artifact_repository}-${local.default_suffix}"
   description   = "This repo stores images of the PKCS #11 library usage examples using Cloud HSM."
   format        = "DOCKER"
+
+  depends_on = [google_project_service.apis_to_enable]
 }

@@ -29,6 +29,8 @@ module "vpc" {
       subnet_private_access = "true"
     }
   ]
+
+  depends_on = [google_project_service.apis_to_enable]
 }
 
 resource "google_compute_firewall" "allow-ssh-iap" {
