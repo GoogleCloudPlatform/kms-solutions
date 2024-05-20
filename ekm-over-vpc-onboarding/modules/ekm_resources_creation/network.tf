@@ -18,7 +18,7 @@
 module "vpc-network" {
   source       = "terraform-google-modules/network/google"
   version      = "~> 9.0"
-  project_id   = data.google_project.vpc_project.number
+  project_id   = var.vpc_project_id
   network_name = var.network_name
   mtu          = 1460
   routing_mode = "REGIONAL"
@@ -37,7 +37,7 @@ module "firewall_rules" {
   source  = "terraform-google-modules/network/google//modules/firewall-rules"
   version = "9.1.0"
 
-  project_id   = data.google_project.vpc_project.number
+  project_id   = var.vpc_project_id
   network_name = module.vpc-network.network_name
 
   rules = [{
