@@ -20,6 +20,8 @@ This guide provides instructions of an automation for Cloud External Key Manager
 
 **Note 2:** Your EKM provider should be placed/referenced in your VPC project. A Private IP address of the EKM or an IP address for the load balancer pointing to the EKM is required in your `terraform.tfvars` file. You will need to edit `modules/create_ekm_resources/network.tf` file for any forwarding-rule resources you would like to add
 
+**Note 3:** When both `create_vpc_project` and `create_kms_project` flags are true, a [VPC Service Controls](https://cloud.google.com/security/vpc-service-controls?hl=en) structure will be created in a [dry-run mode](https://cloud.google.com/vpc-service-controls/docs/dry-run-mode) in order to add an extra layer of security. Note when using dry-run mode requests that violate the perimeter policy are not denied, only logged. You can manually change to [enforced mode](https://cloud.google.com/vpc-service-controls/docs/manage-dry-run-configurations#enforce-configuration) after you complete the setup. A VPC SC perimeter can take up to 30 minutes to propagate and take effect, so it is recommended to wait this time before changing to enforced.
+
 ## Deploy infrastructure
 
 1. Rename `terraform.example.tfvars` to `terraform.tfvars`:
@@ -42,12 +44,16 @@ This guide provides instructions of an automation for Cloud External Key Manager
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| access\_context\_manager\_policy\_id | Access context manager access policy ID. Used only when enable\_vpc\_sc flag is true. If empty, a new access context manager access policy will be created. | `string` | `""` | no |
+| access\_level\_members | Condition - An allowed list of members (users, service accounts). The signed-in identity originating the request must be a part of one of the provided members. If not specified, a request may come from any user (logged in/not logged in, etc.). Formats: user:{emailid}, serviceAccount:{emailid}. | `list(string)` | `[]` | no |
+| access\_level\_members\_name | Description of the AccessLevel and its use. Does not affect behavior. | `string` | `"ekm_vpc_sc_access_level_member"` | no |
 | billing\_account | Billing Account for the customer | `string` | `""` | no |
 | create\_kms\_project | If true, a project for KMS will be created automatically | `bool` | `true` | no |
 | create\_vpc\_project | If true, a project for VPC will be created automatically | `bool` | `true` | no |
 | crypto\_space\_path | External key provider crypto space path (ie. v0/longlived/a1-example) | `string` | `""` | no |
 | ekm\_connection\_key\_path | Each Cloud EKM key version contains either a key URI or a key path. This is a unique identifier for the external key material that Cloud EKM uses when requesting cryptographic operations using the key. When key\_management\_mode is CLOUD\_KMS, this variable will be equals to crypto\_space\_path | `string` | n/a | yes |
 | ekmconnection\_name | Name of the ekmconnection resource | `string` | `"ekmconnection"` | no |
+| enable\_vpc\_sc | VPC Service Controls define a security perimeter around Google Cloud resources to constrain data within a VPC and mitigate data exfiltration risks. VPC SC structure will be created only when both create project flags (create\_kms\_project and create\_vpc\_project) are true. | `bool` | `true` | no |
 | external\_key\_manager\_ip | Private IP address of the external key manager or ip address for the load balancer pointing to the external key manager | `string` | `"10.2.0.48"` | no |
 | external\_key\_manager\_port | Port of the external key manager or port for the load balancer pointing to the external key manager | `string` | `"443"` | no |
 | external\_provider\_hostname | Hostname for external key manager provider (ie. private-ekm.example.endpoints.cloud.goog) | `string` | n/a | yes |
@@ -60,6 +66,7 @@ This guide provides instructions of an automation for Cloud External Key Manager
 | location | Location where resources will be created | `string` | `"us-central1"` | no |
 | network\_name | Name of the Network resource | `string` | `"vpc-network-name"` | no |
 | organization\_id | The ID of the existing GCP organization | `string` | n/a | yes |
+| perimeter\_name | Name of the perimeter. Should be one unified string. Must only be letters, numbers and underscores. | `string` | `"ekm_perimeter"` | no |
 | project\_creator\_member\_email | Email of the user that will be granted permissions to create resources under the projects | `string` | `""` | no |
 | random\_project\_suffix | If true, a suffix of 4 random characters will be appended to project names. Only applies when create project flag is true. | `bool` | `false` | no |
 | servicedirectory\_name | Service Directory resource name | `string` | `"ekm-service-directory"` | no |
