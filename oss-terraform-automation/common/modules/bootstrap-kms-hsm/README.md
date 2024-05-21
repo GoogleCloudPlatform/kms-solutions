@@ -38,6 +38,7 @@
 | keyring | Name of the keyring created. |
 | location | Location of the keyring. |
 | project\_id | ID of the GCP project being used. |
+| service\_account | Service account attached to the instance. |
 | suffix | A suffix used as an identifier for resources. (e.g., suffix for KMS Key, Keyring, SAs, etc.) |
 | vm\_hostname | Name of the hostname created. |
 

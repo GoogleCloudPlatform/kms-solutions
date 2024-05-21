@@ -38,3 +38,8 @@ output "vm_hostname" {
   description = "Name of the hostname created."
   value       = module.bootstrap-kms-hsm.vm_hostname
 }
+
+output "service_account" {
+  description = "Service account attached to the instance."
+  value       = module.bootstrap-kms-hsm.service_account
+}
