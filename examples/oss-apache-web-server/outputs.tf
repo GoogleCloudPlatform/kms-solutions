@@ -23,3 +23,8 @@ output "vm_hostname" {
   description = "Name of the hostname created."
   value       = module.apache_web_server.vm_hostname
 }
+
+output "service_account" {
+  description = "Service account attached to the instance."
+  value       = module.apache_web_server.service_account
+}

@@ -53,3 +53,8 @@ output "vm_hostname" {
   description = "Name of the hostname created."
   value       = var.hostname
 }
+
+output "service_account" {
+  description = "Service account attached to the instance."
+  value       = local.custom_sa_email
+}
