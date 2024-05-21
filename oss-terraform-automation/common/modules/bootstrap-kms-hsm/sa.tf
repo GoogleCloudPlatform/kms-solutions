@@ -93,3 +93,9 @@ resource "google_project_iam_member" "sa_compute_admin" {
   role    = "roles/compute.admin"
   member  = "serviceAccount:${local.custom_sa_email}"
 }
+
+resource "google_project_iam_member" "sa_iap_accessor" {
+  project = var.project_id
+  role    = "roles/iap.tunnelResourceAccessor"
+  member  = "serviceAccount:${local.custom_sa_email}"
+}
