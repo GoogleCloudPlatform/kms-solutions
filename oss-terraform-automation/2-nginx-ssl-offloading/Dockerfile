@@ -57,7 +57,7 @@ ENV KMS_PKCS11_CONFIG="/etc/nginx/pkcs11-config.yaml"
 ENV GRPC_ENABLE_FORK_SUPPORT=1
 
 # Create a self-signed certificate with the Cloud KMS-hosted signing key
-RUN openssl req -new -x509 -days 3650 -subj '/CN='${ENV_CERTIFICATE_NAME}'/' \
+RUN openssl req -new -x509 -days 365 -subj '/CN='${ENV_CERTIFICATE_NAME}'/' \
   -${ENV_DIGEST_FLAG} -engine pkcs11 -keyform engine \
   -key pkcs11:object=${ENV_KEY_NAME} > /tmp/ca.cert
 
