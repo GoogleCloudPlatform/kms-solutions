@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-module "nginx_ssl_offloading" {
-  source = "../../oss-terraform-automation/2-nginx-ssl-offloading"
+output "project_id" {
+  description = "ID of the GCP project being used."
+  value       = module.nginx_ssl_offloading.project_id
+}
 
-  project_id       = var.project_id
-  keyring          = "simple-example-keyring"
-  key              = "simple-example-key"
-  prevent_destroy  = false
-  artifact_image   = "sample-image"
-  docker_file_path = "../../oss-terraform-automation/2-nginx-ssl-offloading/"
+output "vm_hostname" {
+  description = "Name of the hostname created."
+  value       = module.nginx_ssl_offloading.vm_hostname
 }
