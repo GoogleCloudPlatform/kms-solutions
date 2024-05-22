@@ -27,6 +27,7 @@ module "gce-container" {
 
   container = {
     image = "${var.artifact_location}-docker.pkg.dev/${var.project_id}/${var.artifact_repository}-${local.default_suffix}/${var.artifact_image}:${var.artifact_version}"
+    name = "container-name"
   }
 
   restart_policy = "Always"
