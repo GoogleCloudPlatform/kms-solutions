@@ -44,6 +44,7 @@ module "project_ci_kms" {
 
 data "google_client_config" "default" {}
 
+// This poke resource is a no-op POST request used to trigger the cloud build (CB) service agent creation. The CB service agent is "Just-in-time" (JIT) provisioned.
 resource "terracurl_request" "poke" {
   name   = "poke-cb"
   url    = "https://cloudbuild.googleapis.com/v1/projects/${module.project_ci_kms.project_id}/locations/us-central1/builds"
