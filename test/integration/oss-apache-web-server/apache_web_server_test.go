@@ -29,7 +29,7 @@ func TestApacheWebServerModule(t *testing.T) {
 	apacheT.DefineVerify(func(assert *assert.Assertions) {
 		apacheT.DefaultVerify(assert)
 
-		gcloud.Run(t, fmt.Sprintf("compute ssh --zone us-central1-a %s --tunnel-through-iap --project %s --impersonate-service-account %s", apacheT.GetStringOutput("vm_hostname"), apacheT.GetStringOutput("project_id"), apacheT.GetStringOutput("service_account")))
+		gcloud.Run(t, fmt.Sprintf("compute ssh --zone us-central1-a username@%s --tunnel-through-iap --project %s --impersonate-service-account %s", apacheT.GetStringOutput("vm_hostname"), apacheT.GetStringOutput("project_id"), apacheT.GetStringOutput("service_account")))
 		exec.Command("container_id=$(docker ps -q | head -n 1)")
 		op := exec.Command("docker exec $container_id curl -v --insecure https://127.0.0.1")
 
