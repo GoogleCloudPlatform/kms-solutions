@@ -30,8 +30,36 @@ module "project_ci_kms" {
     "compute.googleapis.com",
     "iam.googleapis.com",
     "artifactregistry.googleapis.com",
-    "cloudbuild.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "cloudbilling.googleapis.com"
   ]
+
+  activate_api_identities = [
+    {
+      api   = "cloudbuild.googleapis.com",
+      roles = ["roles/cloudbuild.builds.builder"]
+    }
+  ]
+}
+
+data "google_client_config" "default" {}
+
+// This poke resource is a no-op POST request used to trigger the cloud build (CB) service agent creation. The CB service agent is "Just-in-time" (JIT) provisioned.
+resource "terracurl_request" "poke" {
+  name   = "poke-cb"
+  url    = "https://cloudbuild.googleapis.com/v1/projects/${module.project_ci_kms.project_id}/locations/us-central1/builds"
+  method = "POST"
+  headers = {
+    Authorization = "Bearer ${data.google_client_config.default.access_token}"
+    Content-Type  = "application/json",
+  }
+  response_codes = [400]
+  depends_on = [
+    module.project_ci_kms
+  ]
+  lifecycle {
+    ignore_changes = [
+      headers,
+    ]
+  }
 }

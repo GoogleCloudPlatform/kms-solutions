@@ -23,5 +23,9 @@ terraform {
     google-beta = {
       source = "hashicorp/google-beta"
     }
+    terracurl = {
+      source  = "devops-rob/terracurl"
+      version = "~> 1.0"
+    }
   }
 }

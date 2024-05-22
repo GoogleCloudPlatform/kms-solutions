@@ -153,5 +153,6 @@ This guide provides instructions for creating a Cloud HSM key for Microsoft Auth
 | keyring | Name of the keyring. |
 | location | Location of the keyring created. |
 | project\_id | ID of the GCP project being used. |
+| vm\_hostname | Name of the hostname created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

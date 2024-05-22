@@ -33,3 +33,8 @@ output "project_id" {
   description = "ID of the GCP project being used."
   value       = module.bootstrap-kms-hsm.project_id
 }
+
+output "vm_hostname" {
+  description = "Name of the hostname created."
+  value       = module.bootstrap-kms-hsm.vm_hostname
+}

@@ -14,27 +14,13 @@
  * limitations under the License.
  */
 
-output "keyring" {
-  description = "Name of the keyring."
-  value       = module.bootstrap-kms-hsm.keyring
-}
+module "cng_provider" {
+  source = "../../oss-terraform-automation/3-cng-provider"
 
-output "location" {
-  description = "Location of the keyring created."
-  value       = module.bootstrap-kms-hsm.location
-}
-
-output "key" {
-  description = "Name of the key created."
-  value       = module.bootstrap-kms-hsm.key
-}
-
-output "project_id" {
-  description = "ID of the GCP project being used."
-  value       = module.bootstrap-kms-hsm.project_id
-}
-
-output "vm_hostname" {
-  description = "Name of the hostname created."
-  value       = module.bootstrap-kms-hsm.vm_hostname
+  project_id       = var.project_id
+  keyring          = "simple-example-keyring"
+  key              = "simple-example-key"
+  prevent_destroy  = false
+  artifact_image   = "sample-image"
+  docker_file_path = "../../oss-terraform-automation/3-cng-provider/"
 }

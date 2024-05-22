@@ -39,6 +39,12 @@ resource "google_project_service" "apis_to_enable" {
   disable_on_destroy = false
 }
 
+resource "time_sleep" "enable_projects_apis_sleep" {
+  create_duration = "30s"
+
+  depends_on = [google_project_service.apis_to_enable]
+}
+
 module "kms" {
   source  = "terraform-google-modules/kms/google"
   version = "2.3.0"
@@ -53,7 +59,7 @@ module "kms" {
   key_rotation_period  = ""
   prevent_destroy      = var.prevent_destroy
 
-  depends_on = [google_project_service.apis_to_enable]
+  depends_on = [time_sleep.enable_projects_apis_sleep]
 }
 
 resource "google_artifact_registry_repository" "pkcs11_hsm_examples" {
@@ -63,5 +69,5 @@ resource "google_artifact_registry_repository" "pkcs11_hsm_examples" {
   description   = "This repo stores images of the PKCS #11 library usage examples using Cloud HSM."
   format        = "DOCKER"
 
-  depends_on = [google_project_service.apis_to_enable]
+  depends_on = [time_sleep.enable_projects_apis_sleep]
 }

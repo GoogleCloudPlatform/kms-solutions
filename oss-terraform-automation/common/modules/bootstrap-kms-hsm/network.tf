@@ -30,7 +30,7 @@ module "vpc" {
     }
   ]
 
-  depends_on = [google_project_service.apis_to_enable]
+  depends_on = [time_sleep.enable_projects_apis_sleep]
 }
 
 resource "google_compute_firewall" "allow-ssh-iap" {

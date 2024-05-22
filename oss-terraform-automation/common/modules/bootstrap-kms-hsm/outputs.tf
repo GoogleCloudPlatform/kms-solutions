@@ -48,3 +48,8 @@ output "artifact_registry_repository_name" {
   description = "Name of the Artifact Registry repository created."
   value       = google_artifact_registry_repository.pkcs11_hsm_examples.name
 }
+
+output "vm_hostname" {
+  description = "Name of the hostname created."
+  value       = var.hostname
+}
