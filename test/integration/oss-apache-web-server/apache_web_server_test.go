@@ -16,9 +16,9 @@ package apache_web_server
 
 import (
 	"fmt"
+	"os/exec"
 	"testing"
 
-	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
 	"github.com/stretchr/testify/assert"
 )
@@ -28,7 +28,7 @@ func TestApacheWebServerModule(t *testing.T) {
 	apacheT.DefineVerify(func(assert *assert.Assertions) {
 		apacheT.DefaultVerify(assert)
 
-		op := gcloud.Runf(t, fmt.Sprintf("compute ssh --zone us-central1-a username@%s --tunnel-through-iap --project %s --impersonate-service-account %s --command=\"curl -v --insecure https://127.0.0.1\"", apacheT.GetStringOutput("vm_hostname"), apacheT.GetStringOutput("project_id"), apacheT.GetStringOutput("service_account")))
+		op := exec.Command(fmt.Sprintf("gcloud compute ssh --zone us-central1-a username@%s --tunnel-through-iap --project %s --impersonate-service-account %s --command=\"curl -v --insecure https://127.0.0.1\"", apacheT.GetStringOutput("vm_hostname"), apacheT.GetStringOutput("project_id"), apacheT.GetStringOutput("service_account")))
 
 		assert.Contains(op, "HTTP/1.1 200 OK", "Request must return 200")
 	})
