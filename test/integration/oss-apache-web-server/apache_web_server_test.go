@@ -16,21 +16,41 @@ package apache_web_server
 
 import (
 	"fmt"
-	"os/exec"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
+	"github.com/gruntwork-io/terratest/modules/shell"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestApacheWebServerModule(t *testing.T) {
+func TestFakeApacheWebServerModule(t *testing.T) {
 	apacheT := tft.NewTFBlueprintTest(t)
 	apacheT.DefineVerify(func(assert *assert.Assertions) {
 		apacheT.DefaultVerify(assert)
 
-		op := exec.Command(fmt.Sprintf("gcloud compute ssh --zone us-central1-a username@%s --tunnel-through-iap --project %s --impersonate-service-account %s --command=\"curl -v --insecure https://127.0.0.1\"", apacheT.GetStringOutput("vm_hostname"), apacheT.GetStringOutput("project_id"), apacheT.GetStringOutput("service_account_email")))
+		command := shell.Command{
+			Command: "gcloud",
+			Args: []string{
+				"compute",
+				"ssh",
+				"--zone",
+				"us-central1-a",
+				fmt.Sprintf("username@%s", apacheT.GetStringOutput("vm_hostname")),
+				"--tunnel-through-iap",
+				"--project",
+				apacheT.GetStringOutput("project_id"),
+				"--impersonate-service-account",
+				apacheT.GetStringOutput("service_account"),
+				"--command",
+				`curl -v --insecure https://127.0.0.1`,
+			},
+		}
+
+		op, err := shell.RunCommandAndGetOutputE(t, command)
 
 		assert.Contains(op, "HTTP/1.1 200 OK", "Request must return 200")
+		assert.Contains(op, "SSL certificate verify result: self-signed certificate", "SSL must be verified")
+		assert.Nil(err)
 	})
 	apacheT.Test()
 }
