@@ -40,7 +40,7 @@ func TestFakeApacheWebServerModule(t *testing.T) {
 				"--project",
 				apacheT.GetStringOutput("project_id"),
 				"--impersonate-service-account",
-				apacheT.GetStringOutput("service_account"),
+				apacheT.GetStringOutput("service_account_email"),
 				"--command",
 				`curl -v --insecure https://127.0.0.1`,
 			},
