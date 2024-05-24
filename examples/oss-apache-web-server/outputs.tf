@@ -23,3 +23,8 @@ output "vm_hostname" {
   description = "Name of the hostname created."
   value       = module.apache_web_server.vm_hostname
 }
+
+output "service_account_email" {
+  description = "Service Account created and managed by Terraform."
+  value       = module.apache_web_server.service_account_email
+}

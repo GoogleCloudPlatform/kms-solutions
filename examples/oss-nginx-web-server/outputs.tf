@@ -23,3 +23,8 @@ output "vm_hostname" {
   description = "Name of the hostname created."
   value       = module.nginx_ssl_offloading.vm_hostname
 }
+
+output "service_account_email" {
+  description = "Service Account created and managed by Terraform."
+  value       = module.nginx_ssl_offloading.service_account_email
+}
