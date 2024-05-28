@@ -46,6 +46,7 @@ func TestNginxSslOffloadingModule(t *testing.T) {
 			},
 		}
 
+		shell.RunCommandAndGetOutputE(t, command) // GET does not output in the first execution
 		op, err := shell.RunCommandAndGetOutputE(t, command)
 
 		assert.Contains(op, "Welcome to nginx!", "GET request failed")
