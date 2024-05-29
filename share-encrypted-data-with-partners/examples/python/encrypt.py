@@ -17,6 +17,7 @@
 import os
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import argparse
+import json
 from base64 import b64encode
 
 # Define the argument parser
@@ -30,6 +31,10 @@ parser.add_argument("--data", required=True, help="Sensitive data")
 parser.add_argument(
     "--aad", required=True, help="Additional Authenticated Data"
 )
+parser.add_argument(
+    "--json", required=False, action="store_true",
+    help="Format output as JSON", default=False,
+)
 
 # Parse the arguments
 args = parser.parse_args()
@@ -37,7 +42,7 @@ args = parser.parse_args()
 # Access the parameters
 data_encryption_key_path = args.data_encryption_key_path
 data = str(args.data).encode()
-aad = str(args.aad).encode()
+aad = str(args.aad)
 
 # Reading key bytes
 key = open(data_encryption_key_path, "rb").read()
@@ -45,9 +50,22 @@ aesgcm = AESGCM(key)
 nonce = os.urandom(12)
 
 # Encrypting data with key bytes
-ciphertext = aesgcm.encrypt(nonce, data, aad)
+ciphertext = aesgcm.encrypt(nonce, data, aad.encode())
 
 # Printing the outputs needed for decrypt process
-print(f"Ciphertext base 64: {b64encode(ciphertext)}")
-print(f"Generated IV base64 for encryption: {b64encode(nonce)}")
-print(f"Additional Authenticated Data (AAD): {aad}")
+ciphertext = b64encode(ciphertext)
+nonce = b64encode(nonce)
+
+if bool(args.json):
+    print(json.dumps(
+        dict(
+            ciphertext=ciphertext.decode("utf-8"),
+            iv=nonce.decode("utf-8"),
+            aad=aad,
+        )
+    )
+    )
+else:
+    print(f"Ciphertext base 64: {ciphertext}")
+    print(f"Generated IV base64 for encryption: {nonce}")
+    print(f"Additional Authenticated Data (AAD): {aad}")

@@ -15,6 +15,7 @@
 # limitations under the License.
 
 import argparse
+import json
 from google.cloud import kms_v1
 from base64 import b64decode
 
@@ -34,14 +35,23 @@ parser.add_argument("--gcp_location", required=True, help="GCP KMS Location")
 parser.add_argument("--gcp_keyring", required=True, help="GCP KMS Keyring")
 parser.add_argument("--gcp_key", required=True, help="GCP Key")
 parser.add_argument("--gcp_key_version", help="GCP Key Version", default="1")
+parser.add_argument(
+    "--json_file", required=False,
+    help="To pass the inputs as JSON", default=False,
+)
 
 # Parse the arguments
 args = parser.parse_args()
+json_file = args.json_file
+
+if json_file:
+    with open(json_file, "r") as f:
+        data = json.load(f)
 
 # Access the parameters and convert what is needed
-ciphertext = b64decode(args.ciphertext)
-iv = b64decode(args.iv)
-aad = str(args.aad).encode()
+ciphertext = b64decode(args.ciphertext) or b64decode(data['ciphertext'])
+iv = b64decode(args.iv) or b64decode(data['iv'])
+aad = str(args.aad).encode() or str(data['aad']).encode()
 
 # Create a client
 client = kms_v1.KeyManagementServiceClient()
