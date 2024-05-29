@@ -24,7 +24,9 @@ resource "null_resource" "install_python_deps" {
 
   provisioner "local-exec" {
     command = <<EOF
-    python -m venv ./venv && . ./venv/bin/activate && pip install -r ../../share-encrypted-data-with-partners/examples/python/requirements.txt
+    python -m venv ./venv &&
+    . ./venv/bin/activate &&
+    pip install -r ../../share-encrypted-data-with-partners/examples/python/requirements.txt
     EOF
   }
 }
