@@ -35,7 +35,7 @@ resource "null_resource" "encrypt_using_python_example" {
 
   provisioner "local-exec" {
     command = <<EOF
-    python ../../share-encrypted-data-with-partners/examples/python/encrypt.py \
+    ./venv/bin/python ../../share-encrypted-data-with-partners/examples/python/encrypt.py \
     --data_encryption_key_path ./testing_only_dek.bin.index \
     --data "a secret message to be shared" \
     --aad "pre-determined authenticated but unencrypted data" \
@@ -50,7 +50,7 @@ resource "null_resource" "decrypt_using_python_example" {
 
   provisioner "local-exec" {
     command = <<EOF
-    python ../../share-encrypted-data-with-partners/examples/python/decrypt.py \
+    ./venv/bin/python ../../share-encrypted-data-with-partners/examples/python/decrypt.py \
     --gcp_project ${var.project_id} \
     --gcp_location us-central1 \
     --gcp_keyring ${module.consumer_bootstrap.keyring} \
