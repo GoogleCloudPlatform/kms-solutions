@@ -23,3 +23,8 @@ output "vm_hostname" {
   description = "Name of the hostname created."
   value       = module.cng_provider.vm_hostname
 }
+
+output "service_account_email" {
+  description = "Service Account created and managed by Terraform."
+  value       = module.cng_provider.service_account_email
+}

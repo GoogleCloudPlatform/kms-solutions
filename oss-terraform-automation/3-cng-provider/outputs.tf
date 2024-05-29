@@ -38,3 +38,8 @@ output "vm_hostname" {
   description = "Name of the hostname created."
   value       = module.bootstrap-kms-hsm.vm_hostname
 }
+
+output "service_account_email" {
+  description = "Service Account created and managed by Terraform."
+  value       = module.bootstrap-kms-hsm.custom_service_account_email
+}
