@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package nginx_ssl_offloading
+package share_encrypted_data_with_partner
 
 import (
 	"os"

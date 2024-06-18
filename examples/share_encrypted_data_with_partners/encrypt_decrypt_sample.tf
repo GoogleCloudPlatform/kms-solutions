@@ -15,9 +15,8 @@
  */
 
 /**
-* The resources in this file provides an usage example of
-* encrypt/decrypt process using python scripts samples.
-* For production use, use your company's approved method to encrypt/decrypt."
+* The resources in this file provide a usage example of
+* Cloud KMS-based encryption and decryption, using sample python scripts.
 */
 
 resource "null_resource" "install_python_deps" {
