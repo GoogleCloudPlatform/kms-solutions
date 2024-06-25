@@ -1,0 +1,14 @@
+{
+  "encryptedKeyset": "CiQAg9L9iZ46Prw8LJa3QdFQgSV+1FC949bcxjGtuc1bGtdDVwUShQEAehn0LQDSs5hUn3KQ6FFVBtvh1+5RpcxdD7AZgixd+w6S0g21sd/q1L2u9zvKZn8WBbvSwvuD1SR/raXy+TChxr+ad3tE1dtiu8vuDCgnhFKeMgPbjpMcbTvZ07FI2eRRqhBZdeOUZ36J42D//KKCs0uliTDKpGF/9OI+M0dn5jqMyDq6",
+  "keysetInfo": {
+    "primaryKeyId": 2058768446,
+    "keyInfo": [
+      {
+        "typeUrl": "type.googleapis.com/google.crypto.tink.AesGcmKey",
+        "status": "ENABLED",
+        "keyId": 2058768446,
+        "outputPrefixType": "TINK"
+      }
+    ]
+  }
+}
