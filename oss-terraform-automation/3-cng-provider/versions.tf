@@ -25,6 +25,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:oss-cng-provider"
+    module_name = "blueprints/terraform/kms-solutions:oss-cng-provider/v0.1.0"
   }
 }

@@ -40,6 +40,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:share-encrypted-data-with-partners-consumer-bootstrap"
+    module_name = "blueprints/terraform/kms-solutions:share-encrypted-data-with-partners-consumer-bootstrap/v0.1.0"
   }
 }
