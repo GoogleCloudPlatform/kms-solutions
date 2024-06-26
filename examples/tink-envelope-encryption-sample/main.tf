@@ -14,9 +14,13 @@
  * limitations under the License.
  */
 
+locals {
+  temp_sa_key_file = "./sa_key.tmp"
+}
+
 resource "local_file" "temp_sa_key_file" {
   content  = base64decode(var.sa_key)
-  filename = "./sa_key.tmp"
+  filename = local.temp_sa_key_file
 }
 
 module "tink_encrypt" {
@@ -26,10 +30,10 @@ module "tink_encrypt" {
   keyring                  = "simple-example-keyring"
   kek                      = "simple-example-key"
   input_file_path          = "./secret_file_sample.txt"
-  tink_sa_credentials_file = "./sa_key.tmp"
+  tink_sa_credentials_file = local.temp_sa_key_file
   prevent_destroy          = false
   python_cli_path          = var.python_cli_path
-  python_venv_path         = var.python_venv_path
+  python_venv_path         = "./venv_encrypt"
 
   depends_on = [local_file.temp_sa_key_file]
 }
@@ -40,7 +44,9 @@ module "tink_decrypt" {
   tink_keyset_file         = module.tink_encrypt.tink_keyset_file
   tink_kek_uri             = module.tink_encrypt.kek_key_uri
   encrypted_file_path      = module.tink_encrypt.encrypted_file_path
-  tink_sa_credentials_file = "./sa_key.tmp"
+  tink_sa_credentials_file = local.temp_sa_key_file
   python_cli_path          = var.python_cli_path
-  python_venv_path         = var.python_venv_path
+  python_venv_path         = "./venv_decrypt"
+
+  depends_on = [module.tink_encrypt]
 }

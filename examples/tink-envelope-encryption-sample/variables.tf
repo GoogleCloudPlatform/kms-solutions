@@ -24,11 +24,6 @@ variable "sa_key" {
   type        = string
 }
 
-variable "python_venv_path" {
-  description = "Python virtual environment path to be created."
-  default     = "./venv"
-}
-
 variable "python_cli_path" {
   description = "Python CLI base path."
   default     = "../../tink-envelope-encryption-sample"
