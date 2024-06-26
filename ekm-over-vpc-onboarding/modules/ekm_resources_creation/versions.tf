@@ -26,11 +26,11 @@ terraform {
 
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "5.33.0"
+      version = "5.34.0"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:ekm-over-vpc-onboarding-submodule-ekm-creation"
+    module_name = "blueprints/terraform/kms-solutions:ekm-over-vpc-onboarding-submodule-ekm-creation/v0.1.0"
   }
 }
