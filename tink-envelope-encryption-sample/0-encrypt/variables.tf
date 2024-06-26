@@ -70,7 +70,7 @@ variable "encrypted_file_path" {
 
 variable "python_venv_path" {
   description = "Python virtual environment path to be created."
-  default     = "../venv"
+  default     = "../encrypt_venv"
 }
 
 variable "python_cli_path" {

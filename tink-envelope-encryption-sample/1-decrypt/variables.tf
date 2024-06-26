@@ -42,7 +42,7 @@ variable "decrypted_file_path" {
 
 variable "python_venv_path" {
   description = "Python virtual environment path to be created."
-  default     = "../venv"
+  default     = "../decrypt_venv"
 }
 
 variable "python_cli_path" {
