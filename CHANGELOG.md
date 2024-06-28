@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.1.0...v0.2.0) (2024-06-28)
+
+
+### Features
+
+* **deps:** Update Terraform google-beta to v5.34.0 ([#52](https://github.com/GoogleCloudPlatform/kms-solutions/issues/52)) ([dea41b7](https://github.com/GoogleCloudPlatform/kms-solutions/commit/dea41b7b4641aa8ad3cebfa13efaab9efc11867d))
+
 ## 0.1.0 (2024-06-19)
 
 
