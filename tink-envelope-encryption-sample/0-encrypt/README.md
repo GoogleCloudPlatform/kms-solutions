@@ -12,7 +12,7 @@ This module provides the Terraform bootstrap infrastructure creation (keyring, k
 - An existing [GCP project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project);
 - Enable GCP services in the project created above:
     - cloudkms.googleapis.com
-- [Python 3+](https://www.python.org/downloads/);
+- [Go 1.22+](https://go.dev/dl/);
 - [pip](https://pip.pypa.io/en/stable/installation/);
 
 **Note:** You can enable these services using `gcloud services enable <SERVICE>` command or terraform automation would auto-enable them for you.
