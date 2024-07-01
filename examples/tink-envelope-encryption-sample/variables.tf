@@ -24,7 +24,7 @@ variable "sa_key" {
   type        = string
 }
 
-variable "python_cli_path" {
-  description = "Python CLI base path."
+variable "cli_path" {
+  description = "CLI base path."
   default     = "../../tink-envelope-encryption-sample"
 }

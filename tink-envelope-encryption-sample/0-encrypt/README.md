@@ -42,6 +42,8 @@ This module provides the Terraform bootstrap infrastructure creation (keyring, k
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| associated\_data | The associated data in Authenticated Encryption with Associated Data (AEAD) is used to tie ciphertext to specific associated data. Associated data is authenticated but NOT encrypted. | `string` | `"associated_data_sample"` | no |
+| cli\_path | CLI base path. | `string` | `"../../tink-envelope-encryption-sample"` | no |
 | encrypted\_file\_path | Path to the encrypted file to be output by terraform. | `string` | `"./encrypted_file"` | no |
 | input\_file\_path | Path to the input file to be encrypted. | `string` | n/a | yes |
 | kek | Key encryption key name. | `string` | n/a | yes |
@@ -49,8 +51,6 @@ This module provides the Terraform bootstrap infrastructure creation (keyring, k
 | location | Location for the resources (keyring, key, network, etc.). | `string` | `"us-central1"` | no |
 | prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | n/a | yes |
 | project\_id | GCP project ID to use for the creation of resources. | `string` | n/a | yes |
-| python\_cli\_path | Python CLI base path. | `string` | `".."` | no |
-| python\_venv\_path | Python virtual environment path to be created. | `string` | `"../encrypt_venv"` | no |
 | suffix | A suffix to be used as an identifier for resources. (e.g., suffix for KMS Key, Keyring, SAs, etc.). | `string` | `""` | no |
 | tink\_keyset\_output\_file | Tink keyset output file name. | `string` | `"./encrypted_keyset"` | no |
 | tink\_sa\_credentials\_file | Service accounts credential file path required by Tink. | `string` | n/a | yes |

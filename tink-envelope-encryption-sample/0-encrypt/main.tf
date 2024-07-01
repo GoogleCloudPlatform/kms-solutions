@@ -19,17 +19,6 @@ locals {
   keyset_file_name = "${var.tink_keyset_output_file}-${local.default_suffix}.json"
 }
 
-resource "null_resource" "setup_python" {
-
-  provisioner "local-exec" {
-    command = <<EOF
-    python -m venv ${var.python_venv_path} &&
-    . ${var.python_venv_path}/bin/activate &&
-    pip install -r ${var.python_cli_path}/requirements.txt
-    EOF
-  }
-}
-
 resource "null_resource" "tinkey_create_keyset" {
 
   triggers = {
@@ -40,15 +29,14 @@ resource "null_resource" "tinkey_create_keyset" {
   provisioner "local-exec" {
     when    = create
     command = <<EOF
-        ${var.python_venv_path}/bin/python ${var.python_cli_path}/encrypted_keyset_cli.py \
+        go run ${var.cli_path}/encrypted_keyset_cli.go \
         --mode generate \
-        --keyset_path ${local.keyset_file_name} \
+        --output_path ${local.keyset_file_name} \
         --kek_uri ${local.tink_kek_uri} \
         --gcp_credential_path ${var.tink_sa_credentials_file}
     EOF
   }
 
-  depends_on = [module.kms, null_resource.setup_python]
 }
 
 resource "null_resource" "tinkey_encrypt" {
@@ -61,13 +49,14 @@ resource "null_resource" "tinkey_encrypt" {
   provisioner "local-exec" {
     when    = create
     command = <<EOF
-        ${var.python_venv_path}/bin/python ${var.python_cli_path}/encrypted_keyset_cli.py \
+        go run ${var.cli_path}/encrypted_keyset_cli.go \
         --mode encrypt \
         --keyset_path ${local.keyset_file_name} \
         --kek_uri ${local.tink_kek_uri} \
         --gcp_credential_path ${var.tink_sa_credentials_file} \
         --input_path ${var.input_file_path} \
-        --output_path ${var.encrypted_file_path}
+        --output_path ${var.encrypted_file_path} \
+        --associated_data ${var.associated_data}
     EOF
   }
 

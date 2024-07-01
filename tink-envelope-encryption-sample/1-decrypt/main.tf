@@ -14,17 +14,6 @@
  * limitations under the License.
  */
 
-resource "null_resource" "setup_python" {
-
-  provisioner "local-exec" {
-    command = <<EOF
-    python -m venv ${var.python_venv_path} &&
-    . ${var.python_venv_path}/bin/activate &&
-    pip install -r ${var.python_cli_path}/requirements.txt
-    EOF
-  }
-}
-
 resource "null_resource" "tinkey_decrypt" {
 
   triggers = {
@@ -34,15 +23,15 @@ resource "null_resource" "tinkey_decrypt" {
   provisioner "local-exec" {
     when    = create
     command = <<EOF
-        ${var.python_venv_path}/bin/python ${var.python_cli_path}/encrypted_keyset_cli.py \
+        go run ${var.cli_path}/encrypted_keyset_cli.go \
         --mode decrypt \
         --keyset_path ${var.tink_keyset_file} \
         --kek_uri ${var.tink_kek_uri} \
         --gcp_credential_path ${var.tink_sa_credentials_file} \
         --input_path ${var.encrypted_file_path} \
-        --output_path ${var.decrypted_file_path}
+        --output_path ${var.decrypted_file_path} \
+        --associated_data ${var.associated_data}
     EOF
   }
 
-  depends_on = [null_resource.setup_python]
 }

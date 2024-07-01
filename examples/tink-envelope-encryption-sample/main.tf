@@ -32,8 +32,7 @@ module "tink_encrypt" {
   input_file_path          = "./secret_file_sample.txt"
   tink_sa_credentials_file = local.temp_sa_key_file
   prevent_destroy          = false
-  python_cli_path          = var.python_cli_path
-  python_venv_path         = "./venv_encrypt"
+  cli_path                 = var.cli_path
 
   depends_on = [local_file.temp_sa_key_file]
 }
@@ -45,8 +44,7 @@ module "tink_decrypt" {
   tink_kek_uri             = module.tink_encrypt.kek_key_uri
   encrypted_file_path      = module.tink_encrypt.encrypted_file_path
   tink_sa_credentials_file = local.temp_sa_key_file
-  python_cli_path          = var.python_cli_path
-  python_venv_path         = "./venv_decrypt"
+  cli_path                 = var.cli_path
 
   depends_on = [module.tink_encrypt]
 }

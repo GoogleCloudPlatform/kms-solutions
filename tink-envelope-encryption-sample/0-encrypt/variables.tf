@@ -68,12 +68,12 @@ variable "encrypted_file_path" {
   default     = "./encrypted_file"
 }
 
-variable "python_venv_path" {
-  description = "Python virtual environment path to be created."
-  default     = "../encrypt_venv"
+variable "cli_path" {
+  description = "CLI base path."
+  default     = "../../tink-envelope-encryption-sample"
 }
 
-variable "python_cli_path" {
-  description = "Python CLI base path."
-  default     = ".."
+variable "associated_data" {
+  description = "The associated data in Authenticated Encryption with Associated Data (AEAD) is used to tie ciphertext to specific associated data. Associated data is authenticated but NOT encrypted."
+  default     = "associated_data_sample"
 }
