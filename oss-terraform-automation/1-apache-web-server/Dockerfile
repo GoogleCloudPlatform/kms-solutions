@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu/apache2
+FROM ubuntu/apache2:2.4-22.04_beta
 
 # Install the OpenSSL PKCS #11 library
 RUN apt-get update && apt-get install -y libengine-pkcs11-openssl wget curl
