@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-resource "null_resource" "tinkey_decrypt" {
-
-  triggers = {
-    project_id = var.encrypted_file_path
+terraform {
+  required_version = ">= 1.5.7"
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.2"
+    }
   }
 
-  provisioner "local-exec" {
-    when    = create
-    command = <<EOF
-        go run ${var.cli_path}/encrypted_keyset_cli.go \
-        --mode decrypt \
-        --keyset_path ${var.tink_keyset_file} \
-        --kek_uri ${var.tink_kek_uri} \
-        --gcp_credential_path ${var.tink_sa_credentials_file} \
-        --input_path ${var.encrypted_file_path} \
-        --output_path ${var.decrypted_file_path} \
-        --associated_data ${var.associated_data}
-    EOF
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:tink-envelope-encryption-sample-decrypt/v0.1.0"
   }
-
 }

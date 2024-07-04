@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-variable "tink_keyset_output_file" {
-  description = "Tink keyset output file name."
+variable "tink_keyset_file" {
+  description = "Tink keyset file name."
   type        = string
-  default     = "./encrypted_keyset"
 }
 
 variable "tink_sa_credentials_file" {
@@ -25,47 +24,20 @@ variable "tink_sa_credentials_file" {
   type        = string
 }
 
-variable "suffix" {
-  description = "A suffix to be used as an identifier for resources. (e.g., suffix for KMS Key, Keyring, SAs, etc.)."
-  type        = string
-  default     = ""
-}
-
-variable "project_id" {
-  description = "GCP project ID to use for the creation of resources."
-  type        = string
-}
-
-variable "location" {
-  description = "Location for the resources (keyring, key, network, etc.)."
-  type        = string
-  default     = "us-central1"
-}
-
-variable "keyring" {
-  description = "Keyring name."
-  type        = string
-}
-
-variable "kek" {
-  description = "Key encryption key name."
-  type        = string
-}
-
-variable "prevent_destroy" {
-  description = "Set the prevent_destroy lifecycle attribute on keys."
-  type        = bool
-}
-
-variable "input_file_path" {
-  description = "Path to the input file to be encrypted."
-  type        = string
+variable "kek_uri" {
+  description = "KMS Key Encryption Key (KEK) URI."
+  type = string
 }
 
 variable "encrypted_file_path" {
-  description = "Path to the encrypted file to be output by terraform."
+  description = "Path to the encrypted file."
   type        = string
-  default     = "./encrypted_file"
+}
+
+variable "decrypted_file_path" {
+  description = "Path to the decrypted file to be output by terraform."
+  type        = string
+  default     = "./decrypted_file"
 }
 
 variable "cli_path" {

@@ -14,35 +14,9 @@
  * limitations under the License.
  */
 
-locals {
-  tink_kek_uri     = "gcp-kms://projects/${var.project_id}/locations/${var.location}/keyRings/${module.kms.keyring_resource.name}/cryptoKeys/${keys(module.kms.keys)[0]}"
-  keyset_file_name = "${var.tink_keyset_output_file}-${local.default_suffix}.json"
-}
-
-resource "null_resource" "tinkey_create_keyset" {
-
-  triggers = {
-    project_id              = var.project_id
-    tink_keyset_output_file = var.tink_keyset_output_file
-  }
-
-  provisioner "local-exec" {
-    when    = create
-    command = <<EOF
-        go run ${var.cli_path}/encrypted_keyset_cli.go \
-        --mode generate \
-        --output_path ${local.keyset_file_name} \
-        --kek_uri ${local.tink_kek_uri} \
-        --gcp_credential_path ${var.tink_sa_credentials_file}
-    EOF
-  }
-
-}
-
 resource "null_resource" "tinkey_encrypt" {
 
   triggers = {
-    project_id      = var.project_id
     input_file_path = var.input_file_path
   }
 
@@ -51,14 +25,12 @@ resource "null_resource" "tinkey_encrypt" {
     command = <<EOF
         go run ${var.cli_path}/encrypted_keyset_cli.go \
         --mode encrypt \
-        --keyset_path ${local.keyset_file_name} \
-        --kek_uri ${local.tink_kek_uri} \
+        --keyset_path ${var.tink_keyset_file} \
+        --kek_uri ${var.kek_uri} \
         --gcp_credential_path ${var.tink_sa_credentials_file} \
         --input_path ${var.input_file_path} \
         --output_path ${var.encrypted_file_path} \
         --associated_data ${var.associated_data}
     EOF
   }
-
-  depends_on = [null_resource.tinkey_create_keyset]
 }

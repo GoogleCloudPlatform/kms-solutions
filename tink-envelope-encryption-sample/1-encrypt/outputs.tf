@@ -14,27 +14,7 @@
  * limitations under the License.
  */
 
-output "kek_key_uri" {
-  description = "KMS Key Encryption Key (KEK) URI."
-  value       = "gcp-kms://projects/${var.project_id}/locations/${var.location}/keyRings/${module.kms.keyring_resource.name}/cryptoKeys/${keys(module.kms.keys)[0]}"
-}
-
-output "keyring" {
-  description = "Name of the keyring."
-  value       = module.kms.keyring_name
-}
-
-output "key" {
-  description = "Name of the key created."
-  value       = keys(module.kms.keys)[0]
-}
-
-output "tink_keyset_file" {
-  description = "Name of tink keyset file created."
-  value       = local.keyset_file_name
-}
-
 output "encrypted_file_path" {
-  description = "Path to the encrypted file created by by terraform."
+  description = "Path to the encrypted file created by terraform."
   value       = var.encrypted_file_path
 }

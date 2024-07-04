@@ -15,10 +15,12 @@
  */
 
 locals {
+  tink_kek_uri     = "gcp-kms://projects/${var.project_id}/locations/${var.location}/keyRings/${module.kms.keyring_resource.name}/cryptoKeys/${keys(module.kms.keys)[0]}"
   default_suffix = var.suffix != "" ? var.suffix : random_string.suffix.result
   apis_to_enable = [
     "cloudkms.googleapis.com"
   ]
+  tink_keyset_file = "${var.tink_keyset_output_file}-${random_string.suffix.result}.json"
 }
 
 resource "random_string" "suffix" {
@@ -52,4 +54,26 @@ module "kms" {
   prevent_destroy = var.prevent_destroy
 
   depends_on = [time_sleep.enable_projects_apis_sleep]
+}
+
+resource "null_resource" "tinkey_create_keyset" {
+
+  triggers = {
+    project_id              = var.project_id
+    tink_keyset_output_file = var.tink_keyset_output_file
+  }
+
+  provisioner "local-exec" {
+    when    = create
+    command = <<EOF
+        go run ${var.cli_path}/encrypted_keyset_cli.go \
+        --mode generate \
+        --output_path ${local.tink_keyset_file} \
+        --kek_uri ${local.tink_kek_uri} \
+        --gcp_credential_path ${var.tink_sa_credentials_file}
+    EOF
+  }
+
+  depends_on = [module.kms]
+
 }

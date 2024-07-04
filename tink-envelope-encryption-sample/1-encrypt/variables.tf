@@ -14,30 +14,20 @@
  * limitations under the License.
  */
 
-variable "tink_keyset_file" {
-  description = "Tink keyset file name."
-  type        = string
-}
-
 variable "tink_sa_credentials_file" {
   description = "Service accounts credential file path required by Tink."
   type        = string
 }
 
-variable "tink_kek_uri" {
-  description = "Key encryption key (KEK) URI."
+variable "input_file_path" {
+  description = "Path to the input file to be encrypted."
   type        = string
 }
 
 variable "encrypted_file_path" {
-  description = "Path to the encrypted file."
+  description = "Path to the encrypted file to be output by terraform."
   type        = string
-}
-
-variable "decrypted_file_path" {
-  description = "Path to the decrypted file to be output by terraform."
-  type        = string
-  default     = "./decrypted_file"
+  default     = "./encrypted_file"
 }
 
 variable "cli_path" {
@@ -48,4 +38,14 @@ variable "cli_path" {
 variable "associated_data" {
   description = "The associated data in Authenticated Encryption with Associated Data (AEAD) is used to tie ciphertext to specific associated data. Associated data is authenticated but NOT encrypted."
   default     = "associated_data_sample"
+}
+
+variable "tink_keyset_file" {
+  description = "Tink keyset file name."
+  type        = string
+}
+
+variable "kek_uri" {
+  description = "KMS Key Encryption Key (KEK) URI."
+  type = string
 }

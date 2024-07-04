@@ -14,32 +14,6 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.5.7"
-  required_providers {
-
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 5.11, < 6"
-    }
-
-    random = {
-      source  = "hashicorp/random"
-      version = "3.6.2"
-    }
-
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.2"
-    }
-
-    time = {
-      source  = "hashicorp/time"
-      version = "0.11.2"
-    }
-  }
-
-  provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:tink-envelope-encryption-sample-encrypt/v0.1.0"
-  }
-}
+project_id               = "REPLACE-WITH-YOUR-PROJECT-ID"
+kek                      = "kek-tink-sample"
+keyring                  = "keyring-tink-sample"
