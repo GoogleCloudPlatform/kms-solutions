@@ -18,7 +18,7 @@ resource "null_resource" "decrypt_current_file" {
 
   triggers = {
     current_encrypted_file_path = var.current_encrypted_file_path
-    rotate_encrypted_file_path = var.rotate_encrypted_file_path
+    rotate_encrypted_file_path  = var.rotate_encrypted_file_path
   }
 
   provisioner "local-exec" {
@@ -39,10 +39,13 @@ resource "null_resource" "decrypt_current_file" {
 module "tink_encrypt" {
   source = "../1-encrypt"
 
-  tink_keyset_file = var.tink_keyset_file
-  kek_uri = var.kek_uri
+  tink_keyset_file         = var.tink_keyset_file
+  kek_uri                  = var.kek_uri
   tink_sa_credentials_file = var.tink_sa_credentials_file
-  input_file_path = var.rotate_encrypted_file_path
+  input_file_path          = var.rotate_encrypted_file_path
+  encrypted_file_path      = var.encrypted_file_path
+  cli_path                 = var.cli_path
+  associated_data          = var.associated_data
 
   depends_on = [null_resource.decrypt_current_file]
 }

@@ -16,6 +16,9 @@
 
 locals {
   temp_sa_key_file = "./sa_key.tmp"
+  key              = "old-key"
+  keyring          = "old-keyring"
+  location         = "us-central1"
 }
 
 resource "local_file" "temp_sa_key_file" {
@@ -23,28 +26,41 @@ resource "local_file" "temp_sa_key_file" {
   filename = local.temp_sa_key_file
 }
 
-module "tink_encrypt" {
-  source = "../../tink-envelope-encryption-sample/0-encrypt"
+// Creates all the GCP KMS required infra and a Tink encrypted keyset.
+module "bootstrap" {
+  source = "../../tink-envelope-encryption-sample/0-bootstrap"
 
   project_id               = var.project_id
-  keyring                  = "simple-example-keyring"
-  kek                      = "simple-example-key"
-  input_file_path          = "./secret_file_sample.txt"
-  tink_sa_credentials_file = local.temp_sa_key_file
+  keyring                  = "sample-envelope-keyring"
+  kek                      = "sample-envelope-kek"
   prevent_destroy          = false
+  tink_sa_credentials_file = local_file.temp_sa_key_file
   cli_path                 = var.cli_path
-
-  depends_on = [local_file.temp_sa_key_file]
 }
 
-module "tink_decrypt" {
-  source = "../../tink-envelope-encryption-sample/1-decrypt"
+// Change the encryption from symetric to envelope.
+module "reencrypt_symetric_to_envelope" {
+  source = "../../tink-envelope-encryption-sample/3-reencrypt-symetric-to-envelope"
 
-  tink_keyset_file         = module.tink_encrypt.tink_keyset_file
-  tink_kek_uri             = module.tink_encrypt.kek_key_uri
-  encrypted_file_path      = module.tink_encrypt.encrypted_file_path
+  current_keyring             = local.keyring
+  current_key                 = local.key
+  current_encrypted_file_path = "./symetric_encrypted_file"
+  current_project_id          = var.project_id
+  kek_uri                     = module.bootstrap.kek_uri
+  tink_keyset_file            = module.bootstrap.tink_keyset_file
+  tink_sa_credentials_file    = local.temp_sa_key_file
+  cli_path                    = var.cli_path
+
+  # depends_on = [local_file.temp_sa_key_file, null_resource.encrypt_symetric, module.symetric_kms]
+  depends_on = [null_resource.encrypt_symetric, module.symetric_kms]
+}
+
+// Decrypt the enveloped encrypted file.
+module "decrypt_enveloped_file" {
+  source = "../../tink-envelope-encryption-sample/2-decrypt"
+
+  kek_uri                  = module.bootstrap.kek_uri
   tink_sa_credentials_file = local.temp_sa_key_file
-  cli_path                 = var.cli_path
-
-  depends_on = [module.tink_encrypt]
+  encrypted_file_path      = "./envelope_encrypted_file"
+  tink_keyset_file         = module.bootstrap.tink_keyset_file
 }

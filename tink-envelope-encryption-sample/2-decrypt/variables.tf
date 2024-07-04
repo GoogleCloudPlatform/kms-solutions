@@ -26,7 +26,7 @@ variable "tink_sa_credentials_file" {
 
 variable "kek_uri" {
   description = "KMS Key Encryption Key (KEK) URI."
-  type = string
+  type        = string
 }
 
 variable "encrypted_file_path" {

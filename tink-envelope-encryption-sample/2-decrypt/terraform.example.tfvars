@@ -17,7 +17,7 @@
 # You can find all these inputs values in 0-encrypt module outputs by running `terraform output` at the 0-encrypt path.
 
 encrypted_file_path      = "REPLACE-WITH-YOUR-ENCRYPTED-FILE-PATH"
-tink_kek_uri             = "REPLACE-WITH-YOUR-KEK-URI" # Format expected: "gcp-kms://projects/PROJECT-ID/locations/us-central1/keyRings/KEYRING/cryptoKeys/CRYPTOKEY"
+kek_uri                  = "REPLACE-WITH-YOUR-KEK-URI" # Format expected: "gcp-kms://projects/PROJECT-ID/locations/us-central1/keyRings/KEYRING/cryptoKeys/CRYPTOKEY"
 tink_keyset_file         = "REPLACE-WITH-YOUR-KEYSET-FILE-PATH"
 tink_sa_credentials_file = "REPLACE-WITH-YOUR-SA-CREDENTIALS-KEY-FILE-PATH"
 associated_data          = "associated_data_sample"

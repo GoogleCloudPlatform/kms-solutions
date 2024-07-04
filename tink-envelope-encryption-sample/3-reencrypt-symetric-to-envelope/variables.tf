@@ -47,7 +47,7 @@ variable "tink_keyset_file" {
 
 variable "kek_uri" {
   description = "KMS Key Encryption Key (KEK) URI."
-  type = string
+  type        = string
 }
 
 variable "current_project_id" {
@@ -71,8 +71,8 @@ variable "current_key" {
   type        = string
 }
 
-variable "tink_encrypt_module_path" {
-  description = "Path to the Tink encryption module."
-  type = string
-  default = "../1-encrypt"
+variable "encrypted_file_path" {
+  description = "Path to the encrypted file to be output by terraform."
+  type        = string
+  default     = "./envelope_encrypted_file"
 }

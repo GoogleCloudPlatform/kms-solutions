@@ -16,6 +16,7 @@
 
 project_id               = "REPLACE-WITH-YOUR-PROJECT-ID"
 tink_sa_credentials_file = "REPLACE-WITH-YOUR-SA-CREDENTIALS-KEY-FILE-PATH"
+input_file_path          = "REPLACE-WITH-THE-FILEPATH-TO-BE-ENCRYPTED"
 kek                      = "kek-tink-sample"
 keyring                  = "keyring-tink-sample"
 associated_data          = "associated_data_sample"

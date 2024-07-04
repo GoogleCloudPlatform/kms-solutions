@@ -27,12 +27,12 @@ variable "input_file_path" {
 variable "encrypted_file_path" {
   description = "Path to the encrypted file to be output by terraform."
   type        = string
-  default     = "./encrypted_file"
+  default     = "./envelope_encrypted_file"
 }
 
 variable "cli_path" {
   description = "CLI base path."
-  default     = "../../tink-envelope-encryption-sample"
+  default     = "../"
 }
 
 variable "associated_data" {
@@ -47,5 +47,5 @@ variable "tink_keyset_file" {
 
 variable "kek_uri" {
   description = "KMS Key Encryption Key (KEK) URI."
-  type = string
+  type        = string
 }

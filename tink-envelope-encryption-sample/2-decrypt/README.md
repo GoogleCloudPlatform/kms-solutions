@@ -1,4 +1,4 @@
-# [1-decrypt module] Envelope encryption with Tink
+# [2-decrypt module] Envelope encryption with Tink
 
 ## Overview
 
@@ -9,13 +9,9 @@ This module provides a decrypt of a file previously encypted by the Tink envelop
 - [Terraform](https://developer.hashicorp.com/terraform/downloads);
 - [Google Cloud CLI (`gcloud`)](https://cloud.google.com/sdk/docs/install-sdk);
     - You must be authenticated in your GCP account. If you're not you should run `gcloud auth login`;
-- An existing [GCP project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project);
-- Enable GCP services in the project created above:
-    - cloudkms.googleapis.com
+- An existing Tink encrypted [keyset](https://developers.google.com/tink/design/keysets) file;
+    - And an existing file encrypted with this keyset;
 - [Go 1.22+](https://go.dev/dl/);
-- [pip](https://pip.pypa.io/en/stable/installation/);
-
-**Note:** You can enable these services using `gcloud services enable <SERVICE>` command or terraform automation would auto-enable them for you.
 
 ## Deploy infrastructure
 
@@ -45,7 +41,7 @@ This module provides a decrypt of a file previously encypted by the Tink envelop
 | cli\_path | CLI base path. | `string` | `"../../tink-envelope-encryption-sample"` | no |
 | decrypted\_file\_path | Path to the decrypted file to be output by terraform. | `string` | `"./decrypted_file"` | no |
 | encrypted\_file\_path | Path to the encrypted file. | `string` | n/a | yes |
-| tink\_kek\_uri | Key encryption key (KEK) URI. | `string` | n/a | yes |
+| kek\_uri | KMS Key Encryption Key (KEK) URI. | `string` | n/a | yes |
 | tink\_keyset\_file | Tink keyset file name. | `string` | n/a | yes |
 | tink\_sa\_credentials\_file | Service accounts credential file path required by Tink. | `string` | n/a | yes |
 

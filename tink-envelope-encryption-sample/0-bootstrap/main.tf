@@ -15,7 +15,7 @@
  */
 
 locals {
-  tink_kek_uri     = "gcp-kms://projects/${var.project_id}/locations/${var.location}/keyRings/${module.kms.keyring_resource.name}/cryptoKeys/${keys(module.kms.keys)[0]}"
+  tink_kek_uri   = "gcp-kms://projects/${var.project_id}/locations/${var.location}/keyRings/${module.kms.keyring_resource.name}/cryptoKeys/${keys(module.kms.keys)[0]}"
   default_suffix = var.suffix != "" ? var.suffix : random_string.suffix.result
   apis_to_enable = [
     "cloudkms.googleapis.com"
