@@ -36,7 +36,7 @@ module "bootstrap" {
   prevent_destroy          = false
   tink_sa_credentials_file = local.temp_sa_key_file
   cli_path                 = var.cli_path
-  tink_keyset_output_file = "./encrypted_keyset"
+  tink_keyset_output_file  = "./encrypted_keyset"
 }
 
 // Change the encryption from symetric to envelope.
