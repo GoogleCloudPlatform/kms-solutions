@@ -84,7 +84,7 @@ func generateKeyset(outputPath string, masterKey tink.AEAD) error {
 	defer f.Close()
 
 	// generate a new key
-	keyTemplate := aead.AES128GCMKeyTemplate()
+	keyTemplate := aead.AES256GCMKeyTemplate()
 	handle, err := keyset.NewHandle(keyTemplate)
 
 	// write the new key

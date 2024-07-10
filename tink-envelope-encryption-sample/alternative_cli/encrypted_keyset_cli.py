@@ -79,7 +79,7 @@ def main(argv):
         # [START generate-a-new-keyset]
         # Generate a new keyset
         try:
-            key_template = aead.aead_key_templates.AES128_GCM
+            key_template = aead.aead_key_templates.AES256_GCM
             keyset_handle = tink.new_keyset_handle(key_template)
         except tink.TinkError as e:
             logging.exception("Error creating primitive: %s", e)

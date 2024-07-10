@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-# You can find all these inputs values in 0-encrypt module outputs by running `terraform output` at the 0-encrypt path.
+# You can find all these inputs values in 0-bootstrap and 1-encrypt modules outputs by running `terraform output` at the module path.
 
-current_project_id          = "REPLACE-WITH-THE-PROJECT-ID-OF-YOUR-KMS-SYMETRIC-KEY"
-current_key                 = "REPLACE-WITH-THE-NAME-OF-YOUR-SYMETRIC-KEY"
-current_keyring             = "REPLACE-WITH-THE-NAME-OF-YOUR-SYMETRIC-KEYRING"
+current_project_id          = "REPLACE-WITH-THE-PROJECT-ID-OF-YOUR-KMS-symmetric-KEY"
+current_key                 = "REPLACE-WITH-THE-NAME-OF-YOUR-symmetric-KEY"
+current_keyring             = "REPLACE-WITH-THE-NAME-OF-YOUR-symmetric-KEYRING"
 current_encrypted_file_path = "REPLACE-WITH-YOUR-ENCRYPTED-FILE-PATH"
 kek_uri                     = "REPLACE-WITH-YOUR-KEK-URI" # Format expected: "gcp-kms://projects/PROJECT-ID/locations/us-central1/keyRings/KEYRING/cryptoKeys/CRYPTOKEY"
 tink_keyset_file            = "REPLACE-WITH-YOUR-KEYSET-FILE-PATH"

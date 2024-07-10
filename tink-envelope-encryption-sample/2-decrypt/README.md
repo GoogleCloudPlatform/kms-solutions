@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module provides a decrypt of a file previously encypted by the Tink envelope envryption process using Terraform.
+This module decrypts a file previously encrypted with envelope encryption using Tink and Terraform.
 
 ## Prerequisites
 

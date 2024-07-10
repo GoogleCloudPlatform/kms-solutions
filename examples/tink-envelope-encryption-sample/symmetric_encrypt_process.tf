@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-// This file provides all the required resources to demonstrate a encryption key changing from a symetric encryption to envelope encryption.
+// This file provides all the required resources to demonstrate a encryption key changing from a symmetric encryption to envelope encryption.
 
-module "symetric_kms" {
+module "symmetric_kms" {
   source  = "terraform-google-modules/kms/google"
   version = "2.3.0"
 
@@ -27,7 +27,7 @@ module "symetric_kms" {
   prevent_destroy = false
 }
 
-resource "null_resource" "encrypt_symetric" {
+resource "null_resource" "encrypt_symmetric" {
 
   provisioner "local-exec" {
     when    = create
@@ -36,11 +36,11 @@ resource "null_resource" "encrypt_symetric" {
       --key ${local.key} \
       --keyring ${local.keyring}  \
       --location ${local.location}  \
-      --ciphertext-file ./symetric_encrypted_file \
+      --ciphertext-file ./symmetric_encrypted_file \
       --plaintext-file ./secret_file_sample.txt \
       --project ${var.project_id}
     EOF
   }
 
-  depends_on = [module.symetric_kms]
+  depends_on = [module.symmetric_kms]
 }

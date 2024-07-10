@@ -34,7 +34,7 @@ This module provides the Terraform bootstrap infrastructure creation (keyring, k
     ```
     **Note:** Copy all the outputs provided by `terraform apply`. They will be required during the decrypt process.
 
-1. All the bootstrap infrastructure is deployed and files now can be encrypted by running 1-encrypt or 3-reencrypt-symetric-to-envelope module.
+1. All the bootstrap infrastructure is deployed and files now can be encrypted by running 1-encrypt or 3-reencrypt-symmetric-to-envelope module.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

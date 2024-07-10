@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module provides a envelope encription of a file using Tink and Terraform.
+This module encrypts a file with envelope encryption using Tink and Terraform.
 
 ## Prerequisites
 

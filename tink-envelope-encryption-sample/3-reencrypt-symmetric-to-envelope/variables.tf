@@ -26,7 +26,7 @@ variable "rotate_encrypted_file_path" {
 }
 
 variable "current_encrypted_file_path" {
-  description = "Path to the symetric encrypted file to be used."
+  description = "Path to the symmetric encrypted file to be used."
   type        = string
 }
 
@@ -51,23 +51,23 @@ variable "kek_uri" {
 }
 
 variable "current_project_id" {
-  description = "GCP project ID of the KMS used to symetric encryption."
+  description = "GCP project ID of the KMS used to symmetric encryption."
   type        = string
 }
 
 variable "location" {
-  description = "Location for the resources used to symetric encryption."
+  description = "Location for the resources used to symmetric encryption."
   type        = string
   default     = "us-central1"
 }
 
 variable "current_keyring" {
-  description = "Keyring name used to symetric encryption."
+  description = "Keyring name used to symmetric encryption."
   type        = string
 }
 
 variable "current_key" {
-  description = "Key encryption name used to symetric encryption."
+  description = "Key encryption name used to symmetric encryption."
   type        = string
 }
 

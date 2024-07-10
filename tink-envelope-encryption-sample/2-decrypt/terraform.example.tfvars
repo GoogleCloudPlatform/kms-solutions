@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-# You can find all these inputs values in 0-encrypt module outputs by running `terraform output` at the 0-encrypt path.
+# You can find all these inputs values in 0-bootstrap and 1-encrypt modules outputs by running `terraform output` at the module path.
 
 encrypted_file_path      = "REPLACE-WITH-YOUR-ENCRYPTED-FILE-PATH"
 kek_uri                  = "REPLACE-WITH-YOUR-KEK-URI" # Format expected: "gcp-kms://projects/PROJECT-ID/locations/us-central1/keyRings/KEYRING/cryptoKeys/CRYPTOKEY"
