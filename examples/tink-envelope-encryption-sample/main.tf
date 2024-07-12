@@ -16,8 +16,8 @@
 
 locals {
   temp_sa_key_file = "./sa_key.tmp"
-  key              = "old-key2"
-  keyring          = "old-keyring2"
+  key              = "old-key"
+  keyring          = "old-keyring"
   location         = "us-central1"
 }
 

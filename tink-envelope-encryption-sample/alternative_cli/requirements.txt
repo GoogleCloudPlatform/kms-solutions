@@ -1,2 +1,0 @@
-tink==1.10.0
-google-cloud-kms==2.23.0
