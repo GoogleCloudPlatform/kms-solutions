@@ -1,1 +1,1 @@
-go.mod
+../../tink-envelope-encryption-sample/go.mod
