@@ -16,6 +16,9 @@
 
 locals {
   temp_sa_key_file = "./sa_key.tmp"
+  key              = "old-key"
+  keyring          = "old-keyring"
+  location         = "us-central1"
 }
 
 resource "local_file" "temp_sa_key_file" {
@@ -36,17 +39,20 @@ module "bootstrap" {
   tink_keyset_output_file  = "./encrypted_keyset"
 }
 
-// Envelope encrypt the file.
-module "envelope_encrypt_file" {
-  source = "../../tink-envelope-encryption-sample/1-encrypt"
+// Migrate from direct symmetric encryption to envelope encryption.
+module "reencrypt_symmetric_to_envelope" {
+  source = "../../tink-envelope-encryption-sample/3-reencrypt-symmetric-to-envelope"
 
-  input_file_path          = "./secret_file_sample.txt"
-  kek_uri                  = module.bootstrap.kek_uri
-  tink_keyset_file         = module.bootstrap.tink_keyset_file
-  tink_sa_credentials_file = local.temp_sa_key_file
-  cli_path                 = var.cli_path
+  current_keyring             = local.keyring
+  current_key                 = local.key
+  current_encrypted_file_path = "./symmetric_encrypted_file"
+  current_project_id          = var.project_id
+  kek_uri                     = module.bootstrap.kek_uri
+  tink_keyset_file            = module.bootstrap.tink_keyset_file
+  tink_sa_credentials_file    = local.temp_sa_key_file
+  cli_path                    = var.cli_path
 
-  depends_on = [local_file.temp_sa_key_file, module.bootstrap]
+  depends_on = [local_file.temp_sa_key_file, null_resource.encrypt_symmetric, module.symmetric_kms, module.bootstrap]
 }
 
 // Decrypt the enveloped encrypted file.
@@ -58,5 +64,5 @@ module "decrypt_enveloped_file" {
   encrypted_file_path      = "./envelope_encrypted_file"
   tink_keyset_file         = module.bootstrap.tink_keyset_file
 
-  depends_on = [module.envelope_encrypt_file]
+  depends_on = [module.reencrypt_symmetric_to_envelope]
 }

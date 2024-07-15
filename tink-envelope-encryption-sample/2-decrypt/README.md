@@ -30,7 +30,7 @@ This module decrypts a file previously encrypted with envelope encryption using 
     terraform apply
     ```
 
-1. The desired file is now decrypted.
+1. The desired file is now re-encrypted.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
