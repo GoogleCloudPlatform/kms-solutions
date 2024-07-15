@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module provides a symmetric decrypting of a file using an existing GCP KMS Crypto Key and an envelope encryption process of the same file using Tink and Terraform.
+This module decrypts a file that was symmetrically encrypted using an existing GCP KMS CryptoKey, and re-encrypts it with envelope encryption using Tink and Terraform.
 
 ## Prerequisites
 
