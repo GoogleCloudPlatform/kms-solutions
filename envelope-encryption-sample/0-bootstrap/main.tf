@@ -19,7 +19,7 @@ locals {
   apis_to_enable = [
     "cloudkms.googleapis.com"
   ]
-  kek_name = keys(module.kms.keys)[0]
+  kek_name     = keys(module.kms.keys)[0]
   keyring_name = module.kms.keyring_resource.name
 }
 

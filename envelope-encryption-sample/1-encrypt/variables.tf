@@ -54,5 +54,5 @@ variable "input_file_path" {
 variable "output_file_path" {
   description = "Encrypted file path output."
   type        = string
-  default = "../encrypted_file"
+  default     = "../encrypted_file"
 }

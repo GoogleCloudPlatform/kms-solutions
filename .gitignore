@@ -51,3 +51,4 @@ credentials.json
 .terraform.lock.hcl
 
 *venv/
+*.vscode
