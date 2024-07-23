@@ -14,12 +14,32 @@
  * limitations under the License.
  */
 
-output "keyring" {
-  description = "Name of the keyring."
-  value       = local.keyring_name
-}
+terraform {
+  required_version = ">= 1.5.7"
+  required_providers {
 
-output "kek" {
-  description = "Name of the key created."
-  value       = local.kek_name
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 5.11, < 6"
+    }
+
+    random = {
+      source  = "hashicorp/random"
+      version = "3.6.2"
+    }
+
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.2"
+    }
+
+    time = {
+      source  = "hashicorp/time"
+      version = "0.11.2"
+    }
+  }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:envelope-encryption-sample-bootstrap/v0.1.0"
+  }
 }

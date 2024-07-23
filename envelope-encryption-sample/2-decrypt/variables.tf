@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-variable "suffix" {
-  description = "A suffix to be used as an identifier for resources. (e.g., suffix for KMS Key, Keyring, SAs, etc.)."
-  type        = string
-  default     = ""
-}
-
 variable "project_id" {
   description = "GCP project ID to use for the creation of resources."
   type        = string
@@ -41,11 +35,6 @@ variable "kek_name" {
   type        = string
 }
 
-variable "prevent_destroy" {
-  description = "Set the prevent_destroy lifecycle attribute on keys."
-  type        = bool
-}
-
 variable "cli_path" {
   description = "CLI base path."
   default     = "../python-cli"
@@ -55,4 +44,15 @@ variable "wrapped_key_path" {
   description = "Wrapped Data Encryption Key file."
   type        = string
   default     = "../wrapped_dek"
+}
+
+variable "input_file_path" {
+  description = "Encrypted file to be decrypted."
+  type        = string
+}
+
+variable "output_file_path" {
+  description = "Decrypted file path output."
+  type        = string
+  default = "../decrypted_file"
 }

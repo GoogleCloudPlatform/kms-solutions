@@ -14,12 +14,7 @@
  * limitations under the License.
  */
 
-output "keyring" {
-  description = "Name of the keyring."
-  value       = local.keyring_name
-}
-
-output "kek" {
-  description = "Name of the key created."
-  value       = local.kek_name
-}
+project_id      = "REPLACE-WITH-YOUR-PROJECT-ID"
+kek             = "kek-sample"
+keyring         = "keyring-sample"
+input_file_path = "REPLACE-WITH-FILE-PATH-TO-BE-DECRYPTED"

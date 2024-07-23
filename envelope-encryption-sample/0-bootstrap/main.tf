@@ -47,10 +47,10 @@ module "kms" {
   source  = "terraform-google-modules/kms/google"
   version = "2.3.0"
 
-  keyring         = "${var.keyring}-${local.default_suffix}"
+  keyring         = "${var.keyring_name}-${local.default_suffix}"
   location        = var.location
   project_id      = var.project_id
-  keys            = ["${var.kek}-${local.default_suffix}"]
+  keys            = ["${var.kek_name}-${local.default_suffix}"]
   prevent_destroy = var.prevent_destroy
 
   depends_on = [time_sleep.enable_projects_apis_sleep]
@@ -62,7 +62,7 @@ resource "null_resource" "install_python_deps" {
     command = <<EOF
     python -m venv ./venv &&
     . ./venv/bin/activate &&
-    pip install -r ./requirements.txt
+    pip install -r ${var.cli_path}/requirements.txt
     EOF
   }
 }
