@@ -51,13 +51,8 @@ variable "cli_path" {
   default     = "../"
 }
 
-variable "tink_keyset_output_file" {
-  description = "Tink keyset output file name."
+variable "wrapped_key_path" {
+  description = "Wrapped Data Encryption Key file."
   type        = string
-  default     = "../encrypted_keyset"
-}
-
-variable "tink_sa_credentials_file" {
-  description = "Service accounts credential file path required by Tink."
-  type        = string
+  default     = "../wrapped_dek"
 }

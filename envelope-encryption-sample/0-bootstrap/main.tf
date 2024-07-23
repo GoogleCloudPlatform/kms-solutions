@@ -14,53 +14,78 @@
  * limitations under the License.
  */
 
-# locals {
-#   default_suffix = var.suffix != "" ? var.suffix : random_string.suffix.result
-#   apis_to_enable = [
-#     "cloudkms.googleapis.com"
-#   ]
-# }
+locals {
+  default_suffix = var.suffix != "" ? var.suffix : random_string.suffix.result
+  apis_to_enable = [
+    "cloudkms.googleapis.com"
+  ]
+  kek_name = keys(module.kms.keys)[0]
+  keyring_name = module.kms.keyring_resource.name
+}
 
-# resource "random_string" "suffix" {
-#   length  = 4
-#   special = false
-#   upper   = false
-# }
+resource "random_string" "suffix" {
+  length  = 4
+  special = false
+  upper   = false
+}
 
-# resource "google_project_service" "apis_to_enable" {
-#   for_each = toset(local.apis_to_enable)
+resource "google_project_service" "apis_to_enable" {
+  for_each = toset(local.apis_to_enable)
 
-#   project            = var.project_id
-#   service            = each.key
-#   disable_on_destroy = false
-# }
+  project            = var.project_id
+  service            = each.key
+  disable_on_destroy = false
+}
 
-# resource "time_sleep" "enable_projects_apis_sleep" {
-#   create_duration = "30s"
+resource "time_sleep" "enable_projects_apis_sleep" {
+  create_duration = "30s"
 
-#   depends_on = [google_project_service.apis_to_enable]
-# }
-
-# module "kms" {
-#   source  = "terraform-google-modules/kms/google"
-#   version = "2.3.0"
-
-#   keyring         = "${var.keyring}-${local.default_suffix}"
-#   location        = var.location
-#   project_id      = var.project_id
-#   keys            = ["${var.kek}-${local.default_suffix}"]
-#   prevent_destroy = var.prevent_destroy
-
-#   depends_on = [time_sleep.enable_projects_apis_sleep]
-# }
+  depends_on = [google_project_service.apis_to_enable]
+}
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
   version = "2.3.0"
 
-  keyring         = "tf-keyring-example"
-  location        = "us-central1"
-  project_id      = "envelope-429618"
-  keys            = ["envelope1"]
-  prevent_destroy = false
+  keyring         = "${var.keyring}-${local.default_suffix}"
+  location        = var.location
+  project_id      = var.project_id
+  keys            = ["${var.kek}-${local.default_suffix}"]
+  prevent_destroy = var.prevent_destroy
+
+  depends_on = [time_sleep.enable_projects_apis_sleep]
+}
+
+resource "null_resource" "install_python_deps" {
+
+  provisioner "local-exec" {
+    command = <<EOF
+    python -m venv ./venv &&
+    . ./venv/bin/activate &&
+    pip install -r ./requirements.txt
+    EOF
+  }
+}
+
+resource "null_resource" "generate_data_encryption_key" {
+
+  triggers = {
+    project_id = var.project_id
+  }
+
+  provisioner "local-exec" {
+    when    = create
+    command = <<EOF
+        python ${var.cli_path}/cli.py \
+        --mode generate \
+        --project_id ${var.project_id} \
+        --kek_name ${local.kek_name} \
+        --keyring_name ${local.keyring_name} \
+        --location ${var.location} \
+        --wrapped_key_path ${var.wrapped_key_path}
+    EOF
+  }
+
+  depends_on = [module.kms, null_resource.install_python_deps]
+
 }

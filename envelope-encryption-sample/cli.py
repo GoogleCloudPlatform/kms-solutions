@@ -2,7 +2,7 @@
 # Import base64 for encoding the bytes for printing.
 import base64
 import json
-from absl import flags
+from absl import flags, app
 from base64 import b64encode, b64decode
 
 # Import the client library.
@@ -33,7 +33,7 @@ flags.DEFINE_string(
 flags.DEFINE_string(
     "location", None, "The GCP location name."
 )
-flags.DEFINE_string(
+flags.DEFINE_integer(
     "num_bytes",
     32,
     "The number of bytes that Data Encryption Key should have."
@@ -61,13 +61,13 @@ def crc32c(data: bytes) -> int:
     crc32c_fun = crcmod.predefined.mkPredefinedCrcFun("crc-32c")
     return crc32c_fun(data)
 
-def generate_random_bytes(project_id: str, location_id: str, num_bytes: int) -> bytes:
+def generate_random_bytes(project_id: str, location: str, num_bytes: int) -> bytes:
     """
     Generate random bytes with entropy sourced from the given location.
 
     Args:
         project_id (string): Google Cloud project ID (e.g. 'my-project').
-        location_id (string): Cloud KMS location (e.g. 'us-east1').
+        location (string): Cloud KMS location (e.g. 'us-east1').
         num_bytes (integer): number of bytes of random data.
 
     Returns:
@@ -79,7 +79,7 @@ def generate_random_bytes(project_id: str, location_id: str, num_bytes: int) -> 
     client = kms.KeyManagementServiceClient()
 
     # Build the location name.
-    location_name = client.common_location_path(project_id, location_id)
+    location_name = client.common_location_path(project_id, location)
 
     # Call the API.
     protection_level = kms.ProtectionLevel.HSM
@@ -94,16 +94,16 @@ def generate_random_bytes(project_id: str, location_id: str, num_bytes: int) -> 
     return dict(data=random_bytes_response.data, crc32c=random_bytes_response.data_crc32c)
 
 def gcp_encrypt_symmetric(
-    project_id: str, location_id: str, keyring_name: str, key_name: str, plaintext: str
+    project_id: str, location: str, keyring_name: str, kek_name: str, plaintext: str
 ) -> bytes:
     """
     Encrypt plaintext using a symmetric key stored in GCP KMS.
 
     Args:
         project_id (string): Google Cloud project ID (e.g. 'my-project').
-        location_id (string): Cloud KMS location (e.g. 'us-east1').
-        keyring_name (string): ID of the Cloud KMS key ring (e.g. 'my-key-ring').
-        key_name (string): ID of the key to use (e.g. 'my-key').
+        location (string): Cloud KMS location (e.g. 'us-east1').
+        keyring_name (string): Name of the Cloud KMS key ring (e.g. 'my-key-ring').
+        kek_name (string): Name of the key to use (e.g. 'my-key').
         plaintext (string): message to encrypt
 
     Returns:
@@ -122,12 +122,12 @@ def gcp_encrypt_symmetric(
     client = kms.KeyManagementServiceClient()
 
     # Build the key name.
-    key_name = client.crypto_key_path(project_id, location_id, keyring_name, key_name)
+    kek_name = client.crypto_key_path(project_id, location, keyring_name, kek_name)
 
     # Call the API.
     encrypt_response = client.encrypt(
         request={
-            "name": key_name,
+            "name": kek_name,
             "plaintext": plaintext_bytes,
             "plaintext_crc32c": plaintext_crc32c,
         }
@@ -144,20 +144,19 @@ def gcp_encrypt_symmetric(
         )
     # End integrity verification
 
-    print(f"Ciphertext: {b64encode(encrypt_response.ciphertext)}")
     return encrypt_response
 
 def gcp_decrypt_symmetric(
-    project_id: str, location_id: str, key_ring_id: str, key_id: str, ciphertext: bytes
+    project_id: str, location: str, keyring_name: str, kek_name: str, ciphertext: bytes
 ) -> kms.DecryptResponse:
     """
     Decrypt the ciphertext using the symmetric key stored in GCP KMS
 
     Args:
         project_id (string): Google Cloud project ID (e.g. 'my-project').
-        location_id (string): Cloud KMS location (e.g. 'us-east1').
-        key_ring_id (string): ID of the Cloud KMS key ring (e.g. 'my-key-ring').
-        key_id (string): ID of the key to use (e.g. 'my-key').
+        location (string): Cloud KMS location (e.g. 'us-east1').
+        keyring_name (string): Name of the Cloud KMS key ring (e.g. 'my-key-ring').
+        kek_name (string): Name of the key to use (e.g. 'my-key').
         ciphertext (bytes): Encrypted bytes to decrypt.
 
     Returns:
@@ -169,7 +168,7 @@ def gcp_decrypt_symmetric(
     client = kms.KeyManagementServiceClient()
 
     # Build the key name.
-    key_name = client.crypto_key_path(project_id, location_id, key_ring_id, key_id)
+    kek_name = client.crypto_key_path(project_id, location, keyring_name, kek_name)
 
     # Optional, but recommended: compute ciphertext's CRC32C.
     # See crc32c() function defined below.
@@ -178,7 +177,7 @@ def gcp_decrypt_symmetric(
     # Call the API.
     decrypt_response = client.decrypt(
         request={
-            "name": key_name,
+            "name": kek_name,
             "ciphertext": ciphertext,
             "ciphertext_crc32c": ciphertext_crc32c,
         }
@@ -208,7 +207,7 @@ def local_encrypt_symmetric(data_encryption_key: bytes, plaintext: str) -> bytes
 
     """
     f = Fernet(data_encryption_key)
-    return f.encrypt(plaintext)
+    return f.encrypt(plaintext.encode())
 
 def local_decrypt_symmetric(data_encryption_key: bytes, ciphertext: bytes) -> bytes:
     """
@@ -241,6 +240,7 @@ def save_json_to_file(json_data: str, file_path: str) -> None:
         print(f"JSON data successfully saved to {file_path}")
     except Exception as e:
         print(f"An error occurred while saving JSON data to file: {e}")
+        raise e
 
 def load_json_from_file(file_path: str) -> dict:
     """
@@ -260,7 +260,7 @@ def load_json_from_file(file_path: str) -> dict:
         return json_data
     except Exception as e:
         print(f"An error occurred while loading JSON data from file: {e}")
-        return None
+        raise e
 
 def read_text_file(file_path: str) -> str:
     """
@@ -276,32 +276,31 @@ def read_text_file(file_path: str) -> str:
     file = open(file_path, "r")
     return file.read()
 
-def main():
+def main(argv):
 
     mode = FLAGS.mode
     project_id = FLAGS.project_id
-    key_name = FLAGS.key_name
+    kek_name = FLAGS.kek_name
     keyring_name = FLAGS.keyring_name
-    location_id = FLAGS.location_id
+    location = FLAGS.location
     num_bytes = FLAGS.num_bytes
     wrapped_key_path = FLAGS.wrapped_key_path
     input = FLAGS.input
     output = FLAGS.output
 
-
     if FLAGS.mode == 'generate':
         random_bytes_response = generate_random_bytes(
             project_id=project_id,
-            location_id=location_id,
+            location=location,
             num_bytes=num_bytes
         )
         decoded_dek = b64encode(random_bytes_response['data']).decode('utf-8')
 
         wrapped_key = gcp_encrypt_symmetric(
             project_id=project_id,
-            location_id=location_id,
-            key_ring_id=keyring_name,
-            key_id=key_name,
+            location=location,
+            keyring_name=keyring_name,
+            kek_name=kek_name,
             plaintext=decoded_dek
         )
         save_json_to_file(
@@ -313,39 +312,43 @@ def main():
         wrapped_key = load_json_from_file(wrapped_key_path)
         key = gcp_decrypt_symmetric(
             project_id=project_id,
-            location_id=location_id,
+            location=location,
             keyring_name=keyring_name,
-            key_name=key_name,
+            kek_name=kek_name,
             ciphertext=b64decode(wrapped_key)
         )
         content = read_text_file(input)
-        plaintext = local_encrypt_symmetric(
-            data_encryption_key=key,
+
+        ciphertext = local_encrypt_symmetric(
+            data_encryption_key=key.plaintext,
             plaintext=content
         )
+
         save_json_to_file(
-            json_data=plaintext,
-            file_path=input
+            json_data=b64encode(ciphertext).decode('utf-8'),
+            file_path=output
         )
 
     if FLAGS.mode == 'decrypt':
         wrapped_key = load_json_from_file(wrapped_key_path)
         key = gcp_decrypt_symmetric(
             project_id=project_id,
-            location_id=location_id,
+            location=location,
             keyring_name=keyring_name,
-            key_name=key_name,
+            kek_name=kek_name,
             ciphertext=b64decode(wrapped_key)
         )
         content = read_text_file(input)
+
         plaintext = local_decrypt_symmetric(
-            data_encryption_key=key,
-            ciphertext=content
+            data_encryption_key=key.plaintext,
+            ciphertext=b64decode(content)
         )
+
         save_json_to_file(
-            json_data=plaintext,
+            json_data=plaintext.decode('utf-8'),
             file_path=output
         )
 
 if __name__ == "__main__":
-    main()
+    app.run(main)

@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-project_id               = "REPLACE-WITH-YOUR-PROJECT-ID"
-tink_sa_credentials_file = "REPLACE-WITH-YOUR-SA-CREDENTIALS-KEY-FILE-PATH"
-kek                      = "kek-tink-sample"
-keyring                  = "keyring-tink-sample"
-prevent_destroy          = false
+project_id      = "REPLACE-WITH-YOUR-PROJECT-ID"
+kek             = "kek-sample"
+keyring         = "keyring-sample"
+prevent_destroy = false
