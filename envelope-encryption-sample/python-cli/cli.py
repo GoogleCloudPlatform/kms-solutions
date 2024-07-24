@@ -71,8 +71,8 @@ def generate_random_bytes(
     Generate random bytes with entropy sourced from the given location.
 
     Args:
-        project_id (string): Google Cloud project ID (e.g. 'my-project').
-        location (string): Cloud KMS location (e.g. 'us-east1').
+        project_id (string): Google Cloud project ID.
+        location (string): Cloud KMS location.
         num_bytes (integer): number of bytes of random data.
 
     Returns:
@@ -113,10 +113,10 @@ def gcp_encrypt_symmetric(
     Encrypt plaintext using a symmetric key stored in GCP KMS.
 
     Args:
-        project_id (string): Google Cloud project ID (e.g. 'my-project').
-        location (string): Cloud KMS location (e.g. 'us-east1').
-        keyring_name (string): Name of the Cloud KMS key ring (e.g. 'my-key-ring').
-        kek_name (string): Name of the key to use (e.g. 'my-key').
+        project_id (string): Google Cloud project ID.
+        location (string): Cloud KMS location.
+        keyring_name (string): Name of the Cloud KMS key ring.
+        kek_name (string): Name of the key to use.
         plaintext (string): message to encrypt
 
     Returns:
@@ -148,8 +148,10 @@ def gcp_encrypt_symmetric(
         }
     )
 
-    # Optional, but recommended: perform integrity verification on encrypt_response.
-    # For more details on ensuring E2E in-transit integrity to and from Cloud KMS visit:
+    # Optional, but recommended:
+    # perform integrity verification on encrypt_response.
+    # For more details on ensuring E2E in-transit
+    # integrity to and from Cloud KMS visit:
     # https://cloud.google.com/kms/docs/data-integrity-guidelines
     if not encrypt_response.verified_plaintext_crc32c:
         raise Exception(
@@ -177,10 +179,10 @@ def gcp_decrypt_symmetric(
     Decrypt the ciphertext using the symmetric key stored in GCP KMS
 
     Args:
-        project_id (string): Google Cloud project ID (e.g. 'my-project').
-        location (string): Cloud KMS location (e.g. 'us-east1').
-        keyring_name (string): Name of the Cloud KMS key ring (e.g. 'my-key-ring').
-        kek_name (string): Name of the key to use (e.g. 'my-key').
+        project_id (string): Google Cloud project ID.
+        location (string): Cloud KMS location.
+        keyring_name (string): Name of the Cloud KMS key ring.
+        kek_name (string): Name of the key to use.
         ciphertext (bytes): Encrypted bytes to decrypt.
 
     Returns:
@@ -209,8 +211,10 @@ def gcp_decrypt_symmetric(
         }
     )
 
-    # Optional, but recommended: perform integrity verification on decrypt_response.
-    # For more details on ensuring E2E in-transit integrity to and from Cloud KMS visit:
+    # Optional, but recommended:
+    # perform integrity verification on decrypt_response.
+    # For more details on ensuring E2E in-transit integrity
+    # to and from Cloud KMS visit:
     # https://cloud.google.com/kms/docs/data-integrity-guidelines
     if not decrypt_response.plaintext_crc32c == crc32c(
         decrypt_response.plaintext
@@ -265,7 +269,7 @@ def save_json_to_file(json_data: str, file_path: str) -> None:
 
     Parameters:
     json_data (dict): The JSON object to save.
-    file_path (str): The path to the file where the JSON object should be saved.
+    file_path (str): The path to store the JSON object.
 
     """
     try:
