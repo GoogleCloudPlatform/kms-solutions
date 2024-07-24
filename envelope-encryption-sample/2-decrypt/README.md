@@ -9,8 +9,8 @@ This module decrypts a file previously encrypted with envelope encryption Terraf
 - [Terraform](https://developer.hashicorp.com/terraform/downloads);
 - [Google Cloud CLI (`gcloud`)](https://cloud.google.com/sdk/docs/install-sdk);
     - You must be authenticated in your GCP account. If you're not you should run `gcloud auth login`;
-- An existing Tink encrypted [keyset](https://developers.google.com/tink/design/keysets) file;
-    - And an existing file encrypted with this keyset;
+- An existing wrapped key file provided by 0-bootstrap module execution;;
+    - And an existing file encrypted with this key;
 - [Python 3+](https://www.python.org/downloads/);
 - [pip](https://pip.pypa.io/en/stable/installation/);
 
