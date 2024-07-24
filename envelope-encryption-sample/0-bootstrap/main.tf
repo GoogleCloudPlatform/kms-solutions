@@ -76,7 +76,7 @@ resource "null_resource" "generate_data_encryption_key" {
   provisioner "local-exec" {
     when    = create
     command = <<EOF
-        python ${var.cli_path}/cli.py \
+        ./venv/bin/python ${var.cli_path}/cli.py \
         --mode generate \
         --project_id ${var.project_id} \
         --kek_name ${local.kek_name} \

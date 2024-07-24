@@ -34,7 +34,7 @@ resource "null_resource" "encrypt_file" {
   provisioner "local-exec" {
     when    = create
     command = <<EOF
-        python ${var.cli_path}/cli.py \
+        ./venv/bin/python ${var.cli_path}/cli.py \
         --mode encrypt \
         --project_id ${var.project_id} \
         --kek_name ${var.kek_name} \
