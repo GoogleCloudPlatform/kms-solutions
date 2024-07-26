@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide provide an [envelope encryption](https://cloud.google.com/kms/docs/envelope-encryption) sample using Terraform.
+This guide provides an [envelope encryption](https://cloud.google.com/kms/docs/envelope-encryption) sample using Terraform.
 
 ## Context
 
@@ -16,7 +16,9 @@ This automation has 3 terraform modules: [0-bootstrap](./0-bootstrap/README.md),
 
 ## Expected workflow
 
-**Note:** First of all it's important to mention that it is possible to use all the modules individually as demand. For example, you could use directly [1-encrypt](./1-encrypt/README.md) module if you already have the existing GCP and a wrapped DEK for envelope encryption.
+**Note:** all the modules can be used individually on demand. For example, you can jump directly to step 2 and use the [1-encrypt](./1-encrypt/README.md) module if you already have the required GCP resources and a wrapped DEK for envelope encryption.
+
+**Note 2:** The local encryption/decryption is done using Python's Fernet package, which uses AES128-CBC + HMAC-SHA256 behind the scenes.
 
 #### Envelope encryption from scratch
 1. [0-bootstrap module](./consumer/0-bootstrap/README.md) execution;

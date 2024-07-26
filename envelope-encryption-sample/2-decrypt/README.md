@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module decrypts a file previously encrypted with envelope encryption Terraform.
+This module decrypts a file previously encrypted with envelope encryption using Terraform.
 
 ## Prerequisites
 

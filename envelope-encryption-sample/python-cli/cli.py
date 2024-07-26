@@ -232,6 +232,7 @@ def local_encrypt_symmetric(
 ) -> bytes:
     """
     Encrypt plaintext using a symmetric key.
+    Fernet uses AES128-CBC + HMAC-SHA256 behind the scenes.
 
     Args:
         data_encryption_key (bytes): DEK bytes to be used on encrypt process.
@@ -250,6 +251,7 @@ def local_decrypt_symmetric(
 ) -> bytes:
     """
     Decrypt ciphertext using a symmetric key.
+    Fernet uses AES128-CBC + HMAC-SHA256 behind the scenes.
 
     Args:
         data_encryption_key (bytes): DEK bytes to be used on encrypt process.
