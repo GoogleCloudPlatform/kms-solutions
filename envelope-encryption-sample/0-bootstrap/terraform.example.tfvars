@@ -14,16 +14,7 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.5.7"
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.2"
-    }
-  }
-
-  provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:tink-envelope-encryption-sample-reencrypt/v0.1.0"
-  }
-}
+project_id      = "REPLACE-WITH-YOUR-PROJECT-ID"
+kek             = "kek-sample"
+keyring         = "keyring-sample"
+prevent_destroy = false

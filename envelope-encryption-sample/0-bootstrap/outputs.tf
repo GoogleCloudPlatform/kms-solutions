@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.5.7"
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.2"
-    }
-  }
+output "keyring" {
+  description = "Name of the keyring."
+  value       = local.keyring_name
+}
 
-  provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:tink-envelope-encryption-sample-reencrypt/v0.1.0"
-  }
+output "kek" {
+  description = "Name of the key created."
+  value       = local.kek_name
 }

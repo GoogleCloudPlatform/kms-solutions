@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.5.7"
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.2"
-    }
-  }
+variable "project_id" {
+  description = "GCP project ID to use for the creation of resources."
+  type        = string
+}
 
-  provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:tink-envelope-encryption-sample-reencrypt/v0.1.0"
-  }
+variable "cli_path" {
+  description = "CLI base path."
+  default     = "../../envelope-encryption-sample/python-cli"
 }
