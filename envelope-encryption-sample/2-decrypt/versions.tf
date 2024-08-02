@@ -40,6 +40,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:envelope-encryption-sample-decrypt/v0.1.0"
+    module_name = "blueprints/terraform/kms-solutions:envelope-encryption-sample-decrypt/v0.2.0"
   }
 }

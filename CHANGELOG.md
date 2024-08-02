@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.2.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.1.0...v0.2.0) (2024-08-02)
+
+
+### Features
+
+* Add envelope encryption automation sample ([#79](https://github.com/GoogleCloudPlatform/kms-solutions/issues/79)) ([5ee8f67](https://github.com/GoogleCloudPlatform/kms-solutions/commit/5ee8f676650f0699872a121b2ffd67c0caee465e))
+* add tink encryption migration from symmetric to envelope example ([#72](https://github.com/GoogleCloudPlatform/kms-solutions/issues/72)) ([a02fedd](https://github.com/GoogleCloudPlatform/kms-solutions/commit/a02fedd47a0297ca81922cd0aafd1f8ab34a43f2))
+* Add tink envelope encryption partial ([#63](https://github.com/GoogleCloudPlatform/kms-solutions/issues/63)) ([f0c22a1](https://github.com/GoogleCloudPlatform/kms-solutions/commit/f0c22a11ad4bb1233f04d4c37d84d7cc3d586adc))
+* **deps:** Update Terraform google-beta to v5.34.0 ([#52](https://github.com/GoogleCloudPlatform/kms-solutions/issues/52)) ([dea41b7](https://github.com/GoogleCloudPlatform/kms-solutions/commit/dea41b7b4641aa8ad3cebfa13efaab9efc11867d))
+* **deps:** Update Terraform google-beta to v5.36.0 ([#54](https://github.com/GoogleCloudPlatform/kms-solutions/issues/54)) ([a5bf015](https://github.com/GoogleCloudPlatform/kms-solutions/commit/a5bf0159db4e0d0754384df969f93be6a9e2fa38))
+* **deps:** Update Terraform google-beta to v5.37.0 ([#62](https://github.com/GoogleCloudPlatform/kms-solutions/issues/62)) ([c5b7291](https://github.com/GoogleCloudPlatform/kms-solutions/commit/c5b7291f75c70fb5c5a527e00c2226dc5c330d58))
+* **deps:** Update Terraform google-beta to v5.38.0 ([#80](https://github.com/GoogleCloudPlatform/kms-solutions/issues/80)) ([c79099c](https://github.com/GoogleCloudPlatform/kms-solutions/commit/c79099c938f13bb2cdda58d7c2e6a1c903e94092))
+* **deps:** Update Terraform google-beta to v5.39.0 ([#84](https://github.com/GoogleCloudPlatform/kms-solutions/issues/84)) ([1f922cd](https://github.com/GoogleCloudPlatform/kms-solutions/commit/1f922cd7fcef5f3a94609432cd06faed6013a6e2))
+
+
+### Bug Fixes
+
+* Add versions into Dockerfiles ([#58](https://github.com/GoogleCloudPlatform/kms-solutions/issues/58)) ([00ae7bb](https://github.com/GoogleCloudPlatform/kms-solutions/commit/00ae7bbf2ec9437c602e3c0cde612bcc0d07974f))
+* **deps:** update module google.golang.org/api to v0.187.0 ([#69](https://github.com/GoogleCloudPlatform/kms-solutions/issues/69)) ([8b9bf51](https://github.com/GoogleCloudPlatform/kms-solutions/commit/8b9bf517046caedce5ccd4f151c1a07e9eaf35b6))
+* **deps:** update module google.golang.org/api to v0.188.0 ([#74](https://github.com/GoogleCloudPlatform/kms-solutions/issues/74)) ([d2d05e1](https://github.com/GoogleCloudPlatform/kms-solutions/commit/d2d05e1f8e4ece0b549afa5a835b66009fdad01f))
+
 ## 0.1.0 (2024-06-19)
 
 
