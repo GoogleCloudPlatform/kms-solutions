@@ -25,6 +25,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:oss-apache-web-server/v0.1.0"
+    module_name = "blueprints/terraform/kms-solutions:oss-apache-web-server/v0.2.0"
   }
 }
