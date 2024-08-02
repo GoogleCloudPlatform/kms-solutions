@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.2.0...v0.3.0) (2024-08-02)
+
+
+### Features
+
+* **deps:** Update Terraform google-beta to v5.39.1 ([#86](https://github.com/GoogleCloudPlatform/kms-solutions/issues/86)) ([d0b7375](https://github.com/GoogleCloudPlatform/kms-solutions/commit/d0b7375616215b39ec379cdefd3551b0cbfbf344))
+
+
+### Bug Fixes
+
+* **deps:** update module google.golang.org/api to v0.190.0 ([#88](https://github.com/GoogleCloudPlatform/kms-solutions/issues/88)) ([bfc75c7](https://github.com/GoogleCloudPlatform/kms-solutions/commit/bfc75c7857e09bac5d52a290e754dc9d1d52e8ec))
+
 ## [0.2.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.1.0...v0.2.0) (2024-08-02)
 
 
