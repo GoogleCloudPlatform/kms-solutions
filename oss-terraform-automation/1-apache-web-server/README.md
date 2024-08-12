@@ -1,4 +1,4 @@
-# Use a Cloud HSM key for TLS offloading with NGINX
+# Use a Cloud HSM key to serve Apache traffic
 
 ## Overview
 
