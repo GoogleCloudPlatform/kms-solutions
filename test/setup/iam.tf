@@ -19,6 +19,7 @@ locals {
     "roles/cloudkms.admin",
     "roles/iam.serviceAccountTokenCreator",
     "roles/iam.serviceAccountUser",
+    "roles/resourcemanager.folderCreator",
 
     # Needed to run verifications:
     "roles/owner"
