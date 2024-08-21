@@ -18,16 +18,16 @@ output "project_id" {
   value = module.project_ci_kms.project_id
 }
 
+output "folder_id" {
+  value = split("/", google_folder.test_folder.id)[1]
+}
+
 output "project_number" {
   value = module.project_ci_kms.project_number
 }
 
 output "billing_account" {
   value = var.billing_account
-}
-
-output "folder_id" {
-  value = var.folder_id
 }
 
 output "sa_key" {

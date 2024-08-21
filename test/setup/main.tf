@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+  upper   = false
+}
+
+resource "google_folder" "test_folder" {
+  display_name = "test_kms_integration_folder_${random_string.suffix.result}"
+  parent       = "folders/${var.folder_id}"
+}
+
 module "project_ci_kms" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 15.0"
