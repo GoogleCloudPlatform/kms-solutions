@@ -14,19 +14,9 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
-}
+module "autokey" {
+  source = "../../autokey-module"
 
-output "project_number" {
-  value = module.project_ci_kms.project_number
-}
-
-output "folder_number" {
-  value = module.project_ci_kms.folder_number
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+  autokey_parent  = "folders/${var.folder_number}"
+  billing_account = var.billing_account
 }

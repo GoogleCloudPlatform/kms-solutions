@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
+output "kms_project_id" {
+  description = "GCP project ID created for KMS Autokey."
+  value       = module.kms-project.project_id
 }
 
-output "project_number" {
-  value = module.project_ci_kms.project_number
+output "autokey_folder" {
+  description = "The Autokey folder created."
+  value       = google_folder.autokms_folder.display_name
 }
 
-output "folder_number" {
-  value = module.project_ci_kms.folder_number
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+output "autokey_config" {
+  description = "A Autokey identifier."
+  value       = google_kms_autokey_config.autokeyconfig.id
 }

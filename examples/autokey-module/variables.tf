@@ -14,19 +14,11 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
+variable "folder_number" {
+  description = "The parent of the Autokey folder to be created. Format: folders/<folder_number>"
 }
 
-output "project_number" {
-  value = module.project_ci_kms.project_number
-}
-
-output "folder_number" {
-  value = module.project_ci_kms.folder_number
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+variable "billing_account" {
+  description = "The ID of the billing account to associate projects with."
+  type        = string
 }

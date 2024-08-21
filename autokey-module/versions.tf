@@ -14,19 +14,10 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
-}
+terraform {
+  required_version = ">= 1.5.7"
 
-output "project_number" {
-  value = module.project_ci_kms.project_number
-}
-
-output "folder_number" {
-  value = module.project_ci_kms.folder_number
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:autokey-module/v0.2.0"
+  }
 }
