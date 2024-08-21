@@ -46,7 +46,7 @@ resource "google_organization_iam_member" "org_admins_group" {
 resource "google_project_iam_member" "int_test" {
   for_each = toset(local.int_required_roles)
 
-  project = module.project.project_id
+  project = module.project_ci_kms.project_id
   role    = each.value
   member  = "serviceAccount:${google_service_account.int_test.email}"
 }
