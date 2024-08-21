@@ -17,6 +17,6 @@
 module "autokey" {
   source = "../../autokey-module"
 
-  autokey_parent  = "folders/${var.folder_number}"
+  autokey_parent  = "folders/${var.folder_id}"
   billing_account = var.billing_account
 }
