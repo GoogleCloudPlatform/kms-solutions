@@ -22,6 +22,10 @@ output "project_number" {
   value = module.project_ci_kms.project_number
 }
 
+output "billing_account" {
+  value = var.billing_account
+}
+
 output "folder_id" {
   value = var.folder_id
 }
