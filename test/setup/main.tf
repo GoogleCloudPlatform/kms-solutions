@@ -21,7 +21,7 @@ resource "random_string" "suffix" {
 }
 
 resource "google_folder" "test_folder" {
-  display_name = "test_kms_integration_folder_${random_string.suffix.result}"
+  display_name = "test_kms_fldr_${random_string.suffix.result}"
   parent       = "folders/${var.folder_id}"
 }
 
