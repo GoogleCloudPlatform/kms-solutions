@@ -27,7 +27,8 @@ locals {
   int_org_required_roles = [
     "roles/resourcemanager.projectCreator",
     "roles/resourcemanager.folderAdmin",
-    "roles/billing.user"
+    "roles/billing.user",
+    "roles/cloudkms.admin"
   ]
 }
 
