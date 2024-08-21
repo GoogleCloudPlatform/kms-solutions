@@ -22,8 +22,8 @@ output "project_number" {
   value = module.project_ci_kms.project_number
 }
 
-output "folder_number" {
-  value = module.project_ci_kms.folder_number
+output "folder_id" {
+  value = var.folder_id
 }
 
 output "sa_key" {

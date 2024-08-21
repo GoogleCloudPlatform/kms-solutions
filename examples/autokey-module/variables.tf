@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-variable "folder_number" {
-  description = "The parent of the Autokey folder to be created. Format: folders/<folder_number>"
+variable "folder_id" {
+  description = "The folder ID parent of the Autokey folder to be created."
 }
 
 variable "billing_account" {
