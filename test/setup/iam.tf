@@ -19,10 +19,14 @@ locals {
     "roles/cloudkms.admin",
     "roles/iam.serviceAccountTokenCreator",
     "roles/iam.serviceAccountUser",
-    "roles/resourcemanager.folderCreator",
 
     # Needed to run verifications:
     "roles/owner"
+  ]
+
+  int_org_required_roles = [
+    "roles/resourcemanager.projectCreator",
+    "roles/resourcemanager.folderCreator"
   ]
 }
 
@@ -32,11 +36,18 @@ resource "google_service_account" "int_test" {
   display_name = "kms-int-test"
 }
 
-resource "google_project_iam_member" "int_test" {
-  count = length(local.int_required_roles)
+resource "google_organization_iam_member" "org_admins_group" {
+  for_each = toset(local.int_org_required_roles)
+  org_id   = var.org_id
+  role     = each.value
+  member   = "serviceAccount:${google_service_account.int_test.email}"
+}
 
-  project = module.project_ci_kms.project_id
-  role    = local.int_required_roles[count.index]
+resource "google_project_iam_member" "int_test" {
+  for_each = toset(local.int_required_roles)
+
+  project = module.project.project_id
+  role    = each.value
   member  = "serviceAccount:${google_service_account.int_test.email}"
 }
 
