@@ -14,30 +14,44 @@
  * limitations under the License.
  */
 
-variable "autokey_parent" {
-  description = "The parent of the Autokey folder to be created. It can be an organization or a folder. Format: organization/<org_number> or folders/<folder_number>"
-}
-
-variable "autokey_folder" {
-  description = "The Autokey folder name to be created."
-  type        = string
-  default     = "folder-autokey"
-}
-
 variable "suffix" {
   description = "A suffix to be used as an identifier for resources. (e.g., suffix for KMS Key, Keyring, SAs, etc.)."
   type        = string
   default     = ""
 }
 
-variable "kms_project_id" {
-  description = "GCP project ID to be created and used for KMS Autokey."
+variable "autokey_parent" {
+  description = "The parent of the Autokey folder. It can be an organization or a folder. Format: organization/<org_number> or folders/<folder_number>. Used only when create_autokey_folder is true."
+  type        = string
+  default     = ""
+}
+
+variable "autokey_folder" {
+  description = "Autokey folder name to be created or used."
+  type        = string
+  default     = "folder-autokey"
+}
+
+variable "create_autokey_folder" {
+  description = "A new GCP folder will be created for Autokey if true."
+  type        = bool
+  default     = true
+}
+
+variable "create_autokey_project" {
+  description = "A new GCP project will be created for Autokey if true."
+  type        = bool
+  default     = true
+}
+
+variable "autokey_project_id" {
+  description = "GCP project ID to be created or used for KMS Autokey."
   type        = string
   default     = "kms-autokey-project-id"
 }
 
-variable "kms_project_name" {
-  description = "GCP project name to be created and used for KMS Autokey."
+variable "autokey_project_name" {
+  description = "GCP project name to be used for KMS project. Used only when create_autokey_project is true."
   type        = string
   default     = "kms-autokey-project-name"
 }

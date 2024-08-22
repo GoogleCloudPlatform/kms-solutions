@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-output "kms_project_id" {
+output "autokey_project_id" {
   description = "GCP project ID created for KMS Autokey."
-  value       = module.kms-project.project_id
+  value       = var.create_autokey_project ? local.autokey_project_id : var.autokey_project_id
 }
 
 output "autokey_folder" {
   description = "The Autokey folder created."
-  value       = google_folder.autokms_folder.display_name
+  value       = var.create_autokey_folder ? google_folder.autokms_folder[0].folder_id : var.autokey_folder
 }
 
 output "autokey_config" {
