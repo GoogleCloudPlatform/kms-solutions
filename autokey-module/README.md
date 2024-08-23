@@ -1,6 +1,6 @@
 # Google KMS Autokey Terraform Module
 
-Simple Cloud KMS Autokey module that allows creating an initial Autokey configuration.
+Simple Cloud KMS Autokey module that allows creating an initial [Autokey](https://cloud.google.com/kms/docs/autokey-overview) configuration.
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
