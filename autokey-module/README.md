@@ -27,7 +27,7 @@ The resources/services/activations/deletions that this module will create/trigge
 
 | Name | Description |
 |------|-------------|
-| autokey\_config | A Autokey identifier. |
+| autokey\_config | The AutokeyConfig resource ID. |
 | autokey\_folder | The Autokey folder created. |
 | autokey\_project\_id | GCP project ID created for KMS Autokey. |
 
