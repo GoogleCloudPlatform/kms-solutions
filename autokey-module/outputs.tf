@@ -25,6 +25,6 @@ output "autokey_folder" {
 }
 
 output "autokey_config" {
-  description = "A Autokey identifier."
+  description = "The AutokeyConfig resource ID."
   value       = google_kms_autokey_config.autokeyconfig.id
 }
