@@ -98,7 +98,7 @@ resource "google_project_iam_member" "kms_sa_admin" {
 }
 
 resource "time_sleep" "wait_setup" {
-  create_duration = "10s"
+  create_duration = "30s"
   depends_on = [
     module.autokey-project,
     google_folder.autokms_folder,
