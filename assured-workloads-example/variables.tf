@@ -1,0 +1,56 @@
+/**
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+variable "organization_id" {
+  description = "The Organization ID."
+  type        = string
+}
+variable "billing_account_id" {
+  description = "The Billing Account ID."
+  type        = string
+}
+
+variable "aw_root_folder_id" {
+  description = "Root folder ID for the workload."
+  type        = string
+}
+
+variable "aw_compliance_regime" {
+  description = "Compliance regime of the workload."
+  type        = string
+}
+
+variable "aw_location" {
+  description = "Workload location."
+  type        = string
+}
+
+variable "aw_name" {
+  description = "Name of the workload."
+  type        = string
+  default     = "My AW Workload"
+}
+
+variable "aw_base_id" {
+  description = "Base ID used as prefix to create other resources's IDs like: folders, projects, keyrings, keys etc."
+  type        = string
+  default     = "aw-workload"
+}
+
+variable "cryptokey_allowed_access_reasons" {
+  description = "The list of allowed reasons for access to this CryptoKey."
+  type        = list(string)
+}
