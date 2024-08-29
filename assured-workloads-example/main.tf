@@ -16,8 +16,8 @@
 
 locals {
   default_suffix             = random_string.id.result
-  encryption_keys_project_id = "${var.aw_base_id}-kms-${random_string.id.result}"
-  keyring_id                 = "${var.aw_base_id}-keyring-${random_string.id.result}"
+  encryption_keys_project_id = "${var.aw_base_id}-kms-${local.default_suffix}"
+  keyring_id                 = "${var.aw_base_id}-keyring-${local.default_suffix}"
 
   aw_consumer_folder_id = one(
     [for resource in google_assured_workloads_workload.primary.resources : resource.resource_id
