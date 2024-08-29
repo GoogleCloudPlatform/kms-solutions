@@ -53,5 +53,5 @@ variable "aw_base_id" {
 variable "cryptokey_allowed_access_reasons" {
   description = "The list of allowed reasons for access to this CryptoKey."
   type        = list(string)
-  default     = []
+  default     = null
 }

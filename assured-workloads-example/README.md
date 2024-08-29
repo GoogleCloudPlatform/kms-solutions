@@ -109,7 +109,7 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$SA_EMAIL
 | aw\_name | Name of the workload. | `string` | `"My AW Workload"` | no |
 | aw\_root\_folder\_id | Root folder ID for the workload. | `string` | n/a | yes |
 | billing\_account\_id | The Billing Account ID. | `string` | n/a | yes |
-| cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. | `list(string)` | n/a | yes |
+| cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. | `list(string)` | `null` | no |
 | organization\_id | The Organization ID. | `string` | n/a | yes |
 
 ## Outputs
