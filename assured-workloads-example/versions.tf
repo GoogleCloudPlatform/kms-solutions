@@ -30,4 +30,11 @@ terraform {
       version = ">=3.6.2"
     }
   }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:assured-workloads-example/v0.2.0"
+  }
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/kms-solutions:assured-workloads-example/v0.2.0"
+  }
 }
