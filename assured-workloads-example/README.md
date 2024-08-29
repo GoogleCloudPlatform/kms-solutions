@@ -2,7 +2,7 @@
 
 ## Overview
 
-Example of Assured Workloads using Regional Control, HSM Key and Access Justification.
+Example of [Assured Workloads](https://cloud.google.com/assured-workloads/docs/overview) using [Regional Control](https://cloud.google.com/assured-workloads/docs/control-packages#regional-controls), [Cloud Hardware Security Module (HSM) Key](https://cloud.google.com/kms/docs/hsm), and [Key Access Justifications](https://cloud.google.com/assured-workloads/docs/key-access-justifications).
 
 ## Prerequisites
 
