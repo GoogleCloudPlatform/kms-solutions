@@ -25,7 +25,7 @@ locals {
   )
 }
 
-resource "google_kms_crypto_key" "hsm_encrypt_decrypt_crypto_key" {
+resource "google_kms_crypto_key" "hsm_encrypt_decrypt" {
   provider = google-beta
 
   name     = "${var.aw_base_id}-encrypt-decrypt-key"
