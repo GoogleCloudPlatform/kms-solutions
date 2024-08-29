@@ -14,21 +14,10 @@
  * limitations under the License.
  */
 
-locals {
-  encryption_keys_project_id = one(
-    [for setting in google_assured_workloads_workload.primary.resource_settings : setting.resource_id
-    if setting.resource_type == "ENCRYPTION_KEYS_PROJECT"]
-  )
-  keyring_id = one(
-    [for setting in google_assured_workloads_workload.primary.resource_settings : setting.resource_id
-    if setting.resource_type == "KEYRING"]
-  )
-}
-
 resource "google_kms_crypto_key" "hsm_encrypt_decrypt" {
   provider = google-beta
 
-  name     = "${var.aw_base_id}-encrypt-decrypt-key"
+  name     = "${var.aw_base_id}-encrypt-decrypt-key-${local.default_suffix}"
   key_ring = "projects/${local.encryption_keys_project_id}/locations/${var.aw_location}/keyRings/${local.keyring_id}"
 
   purpose = "ENCRYPT_DECRYPT"

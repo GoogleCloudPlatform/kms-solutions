@@ -15,6 +15,10 @@
  */
 
 locals {
+  default_suffix             = random_string.id.result
+  encryption_keys_project_id = "${var.aw_base_id}-kms-${random_string.id.result}"
+  keyring_id                 = "${var.aw_base_id}-keyring-${random_string.id.result}"
+
   aw_consumer_folder_id = one(
     [for resource in google_assured_workloads_workload.primary.resources : resource.resource_id
     if resource.resource_type == "CONSUMER_FOLDER"]
@@ -61,12 +65,13 @@ resource "google_assured_workloads_workload" "primary" {
 
   resource_settings {
     resource_type = "ENCRYPTION_KEYS_PROJECT"
-    resource_id   = "${var.aw_base_id}-kms-${random_string.id.result}"
+    resource_id   = local.encryption_keys_project_id
   }
+
 
   resource_settings {
     resource_type = "KEYRING"
-    resource_id   = "${var.aw_base_id}-keyring"
+    resource_id   = local.keyring_id
   }
 }
 

@@ -18,8 +18,7 @@ module "aw_mgmt_project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 16.0"
 
-  project_id                  = "${var.aw_base_id}-mgmt"
-  random_project_id           = true
+  project_id                  = "${var.aw_base_id}-mgmt-${local.default_suffix}"
   disable_services_on_destroy = true
   org_id                      = var.organization_id
   folder_id                   = var.aw_root_folder_id
