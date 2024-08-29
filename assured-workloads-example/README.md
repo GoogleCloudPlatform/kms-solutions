@@ -54,7 +54,7 @@ gcloud iam service-accounts create ${SA} \
   --project ${PROJECT_ID}
 ```
 
-Grant the necessary roles and policy bindings to the service account:
+Grant the necessary roles to the service account:
 
 ```sh
 export ORG_ID=<YOUR-ORG-ID>
