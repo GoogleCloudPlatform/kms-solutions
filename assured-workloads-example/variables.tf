@@ -29,7 +29,7 @@ variable "aw_root_folder_id" {
 }
 
 variable "aw_compliance_regime" {
-  description = "Compliance regime of the workload."
+  description = "Compliance regime of the workload. You can check the supported values in https://cloud.google.com/assured-workloads/docs/reference/rest/Shared.Types/ComplianceRegime."
   type        = string
 }
 
