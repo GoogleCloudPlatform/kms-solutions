@@ -28,7 +28,7 @@ gcloud auth application-default login
 
 To provision the resources in this example you should use a service account.
 
-First, make sure the following API's are enabled in the project in which the service account will be created:
+First, make sure the following APIs are enabled in the project in which the service account will be created:
 
 ```sh
 export PROJECT_ID=<YOUR-SA-PROJECT-ID>
