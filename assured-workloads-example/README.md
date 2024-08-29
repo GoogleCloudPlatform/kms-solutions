@@ -17,7 +17,7 @@ Install the following softwares:
 
 ### Cloud SDK configurations
 
-You must be authenticated in your GCP account. Run the commands below to authenticate:
+You must be authenticated in your Google Cloud Platform (GCP) account. Run the commands below to authenticate:
 
 ```sh
 gcloud auth login
