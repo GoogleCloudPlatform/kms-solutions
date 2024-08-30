@@ -18,6 +18,7 @@ variable "organization_id" {
   description = "The Organization ID."
   type        = string
 }
+
 variable "billing_account_id" {
   description = "The Billing Account ID."
   type        = string
