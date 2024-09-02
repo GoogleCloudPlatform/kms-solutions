@@ -16,6 +16,7 @@
 
 locals {
   default_suffix             = random_string.id.result
+  aw_folder_name             = "${var.aw_name}-${local.default_suffix}"
   encryption_keys_project_id = "${var.aw_base_id}-kms-${local.default_suffix}"
   keyring_id                 = "${var.aw_base_id}-keyring-${local.default_suffix}"
 
@@ -51,7 +52,7 @@ resource "google_assured_workloads_workload" "primary" {
   provider = google-beta
 
   compliance_regime = var.aw_compliance_regime
-  display_name      = var.aw_name
+  display_name      = local.aw_folder_name
   location          = var.aw_location
   organization      = var.organization_id
   billing_account   = "billingAccounts/${var.billing_account_id}"
@@ -60,7 +61,7 @@ resource "google_assured_workloads_workload" "primary" {
 
   resource_settings {
     resource_type = "CONSUMER_FOLDER"
-    display_name  = var.aw_name
+    display_name  = local.aw_folder_name
   }
 
   resource_settings {

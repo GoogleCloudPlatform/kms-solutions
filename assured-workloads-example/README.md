@@ -106,7 +106,7 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$SA_EMAIL
 | aw\_base\_id | Base ID used as prefix to create other resources's IDs like: folders, projects, keyrings, keys etc. | `string` | `"aw-workload"` | no |
 | aw\_compliance\_regime | Compliance regime of the workload. You can check the supported values in https://cloud.google.com/assured-workloads/docs/reference/rest/Shared.Types/ComplianceRegime. | `string` | n/a | yes |
 | aw\_location | Workload location. | `string` | n/a | yes |
-| aw\_name | Name of the workload. | `string` | `"My AW Workload"` | no |
+| aw\_name | Name of the workload. | `string` | `"My-AW-Workload"` | no |
 | aw\_root\_folder\_id | Root folder ID for the workload. | `string` | n/a | yes |
 | billing\_account\_id | The Billing Account ID. | `string` | n/a | yes |
 | cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. | `list(string)` | `null` | no |

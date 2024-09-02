@@ -23,6 +23,30 @@ locals {
     # Needed to run verifications:
     "roles/owner"
   ]
+
+  int_org_required_roles = [
+    "roles/assuredworkloads.editor",
+    "roles/billing.user",
+  ]
+}
+
+resource "google_organization_iam_member" "org_admins_group" {
+  for_each = toset(local.int_org_required_roles)
+  org_id   = var.org_id
+  role     = each.value
+  member   = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_billing_account_iam_member" "tf_billing_user" {
+  billing_account_id = var.billing_account
+  role               = "roles/billing.admin"
+  member             = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_billing_account_iam_member" "billing_account_log_config" {
+  billing_account_id = var.billing_account
+  role               = "roles/logging.configWriter"
+  member             = "serviceAccount:${google_service_account.int_test.email}"
 }
 
 resource "google_service_account" "int_test" {

@@ -42,7 +42,7 @@ variable "aw_location" {
 variable "aw_name" {
   description = "Name of the workload."
   type        = string
-  default     = "My AW Workload"
+  default     = "My-AW-Workload"
 }
 
 variable "aw_base_id" {
