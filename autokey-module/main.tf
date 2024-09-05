@@ -18,6 +18,9 @@ locals {
   default_suffix     = var.suffix != "" ? var.suffix : random_string.suffix.result
   autokey_project_id = "${var.autokey_project_id}-${local.default_suffix}"
   autokey_folder     = "${var.autokey_folder}-${local.default_suffix}"
+  kms_project_id = var.create_autokey_project ? module.autokey-project[0].project_id : var.autokey_project_id
+  kms_project_number = var.create_autokey_project ? module.autokey-project[0].project_number : data.google_project.autokey_project[0].number
+  kms_folder_number = var.create_autokey_folder ? google_folder.autokms_folder[0].folder_id : var.autokey_folder
 }
 
 resource "random_string" "suffix" {
@@ -40,8 +43,8 @@ module "autokey-project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 16.0"
 
-  project_id = var.create_autokey_project ? local.autokey_project_id : var.autokey_project_id
-  folder_id  = var.create_autokey_folder ? google_folder.autokms_folder[0].folder_id : var.autokey_folder
+  project_id = local.autokey_project_id
+  folder_id  = local.kms_folder_number
 
   name            = var.autokey_project_name
   billing_account = var.billing_account
@@ -88,11 +91,11 @@ resource "google_project_service_identity" "enable_kms_sa" {
 }
 
 resource "google_project_iam_member" "kms_sa_admin" {
-  count = var.create_autokey_project ? 0 : 1
+  # count = var.create_autokey_project ? 0 : 1
 
-  project = var.autokey_project_id
+  project = local.kms_project_id
   role    = "roles/cloudkms.admin"
-  member  = "serviceAccount:service-${data.google_project.autokey_project[0].number}@gcp-sa-cloudkms.iam.gserviceaccount.com"
+  member  = "serviceAccount:service-${local.kms_project_number}@gcp-sa-cloudkms.iam.gserviceaccount.com"
 
   depends_on = [google_project_service_identity.enable_kms_sa]
 }
@@ -106,9 +109,23 @@ resource "time_sleep" "wait_setup" {
   ]
 }
 
-resource "google_kms_autokey_config" "autokeyconfig" {
+resource "google_kms_autokey_config" "main" {
   provider    = google-beta
-  folder      = var.create_autokey_folder ? google_folder.autokms_folder[0].folder_id : var.autokey_folder
-  key_project = var.create_autokey_project ? "projects/${module.autokey-project[0].project_id}" : "projects/${var.autokey_project_id}"
+  folder      = local.kms_folder_number
+  key_project = "projects/${local.autokey_project_id}"
   depends_on  = [time_sleep.wait_setup]
+}
+
+resource "time_sleep" "wait_autokey_config" {
+  create_duration = "10s"
+  depends_on      = [google_kms_autokey_config.main]
+}
+
+resource "google_kms_key_handle" "example-keyhandle" {
+  provider               = google-beta
+  project                = "test-prj-433820"
+  name                   = "example-key-handle"
+  location               = "global"
+  resource_type_selector = "storage.googleapis.com/Bucket"
+  depends_on             = [time_sleep.wait_autokey_config]
 }

@@ -28,3 +28,13 @@ output "autokey_config" {
   description = "The AutokeyConfig resource ID."
   value       = module.autokey.autokey_config
 }
+
+output "autokey_handle_id" {
+  description = "Autokey handle ID"
+  value = module.autokey.autokey_handle_id
+}
+
+output "autokey_handle_key" {
+  description = "A reference to a Cloud KMS CryptoKey that can be used for CMEK in the requested product/project/location."
+  value = module.autokey.autokey_handle_key
+}

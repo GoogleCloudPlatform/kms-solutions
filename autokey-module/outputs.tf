@@ -26,5 +26,15 @@ output "autokey_folder" {
 
 output "autokey_config" {
   description = "The AutokeyConfig resource ID."
-  value       = google_kms_autokey_config.autokeyconfig.id
+  value       = google_kms_autokey_config.main.id
+}
+
+output "autokey_handle_id" {
+  description = "Autokey handle ID"
+  value = google_kms_key_handle.example-keyhandle.id
+}
+
+output "autokey_handle_key" {
+  description = "A reference to a Cloud KMS CryptoKey that can be used for CMEK in the requested product/project/location."
+  value = google_kms_key_handle.example-keyhandle.kms_key
 }
