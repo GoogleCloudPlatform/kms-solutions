@@ -20,7 +20,7 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 5.11, < 6"
+      version = ">= 5.11, < 7"
     }
 
     random = {
