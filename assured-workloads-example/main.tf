@@ -15,7 +15,7 @@
  */
 
 locals {
-  default_suffix             = random_string.id.result
+  default_suffix             = random_string.suffix.result
   aw_folder_name             = "${var.aw_name}-${local.default_suffix}"
   encryption_keys_project_id = "${var.aw_base_id}-kms-${local.default_suffix}"
   keyring_id                 = "${var.aw_base_id}-keyring-${local.default_suffix}"
@@ -40,11 +40,9 @@ locals {
   ]
 }
 
-resource "random_string" "id" {
+resource "random_string" "suffix" {
   length  = 4
   upper   = false
-  lower   = true
-  numeric = true
   special = false
 }
 
