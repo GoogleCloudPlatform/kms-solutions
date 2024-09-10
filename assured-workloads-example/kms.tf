@@ -15,6 +15,7 @@
  */
 
 resource "google_kms_crypto_key" "hsm_encrypt_decrypt" {
+  # TODO: As soon as it supports the "key_access_justifications_policy" field, let's use the "production" provider and the Terraform Google KMS module to create the key.
   provider = google-beta
 
   name     = "${var.aw_base_id}-encrypt-decrypt-key-${local.default_suffix}"
@@ -31,7 +32,6 @@ resource "google_kms_crypto_key" "hsm_encrypt_decrypt" {
     prevent_destroy = false
   }
 
-  # TODO: Use the Terraform Google KMS module as soon as it supports this field.
   dynamic "key_access_justifications_policy" {
     for_each = var.cryptokey_allowed_access_reasons == null ? [] : ["1"]
     content {
