@@ -55,3 +55,19 @@ variable "cryptokey_allowed_access_reasons" {
   type        = list(string)
   default     = null
 }
+
+variable "new_allowed_restricted_services" {
+  description = "The list of the restricted services that will be added as allowed."
+  type        = list(string)
+  default = [
+    "bigquery.googleapis.com",
+    "bigqueryconnection.googleapis.com",
+    "bigquerydatapolicy.googleapis.com",
+    "bigquerydatatransfer.googleapis.com",
+    "bigquerymigration.googleapis.com",
+    "bigqueryreservation.googleapis.com",
+    "bigquerystorage.googleapis.com",
+    "file.googleapis.com",
+    "networksecurity.googleapis.com"
+  ]
+}

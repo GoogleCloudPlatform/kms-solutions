@@ -26,18 +26,6 @@ locals {
   )
 
   current_allowed_restricted_services = data.google_folder_organization_policy.aw_policy_restrict_service_usage_current.list_policy[0].allow[0].values
-
-  new_allowed_restricted_services = [
-    "bigquery.googleapis.com",
-    "bigqueryconnection.googleapis.com",
-    "bigquerydatapolicy.googleapis.com",
-    "bigquerydatatransfer.googleapis.com",
-    "bigquerymigration.googleapis.com",
-    "bigqueryreservation.googleapis.com",
-    "bigquerystorage.googleapis.com",
-    "file.googleapis.com",
-    "networksecurity.googleapis.com"
-  ]
 }
 
 resource "random_string" "suffix" {
@@ -91,7 +79,7 @@ module "org-policy" {
   exclude_folders  = []
   exclude_projects = []
 
-  allow             = setunion(local.current_allowed_restricted_services, local.new_allowed_restricted_services)
+  allow             = setunion(local.current_allowed_restricted_services, var.new_allowed_restricted_services)
   allow_list_length = 1
 
   depends_on = [google_assured_workloads_workload.primary]
