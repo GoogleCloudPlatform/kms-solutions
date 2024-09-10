@@ -106,10 +106,11 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$SA_EMAIL
 | aw\_base\_id | Base ID used as prefix to create other resources's IDs like: folders, projects, keyrings, keys etc. | `string` | `"aw-workload"` | no |
 | aw\_compliance\_regime | Compliance regime of the workload. You can check the supported values in https://cloud.google.com/assured-workloads/docs/reference/rest/Shared.Types/ComplianceRegime. | `string` | n/a | yes |
 | aw\_location | Workload location. | `string` | n/a | yes |
-| aw\_name | Name of the workload. | `string` | `"My-AW-Workload"` | no |
+| aw\_name | Base name of the workload. | `string` | n/a | yes |
 | aw\_root\_folder\_id | Root folder ID for the workload. | `string` | n/a | yes |
 | billing\_account\_id | The Billing Account ID. | `string` | n/a | yes |
 | cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. | `list(string)` | `null` | no |
+| new\_allowed\_restricted\_services | The list of the restricted services that will be added as allowed. | `list(string)` | <pre>[<br>  "bigquery.googleapis.com",<br>  "bigqueryconnection.googleapis.com",<br>  "bigquerydatapolicy.googleapis.com",<br>  "bigquerydatatransfer.googleapis.com",<br>  "bigquerymigration.googleapis.com",<br>  "bigqueryreservation.googleapis.com",<br>  "bigquerystorage.googleapis.com",<br>  "file.googleapis.com",<br>  "networksecurity.googleapis.com"<br>]</pre> | no |
 | organization\_id | The Organization ID. | `string` | n/a | yes |
 
 ## Outputs
