@@ -20,6 +20,7 @@ module "assured_workloads" {
   organization_id      = var.org_id
   billing_account_id   = var.billing_account
   aw_root_folder_id    = var.folder_id
+  aw_name              = "My-AW-Workload"
   aw_compliance_regime = "JP_REGIONS_AND_SUPPORT"
   aw_location          = "asia-northeast1"
   cryptokey_allowed_access_reasons = [
