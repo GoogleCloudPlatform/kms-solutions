@@ -14,12 +14,37 @@
  * limitations under the License.
  */
 
-output "assured_workload_id" {
+output "aw_id" {
   description = "Assured Workload ID."
   value       = google_assured_workloads_workload.primary.id
 }
 
-output "aw_consumer_folder_id" {
-  description = "Assured Workload Consumer Folder ID."
-  value       = local.aw_consumer_folder_id
+output "aw_name" {
+  description = "Assured Workload name."
+  value       = google_assured_workloads_workload.primary.name
+}
+
+output "aw_provisioned_resources_parent" {
+  description = "Parent of the Assured Workload."
+  value       = google_assured_workloads_workload.primary.provisioned_resources_parent
+}
+
+output "aw_kaj_enrollment_state" {
+  description = "Key Access Justification Enrollment State."
+  value       = google_assured_workloads_workload.primary.kaj_enrollment_state
+}
+
+output "aw_resources" {
+  description = "Resources of the Assured Workload."
+  value       = google_assured_workloads_workload.primary.resources
+}
+
+output "aw_resource_settings" {
+  description = "Resource settings of the Assured Workload."
+  value       = google_assured_workloads_workload.primary.resource_settings
+}
+
+output "kms_key_id" {
+  description = "Crypto Key ID."
+  value       = google_kms_crypto_key.hsm_encrypt_decrypt.id
 }

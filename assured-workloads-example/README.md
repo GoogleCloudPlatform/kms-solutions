@@ -117,7 +117,12 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$SA_EMAIL
 
 | Name | Description |
 |------|-------------|
-| assured\_workload\_id | Assured Workload ID. |
-| aw\_consumer\_folder\_id | Assured Workload Consumer Folder ID. |
+| aw\_id | Assured Workload ID. |
+| aw\_kaj\_enrollment\_state | Key Access Justification Enrollment State. |
+| aw\_name | Assured Workload name. |
+| aw\_provisioned\_resources\_parent | Parent of the Assured Workload. |
+| aw\_resource\_settings | Resource settings of the Assured Workload. |
+| aw\_resources | Resources of the Assured Workload. |
+| kms\_key\_id | Crypto Key ID. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
