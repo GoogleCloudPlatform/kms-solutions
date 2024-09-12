@@ -51,7 +51,7 @@ variable "aw_base_id" {
 }
 
 variable "cryptokey_allowed_access_reasons" {
-  description = "The list of allowed reasons for access to this CryptoKey."
+  description = "The list of allowed reasons for access to this CryptoKey. You can check the supported values in https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes."
   type        = list(string)
   default     = null
 }

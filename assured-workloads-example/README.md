@@ -109,7 +109,7 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$SA_EMAIL
 | aw\_name | Base name of the workload. | `string` | n/a | yes |
 | aw\_root\_folder\_id | Root folder ID for the workload. | `string` | n/a | yes |
 | billing\_account\_id | The Billing Account ID. | `string` | n/a | yes |
-| cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. | `list(string)` | `null` | no |
+| cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. You can check the supported values in https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes. | `list(string)` | `null` | no |
 | new\_allowed\_restricted\_services | The list of the restricted services that will be added as allowed. | `list(string)` | <pre>[<br>  "bigquery.googleapis.com",<br>  "bigqueryconnection.googleapis.com",<br>  "bigquerydatapolicy.googleapis.com",<br>  "bigquerydatatransfer.googleapis.com",<br>  "bigquerymigration.googleapis.com",<br>  "bigqueryreservation.googleapis.com",<br>  "bigquerystorage.googleapis.com",<br>  "file.googleapis.com",<br>  "networksecurity.googleapis.com"<br>]</pre> | no |
 | organization\_id | The Organization ID. | `string` | n/a | yes |
 
