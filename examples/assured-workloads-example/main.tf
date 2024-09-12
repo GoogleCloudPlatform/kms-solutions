@@ -15,7 +15,7 @@
  */
 
 module "assured_workloads" {
-  source = "../../assured-workloads-example"
+  source = "../../assured-workloads"
 
   organization_id      = var.org_id
   billing_account_id   = var.billing_account
