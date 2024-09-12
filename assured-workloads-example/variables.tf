@@ -57,7 +57,7 @@ variable "cryptokey_allowed_access_reasons" {
 }
 
 variable "new_allowed_restricted_services" {
-  description = "The list of the restricted services that will be added as allowed."
+  description = "The list of the restricted services that will be added as allowed. See the list of supported products by control package in https://cloud.google.com/assured-workloads/docs/supported-products."
   type        = list(string)
   default = [
     "bigquery.googleapis.com",
