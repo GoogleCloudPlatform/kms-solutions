@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+# TODO: Let's use the "production" provider, when the provider supports the "key_access_justifications_policy" field in the KMS Key.
 provider "google-beta" {
   user_project_override = true
 }
