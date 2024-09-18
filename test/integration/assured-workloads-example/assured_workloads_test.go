@@ -17,6 +17,7 @@ package assured_workloads_example
 import (
 	"testing"
 
+	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
 	"github.com/stretchr/testify/assert"
 )
@@ -25,6 +26,16 @@ func TestAssuredWorkloadsModule(t *testing.T) {
 	awT := tft.NewTFBlueprintTest(t)
 	awT.DefineVerify(func(assert *assert.Assertions) {
 		awT.DefaultVerify(assert)
+
+		aw_id := awT.GetStringOutput("aw_id")
+		kms_key_id := awT.GetStringOutput("kms_key_id")
+
+		aw_describe_name := gcloud.Runf(t, "assured workloads describe %s", aw_id).Get("name").String()
+		kms_key_describe_name := gcloud.Runf(t, "kms keys describe %s", kms_key_id).Get("name").String()
+
+		assert.Equal(aw_id, aw_describe_name)
+		assert.Equal(kms_key_id, kms_key_describe_name)
+
 	})
 	awT.Test()
 }
