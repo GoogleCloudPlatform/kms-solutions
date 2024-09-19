@@ -40,7 +40,6 @@ module "project_ci_kms" {
     "serviceusage.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
-    "artifactregistry.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "cloudbilling.googleapis.com",
     "assuredworkloads.googleapis.com"
