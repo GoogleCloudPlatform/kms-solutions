@@ -24,6 +24,15 @@ gcloud auth login
 gcloud auth application-default login
 ```
 
+### Clone the example repository
+
+Clone the respository and go to the example folder:
+
+```sh
+git clone git@github.com:GoogleCloudPlatform/kms-solutions.git
+cd kms-solutions/examples/assured-workloads-example/
+```
+
 ### Service Account
 
 To provision the resources in this example you should use a service account.
