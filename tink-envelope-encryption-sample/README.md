@@ -22,10 +22,10 @@ This automation has 4 terraform modules: [0-bootstrap](./0-bootstrap/README.md),
 **Note:** all the modules can be used individually on demand. For example, you can jump directly to step 2 and use the [1-encrypt](./1-encrypt/README.md) module if you already have the required GCP resources and a Tink keyset for envelope encryption.
 
 #### Envelope encryption from scratch
-1. [0-bootstrap module](./consumer/0-bootstrap/README.md) execution;
+1. [0-bootstrap module](./0-bootstrap/README.md) execution;
 2. [1-encrypt module](./1-encrypt/README.md) execution;
 2. [2-decrypt module](./2-decrypt/README.md) execution;
 
 #### Changing from symmetric encryption to Envelope encryption
-1. [0-bootstrap module](./consumer/0-bootstrap/README.md) execution;
+1. [0-bootstrap module](./0-bootstrap/README.md) execution;
 2. [3-reencrypt-symmetric-to-envelope](./3-reencrypt-symmetric-to-envelope/README.md) execution;
