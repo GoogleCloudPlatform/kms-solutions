@@ -116,7 +116,7 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$SA_EMAIL
 | aw\_location | Workload location. | `string` | n/a | yes |
 | aw\_name | Base name of the workload. | `string` | n/a | yes |
 | billing\_account | The Billing Account ID. | `string` | n/a | yes |
-| cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. You can check the supported values in https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes. | `list(string)` | `null` | no |
+| cryptokey\_allowed\_access\_reasons | The list of allowed reasons for access to this CryptoKey. You can check the supported values in https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes. | `list(string)` | <pre>[<br>  "CUSTOMER_INITIATED_ACCESS",<br>  "MODIFIED_CUSTOMER_INITIATED_ACCESS",<br>  "GOOGLE_INITIATED_SYSTEM_OPERATION",<br>  "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION"<br>]</pre> | no |
 | folder\_id | Root folder ID for the workload. | `string` | n/a | yes |
 | new\_allowed\_restricted\_services | The list of the restricted services that will be added as allowed. See the list of supported products by control package in https://cloud.google.com/assured-workloads/docs/supported-products. | `list(string)` | <pre>[<br>  "bigquery.googleapis.com",<br>  "bigqueryconnection.googleapis.com",<br>  "bigquerydatapolicy.googleapis.com",<br>  "bigquerydatatransfer.googleapis.com",<br>  "bigquerymigration.googleapis.com",<br>  "bigqueryreservation.googleapis.com",<br>  "bigquerystorage.googleapis.com",<br>  "file.googleapis.com",<br>  "networksecurity.googleapis.com"<br>]</pre> | no |
 | org\_id | The Organization ID. | `string` | n/a | yes |
