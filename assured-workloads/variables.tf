@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-variable "organization_id" {
+variable "org_id" {
   description = "The Organization ID."
   type        = string
 }
 
-variable "billing_account_id" {
+variable "billing_account" {
   description = "The Billing Account ID."
   type        = string
 }
 
-variable "aw_root_folder_id" {
+variable "folder_id" {
   description = "Root folder ID for the workload."
   type        = string
 }

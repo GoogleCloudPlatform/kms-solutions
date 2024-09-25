@@ -17,15 +17,12 @@
 module "assured_workloads" {
   source = "../../assured-workloads"
 
-  organization_id      = var.org_id
-  billing_account_id   = var.billing_account
-  aw_root_folder_id    = var.folder_id
-  aw_name              = "My-AW-Workload"
-  aw_compliance_regime = "JP_REGIONS_AND_SUPPORT"
-  aw_location          = "asia-northeast1"
-  cryptokey_allowed_access_reasons = [
-    "CUSTOMER_INITIATED_ACCESS",
-    "MODIFIED_CUSTOMER_INITIATED_ACCESS",
-    "GOOGLE_INITIATED_SYSTEM_OPERATION", "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION"
-  ]
+  org_id                           = var.org_id
+  billing_account                  = var.billing_account
+  folder_id                        = var.folder_id
+  aw_name                          = var.aw_name
+  aw_compliance_regime             = var.aw_compliance_regime
+  aw_location                      = var.aw_location
+  new_allowed_restricted_services  = var.new_allowed_restricted_services
+  cryptokey_allowed_access_reasons = var.cryptokey_allowed_access_reasons
 }

@@ -40,10 +40,10 @@ resource "google_assured_workloads_workload" "primary" {
   compliance_regime = var.aw_compliance_regime
   display_name      = local.aw_folder_name
   location          = var.aw_location
-  organization      = var.organization_id
-  billing_account   = "billingAccounts/${var.billing_account_id}"
+  organization      = var.org_id
+  billing_account   = "billingAccounts/${var.billing_account}"
 
-  provisioned_resources_parent = "folders/${var.aw_root_folder_id}"
+  provisioned_resources_parent = "folders/${var.folder_id}"
 
   resource_settings {
     resource_type = "CONSUMER_FOLDER"
