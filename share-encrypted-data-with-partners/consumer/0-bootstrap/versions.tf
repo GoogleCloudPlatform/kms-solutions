@@ -20,22 +20,22 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 5.11, < 6"
+      version = ">= 5.11, < 7"
     }
 
     random = {
       source  = "hashicorp/random"
-      version = "3.6.2"
+      version = "3.6.3"
     }
 
     null = {
       source  = "hashicorp/null"
-      version = "3.2.2"
+      version = "3.2.3"
     }
 
     time = {
       source  = "hashicorp/time"
-      version = "0.12.0"
+      version = "0.12.1"
     }
   }
 

@@ -37,7 +37,7 @@ module "kms_project" {
   count = var.create_kms_project ? 1 : 0
 
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 15.0"
+  version = "~> 17.0"
 
   project_id                  = var.kms_project_id
   random_project_id           = var.random_project_suffix
@@ -53,7 +53,7 @@ module "vpc_project" {
   count = var.create_vpc_project ? 1 : 0
 
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 15.0"
+  version = "~> 17.0"
 
   project_id                  = var.vpc_project_id
   random_project_id           = var.random_project_suffix
