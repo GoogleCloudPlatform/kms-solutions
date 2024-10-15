@@ -1,4 +1,4 @@
-# Google KMS Autokey Terraform Module
+# Google KMS Autokey setup Terraform Module
 
 Simple Cloud KMS Autokey setup module that can be used to create requirements for [Autokey](https://cloud.google.com/kms/docs/autokey-overview) feature.
 
@@ -7,8 +7,7 @@ This is usually deployed by a [Security administrator](https://cloud.google.com/
 The capabilities of this module are:
 
 - Create a GCP folder to be used with Autokey;
-- Create a GCP project using [project-factory module](https://github.com/terraform-google-modules/terraform-google-project-factory) to be used with Autokey;
-- Define identities for Cloud KMS administrator and Autokey developer roles. See more info about these roles [here](https://cloud.google.com/kms/docs/autokey-overview#how-autokey-works).
+- Create a GCP project using [project-factory module](https://github.com/terraform-google-modules/terraform-google-project-factory) to be used as a KMS key project with Autokey feature;
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
