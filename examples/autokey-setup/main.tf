@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-module "autokey" {
-  source = "../../autokey-module"
+# 0-setup module will create the basic resources for Autokey to work.
+module "autokey_setup" {
+  source = "../../autokey-blueprints/0-setup"
 
   autokey_parent  = "folders/${var.folder_id}"
   billing_account = var.billing_account

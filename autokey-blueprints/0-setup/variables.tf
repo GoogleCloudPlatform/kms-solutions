@@ -26,8 +26,8 @@ variable "autokey_parent" {
   default     = ""
 }
 
-variable "autokey_folder" {
-  description = "Autokey folder name to be created or used."
+variable "autokey_folder_id" {
+  description = "Autokey folder ID to be created or used."
   type        = string
   default     = "folder-autokey"
 }
@@ -38,25 +38,37 @@ variable "create_autokey_folder" {
   default     = true
 }
 
-variable "create_autokey_project" {
-  description = "A new GCP project will be created for Autokey if true."
+variable "create_autokey_key_project" {
+  description = "A new GCP project will be created for Autokey keys if true."
   type        = bool
   default     = true
 }
 
-variable "autokey_project_id" {
-  description = "GCP project ID to be created or used for KMS Autokey."
+variable "autokey_key_project_id" {
+  description = "GCP project ID to be created or used for KMS Autokey keys."
   type        = string
-  default     = "kms-autokey-project-id"
+  default     = "autokey-key-project-id"
 }
 
-variable "autokey_project_name" {
-  description = "GCP project name to be used for KMS project. Used only when create_autokey_project is true."
+variable "autokey_key_project_name" {
+  description = "GCP project name to be used for KMS Autokey key project. Used only when create_autokey_key_project is true."
   type        = string
-  default     = "kms-autokey-project-name"
+  default     = "autokey-key-project-name"
 }
 
 variable "billing_account" {
   description = "The ID of the billing account to associate projects with."
   type        = string
+}
+
+variable "deletion_policy" {
+  description = "The deletion policy for the project."
+  type        = string
+  default     = "DELETE"
+}
+
+variable "folder_deletion_protection" {
+  description = "The deletion protection for the folder."
+  type        = bool
+  default     = false
 }

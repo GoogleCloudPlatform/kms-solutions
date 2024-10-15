@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.5.7"
+output "autokey_key_project_id" {
+  description = "GCP project ID used for KMS Autokey keys."
+  value       = local.autokey_key_project_id
+}
 
-  provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:autokey-module/v0.2.0"
-  }
+output "autokey_folder_id" {
+  description = "The Autokey folder used for KMS Autokey."
+  value       = local.autokey_folder_id
+}
+
+output "random_suffix" {
+  description = "Random suffix created to append the resource names."
+  value       = random_string.suffix.result
 }

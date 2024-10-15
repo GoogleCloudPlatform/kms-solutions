@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-variable "folder_id" {
-  description = "The folder ID parent of the Autokey folder to be created."
-}
+# 1-storage-bucket module will create the basic resources for a Storage bucket and configure
+# a KMS Autokey key to encrypt data on rest.
+module "autokey_storage" {
+  source = "../../autokey-blueprints/1-storage-bucket"
 
-variable "billing_account" {
-  description = "The ID of the billing account to associate projects with."
-  type        = string
-}
-
-variable "suffix" {
-  description = "A suffix to be used as an identifier for resources."
-  type        = string
+  billing_account        = var.billing_account
+  autokey_folder_id      = var.folder_id
+  autokey_key_project_id = var.project_id
 }
