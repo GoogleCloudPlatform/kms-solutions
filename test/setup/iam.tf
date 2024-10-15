@@ -15,16 +15,13 @@
  */
 
 locals {
-  int_folder_required_roles = [
+  int_required_roles = [
     "roles/cloudkms.admin",
+    "roles/iam.serviceAccountTokenCreator",
+    "roles/iam.serviceAccountUser",
 
     # Needed to run verifications:
     "roles/owner"
-  ]
-
-  int_prj_required_roles = [
-    "roles/iam.serviceAccountTokenCreator",
-    "roles/iam.serviceAccountUser",
   ]
 
   int_org_required_roles = [
@@ -49,7 +46,7 @@ resource "google_organization_iam_member" "org_admins_group" {
 }
 
 resource "google_folder_iam_member" "int_test" {
-  for_each = toset(local.int_folder_required_roles)
+  for_each = toset(local.int_required_roles)
 
   folder = google_folder.test_folder.folder_id
   role   = each.value
@@ -57,7 +54,7 @@ resource "google_folder_iam_member" "int_test" {
 }
 
 resource "google_project_iam_member" "int_test_prj" {
-  for_each = toset(local.int_prj_required_roles)
+  for_each = toset(local.int_required_roles)
 
   project = module.project_ci_kms.project_id
   role    = each.value
