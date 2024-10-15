@@ -53,6 +53,14 @@ resource "google_folder_iam_member" "int_test" {
   member = "serviceAccount:${google_service_account.int_test.email}"
 }
 
+resource "google_project_iam_member" "int_test_prj" {
+  for_each = toset(local.int_required_roles)
+
+  project = module.project_ci_kms.project_id
+  role   = each.value
+  member = "serviceAccount:${google_service_account.int_test.email}"
+}
+
 resource "google_billing_account_iam_member" "tf_billing_user" {
   billing_account_id = var.billing_account
   role               = "roles/billing.admin"
