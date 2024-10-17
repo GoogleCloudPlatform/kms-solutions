@@ -1,4 +1,4 @@
-# Google KMS Autokey setup Terraform Module
+# Google Cloud Key Management Service (KMS) Autokey setup Terraform Module
 
 Simple Cloud KMS Autokey setup module that can be used to create requirements for [Autokey](https://cloud.google.com/kms/docs/autokey-overview) feature.
 

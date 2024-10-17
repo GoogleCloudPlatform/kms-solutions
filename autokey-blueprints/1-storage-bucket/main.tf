@@ -60,7 +60,7 @@ module "autokey_resource_project" {
 
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "<= 6.0"
+  version = "8.0"
 
   name       = "${var.bucket_name}-${local.default_suffix}"
   project_id = local.autokey_resource_project_id
