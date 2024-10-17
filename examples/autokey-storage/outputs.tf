@@ -14,6 +14,16 @@
 #  * limitations under the License.
 #  */
 
+output "autokey_key_project_id" {
+  description = "GCP project ID used for KMS Autokey keys."
+  value       = module.autokey_setup.autokey_key_project_id
+}
+
+output "autokey_folder_id" {
+  description = "The Autokey folder used for KMS Autokey."
+  value       = module.autokey_setup.autokey_folder_id
+}
+
 output "autokey_config_id" {
   description = "An Autokey configuration identifier."
   value       = module.autokey_storage.autokey_config_id

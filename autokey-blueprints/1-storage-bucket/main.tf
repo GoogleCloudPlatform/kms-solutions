@@ -27,7 +27,7 @@ resource "random_string" "suffix" {
 
 module "autokey" {
   source  = "terraform-google-modules/kms/google//modules/autokey"
-  version = "3.1.0"
+  version = "3.2.0"
 
   project_id            = var.autokey_key_project_id
   autokey_folder_number = var.autokey_folder_id

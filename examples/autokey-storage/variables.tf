@@ -23,7 +23,7 @@ variable "billing_account" {
   type        = string
 }
 
-variable "project_id" {
-  description = "GCP project ID to use for the creation of resources."
-  type        = string
-}
+# variable "project_id" {
+#   description = "GCP project ID to use for the creation of resources."
+#   type        = string
+# }

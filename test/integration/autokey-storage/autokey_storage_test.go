@@ -28,10 +28,19 @@ func TestAutokeyStorageExample(t *testing.T) {
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
 
+		keyProjectId := bpt.GetStringOutput("autokey_key_project_id")
+		autokeyFolderId := bpt.GetStringOutput("autokey_folder_id")
 		resourceProjectId := bpt.GetStringOutput("autokey_resource_project_id")
 		autokeyKeyHandle := bpt.GetJsonOutput("autokey_storage_keyhandle")
-
 		bucketName := bpt.GetStringOutput("bucket_name")
+
+		prj := gcloud.Runf(t, "projects describe %s", keyProjectId)
+		assert.Equal("ACTIVE", prj.Get("lifecycleState").String(), fmt.Sprintf("project %s should be ACTIVE", keyProjectId))
+		enabledKmsApi := gcloud.Runf(t, "services list --filter cloudkms.googleapis.com --project %s", keyProjectId).String()
+		assert.Contains(enabledKmsApi, "cloudkms.googleapis.com", "KMS API should have been enabled")
+
+		folder := gcloud.Runf(t, "resource-manager folders describe %s", autokeyFolderId)
+		assert.Equal("ACTIVE", folder.Get("lifecycleState").String(), fmt.Sprintf("folder %s should be ACTIVE", autokeyFolderId))
 
 		bucketObj := gcloud.Runf(t, fmt.Sprintf("alpha storage buckets describe gs://%s --project %s", bucketName, resourceProjectId))
 		assert.True(bucketObj.Exists(), "bucket %s should exist", bucketName)
