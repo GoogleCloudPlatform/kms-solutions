@@ -22,8 +22,3 @@ variable "billing_account" {
   description = "The ID of the billing account to associate projects with."
   type        = string
 }
-
-# variable "project_id" {
-#   description = "GCP project ID to use for the creation of resources."
-#   type        = string
-# }
