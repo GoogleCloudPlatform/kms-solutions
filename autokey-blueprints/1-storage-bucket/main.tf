@@ -40,6 +40,8 @@ module "autokey" {
       location               = var.location
     }
   }
+
+  depends_on = [module.autokey_resource_project]
 }
 
 module "autokey_resource_project" {

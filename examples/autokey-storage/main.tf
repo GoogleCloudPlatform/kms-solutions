@@ -23,7 +23,7 @@ module "autokey_setup" {
 }
 
 # 1-storage-bucket module will create the basic resources for a Storage bucket and configure
-# a KMS Autokey key to encrypt data on rest.
+# a KMS Autokey key to encrypt data at rest.
 module "autokey_storage" {
   source = "../../autokey-blueprints/1-storage-bucket"
 

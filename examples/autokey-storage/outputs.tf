@@ -15,12 +15,12 @@
 #  */
 
 output "autokey_key_project_id" {
-  description = "GCP project ID used for KMS Autokey keys."
+  description = "GCP project ID where the KMS Autokey CryptoKeys will be stored."
   value       = module.autokey_setup.autokey_key_project_id
 }
 
 output "autokey_folder_id" {
-  description = "The Autokey folder used for KMS Autokey."
+  description = "The GCP folder used for KMS Autokey."
   value       = module.autokey_setup.autokey_folder_id
 }
 
@@ -30,7 +30,7 @@ output "autokey_config_id" {
 }
 
 output "autokey_storage_keyhandle" {
-  description = "A Storage KeyHandle info created."
+  description = "A KeyHandle created for use with a Storage Bucket."
   value       = module.autokey_storage.autokey_storage_keyhandle
 }
 
@@ -40,7 +40,7 @@ output "autokey_resource_project_id" {
 }
 
 output "bucket_name" {
-  description = "Bucket name created."
+  description = "Name of the Storage Bucket created."
   value       = module.autokey_storage.bucket_name
 }
 

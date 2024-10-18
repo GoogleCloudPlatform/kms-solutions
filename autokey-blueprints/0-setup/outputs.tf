@@ -15,12 +15,12 @@
  */
 
 output "autokey_key_project_id" {
-  description = "GCP project ID used for KMS Autokey keys."
+  description = "GCP project ID where the KMS Autokey CryptoKeys will be stored."
   value       = local.autokey_key_project_id
 }
 
 output "autokey_folder_id" {
-  description = "The Autokey folder used for KMS Autokey."
+  description = "The GCP folder used for KMS Autokey."
   value       = local.autokey_folder_id
 }
 

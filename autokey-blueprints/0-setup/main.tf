@@ -17,7 +17,7 @@
 locals {
   default_suffix         = var.suffix != "" ? var.suffix : random_string.suffix.result
   autokey_key_project_id = var.create_autokey_key_project ? module.autokey_key_project[0].project_id : var.autokey_key_project_id
-  autokey_folder_id      = var.create_autokey_folder ? google_folder.autokms_folder[0].folder_id : var.autokey_folder_id
+  autokey_folder_id      = var.create_autokey_folder ? google_folder.autokey_resource_folder[0].folder_id : var.autokey_folder_id
 }
 
 resource "random_string" "suffix" {
@@ -26,7 +26,7 @@ resource "random_string" "suffix" {
   upper   = false
 }
 
-resource "google_folder" "autokms_folder" {
+resource "google_folder" "autokey_resource_folder" {
   count = var.create_autokey_folder ? 1 : 0
 
   provider            = google-beta
@@ -55,5 +55,5 @@ module "autokey_key_project" {
     ]
   }]
 
-  depends_on = [google_folder.autokms_folder]
+  depends_on = [google_folder.autokey_resource_folder]
 }

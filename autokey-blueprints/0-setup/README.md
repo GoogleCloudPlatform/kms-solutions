@@ -29,8 +29,8 @@ The capabilities of this module are:
 
 | Name | Description |
 |------|-------------|
-| autokey\_folder\_id | The Autokey folder used for KMS Autokey. |
-| autokey\_key\_project\_id | GCP project ID used for KMS Autokey keys. |
+| autokey\_folder\_id | The GCP folder used for KMS Autokey. |
+| autokey\_key\_project\_id | GCP project ID where the KMS Autokey CryptoKeys will be stored. |
 | random\_suffix | Random suffix created to append the resource names. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

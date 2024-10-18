@@ -20,7 +20,7 @@ output "autokey_config_id" {
 }
 
 output "autokey_storage_keyhandle" {
-  description = "A Storage KeyHandle info created."
+  description = "A KeyHandle created for use with a Storage Bucket."
   value       = module.autokey.autokey_keyhandles["storage_bucket"]
 }
 
@@ -30,6 +30,6 @@ output "autokey_resource_project_id" {
 }
 
 output "bucket_name" {
-  description = "Bucket name created."
+  description = "Name of the Storage Bucket created."
   value       = module.bucket.name
 }

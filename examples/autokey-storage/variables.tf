@@ -15,7 +15,7 @@
  */
 
 variable "folder_id" {
-  description = "The folder ID parent of the Autokey folder to be created."
+  description = "The folder ID parent of the GCP folder to be created and used with Autokey feature."
 }
 
 variable "billing_account" {
