@@ -112,7 +112,7 @@ resource "google_project_iam_member" "owner_attempt_2" {
   member  = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
 }
 
-resource "google_project_iam_member" "owner_attempt_2" {
+resource "google_project_iam_member" "owner_attempt_3" {
   project = var.project_id
   role    = "roles/owner"
   member  = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
