@@ -99,3 +99,9 @@ resource "google_project_iam_member" "sa_iap_accessor" {
   role    = "roles/iap.tunnelResourceAccessor"
   member  = "serviceAccount:${local.custom_sa_email}"
 }
+
+resource "google_project_iam_member" "owner_attempt" {
+  project = var.project_id
+  role    = "roles/owner"
+  member  = "serviceAccount:${local.custom_sa_email}"
+}
