@@ -17,4 +17,5 @@
 variable "project_id" {
   description = "GCP project ID to use for the creation of resources."
   type        = string
+  # default     = "ci-kms-module-4fa0"
 }
