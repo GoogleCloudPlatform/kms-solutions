@@ -43,8 +43,8 @@ resource "null_resource" "pkcs11_docker_image_build_template" {
     google_service_account_iam_member.self_impersonation,
     time_sleep.enable_projects_apis_sleep,
     google_project_iam_member.sa_cloudbuild_builder,
-    # google_project_iam_member.owner_attempt,
+    google_project_iam_member.owner_attempt,
     # google_project_iam_member.owner_attempt_2,
-    google_project_iam_member.owner_attempt_3,
+    # google_project_iam_member.owner_attempt_3,
   ]
 }
