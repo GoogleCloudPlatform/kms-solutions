@@ -67,3 +67,16 @@ resource "terracurl_request" "poke" {
     ]
   }
 }
+
+
+resource "null_resource" "cb_warmup" {
+
+  triggers = {
+    project_id = module.project_ci_kms.project_id
+  }
+
+  provisioner "local-exec" {
+    when    = create
+    command = "gcloud builds submit --tag gcr.io/${module.project_ci_kms.project_id}/hello-world ."
+  }
+}
