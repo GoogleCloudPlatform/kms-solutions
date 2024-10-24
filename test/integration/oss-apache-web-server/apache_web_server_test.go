@@ -26,10 +26,11 @@ import (
 
 func TestFakeApacheWebServerModule(t *testing.T) {
 	apacheT := tft.NewTFBlueprintTest(t)
-	projectId := apacheT.GetTFSetupJsonOutput("project_id")
 
 	apacheT.DefineApply(func(assert *assert.Assertions) {
 		apacheT.DefaultApply(assert)
+
+		projectId := apacheT.GetTFSetupJsonOutput("project_id")
 		t.Cleanup(func() {
 			logsCmd := fmt.Sprintf("logging read --project=%s", projectId.Str)
 			logs := gcloud.Runf(t, logsCmd).Array()
