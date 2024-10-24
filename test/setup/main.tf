@@ -29,6 +29,7 @@ module "project_ci_kms" {
     "cloudkms.googleapis.com",
     "serviceusage.googleapis.com",
     "iam.googleapis.com",
+    "compute.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "cloudbilling.googleapis.com"
@@ -38,11 +39,7 @@ module "project_ci_kms" {
     {
       api   = "cloudbuild.googleapis.com",
       roles = ["roles/cloudbuild.builds.builder"]
-    },
-    {
-      api   = "compute.googleapis.com",
-      roles = ["roles/owner"]
-    },
+    }
   ]
 }
 
