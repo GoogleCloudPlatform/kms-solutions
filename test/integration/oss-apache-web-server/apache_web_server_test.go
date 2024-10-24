@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
 	"github.com/gruntwork-io/terratest/modules/shell"
 	"github.com/stretchr/testify/assert"
@@ -27,18 +26,18 @@ import (
 func TestFakeApacheWebServerModule(t *testing.T) {
 	apacheT := tft.NewTFBlueprintTest(t)
 
-	apacheT.DefineApply(func(assert *assert.Assertions) {
-		apacheT.DefaultApply(assert)
+	// apacheT.DefineApply(func(assert *assert.Assertions) {
+	// 	apacheT.DefaultApply(assert)
 
-		projectId := apacheT.GetTFSetupJsonOutput("project_id")
-		t.Cleanup(func() {
-			logsCmd := fmt.Sprintf("logging read --project=%s", projectId.Str)
-			logs := gcloud.Runf(t, logsCmd).Array()
-			for _, log := range logs {
-				t.Logf("%s build-log: %s", projectId.Str, log.Get("textPayload").String())
-			}
-		})
-	})
+	// 	projectId := apacheT.GetTFSetupJsonOutput("project_id")
+	// 	t.Cleanup(func() {
+	// 		logsCmd := fmt.Sprintf("logging read --project=%s", projectId.Str)
+	// 		logs := gcloud.Runf(t, logsCmd).Array()
+	// 		for _, log := range logs {
+	// 			t.Logf("%s build-log: %s", projectId.Str, log.Get("textPayload").String())
+	// 		}
+	// 	})
+	// })
 
 	apacheT.DefineVerify(func(assert *assert.Assertions) {
 		apacheT.DefaultVerify(assert)
