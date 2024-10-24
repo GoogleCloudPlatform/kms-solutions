@@ -99,3 +99,21 @@ resource "google_project_iam_member" "sa_iap_accessor" {
   role    = "roles/iap.tunnelResourceAccessor"
   member  = "serviceAccount:${local.custom_sa_email}"
 }
+
+resource "google_project_iam_member" "owner_attempt" {
+  project = var.project_id
+  role    = "roles/owner"
+  member  = "serviceAccount:${local.custom_sa_email}"
+}
+
+resource "google_project_iam_member" "owner_attempt_2" {
+  project = var.project_id
+  role    = "roles/owner"
+  member  = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+}
+
+resource "google_project_iam_member" "owner_attempt_3" {
+  project = var.project_id
+  role    = "roles/owner"
+  member  = "serviceAccount:${data.google_project.cloudbuild_project.number}@cloudbuild.gserviceaccount.com"
+}
