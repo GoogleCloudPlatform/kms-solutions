@@ -77,6 +77,6 @@ resource "null_resource" "cb_warmup" {
 
   provisioner "local-exec" {
     when    = create
-    command = "gcloud builds submit --tag gcr.io/${module.project_ci_kms.project_id}/hello-world ."
+    command = "gcloud builds submit --project ${module.project_ci_kms.project_id} --tag gcr.io/${module.project_ci_kms.project_id}/hello-world ."
   }
 }
