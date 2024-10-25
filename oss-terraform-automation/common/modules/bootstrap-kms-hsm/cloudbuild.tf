@@ -16,6 +16,7 @@
 
 locals {
   certificate_file_string = var.certificate_file_path != null ? file(var.certificate_file_path) : ""
+  build_command_string    = "gcloud builds submit --project=${var.project_id} --config=${path.module}/cloudbuild.yaml --impersonate-service-account=${local.custom_sa_email} --substitutions=_LOCATION=\"${var.artifact_location}\",_REPOSITORY=\"${var.artifact_repository}-${local.default_suffix}\",_IMAGE=\"${var.artifact_image}\",_VERSION=\"${var.artifact_version}\",_KMS_KEYRING=\"${var.keyring}-${local.default_suffix}\",_KMS_KEY=\"${var.key}-${local.default_suffix}\",_KMS_LOCATION=\"${var.location}\",_PKCS11_LIB_VERSION=\"${var.pkcs11_lib_version}\",_SERVICE_ACCOUNT=\"${local.custom_sa_email}\",_CERTIFICATE_FILE=\"${local.certificate_file_string}\",_DIGEST_FLAG=\"${var.digest_flag}\",_CERTIFICATE_NAME=\"${var.certificate_name}\" ${var.docker_file_path}"
 }
 
 resource "null_resource" "pkcs11_docker_image_build_template" {
@@ -26,10 +27,13 @@ resource "null_resource" "pkcs11_docker_image_build_template" {
   }
 
   provisioner "local-exec" {
-    when    = create
+    when = create
+    # When this command fails, it will sleep for 45s and try a second time.
+    # Cloud Build job sometimes get a permission denied error in the first run
+    # probrably due to permissions propagations delay.
     command = <<EOF
-    gcloud builds submit --project=${var.project_id} --config=${path.module}/cloudbuild.yaml --impersonate-service-account=${local.custom_sa_email} --substitutions=_LOCATION="${var.artifact_location}",_REPOSITORY="${var.artifact_repository}-${local.default_suffix}",_IMAGE="${var.artifact_image}",_VERSION="${var.artifact_version}",_KMS_KEYRING="${var.keyring}-${local.default_suffix}",_KMS_KEY="${var.key}-${local.default_suffix}",_KMS_LOCATION="${var.location}",_PKCS11_LIB_VERSION="${var.pkcs11_lib_version}",_SERVICE_ACCOUNT="${local.custom_sa_email}",_CERTIFICATE_FILE="${local.certificate_file_string}",_DIGEST_FLAG="${var.digest_flag}",_CERTIFICATE_NAME="${var.certificate_name}" ${var.docker_file_path} || ( sleep 45 &&
-    gcloud builds submit --project=${var.project_id} --config=${path.module}/cloudbuild.yaml --impersonate-service-account=${local.custom_sa_email} --substitutions=_LOCATION="${var.artifact_location}",_REPOSITORY="${var.artifact_repository}-${local.default_suffix}",_IMAGE="${var.artifact_image}",_VERSION="${var.artifact_version}",_KMS_KEYRING="${var.keyring}-${local.default_suffix}",_KMS_KEY="${var.key}-${local.default_suffix}",_KMS_LOCATION="${var.location}",_PKCS11_LIB_VERSION="${var.pkcs11_lib_version}",_SERVICE_ACCOUNT="${local.custom_sa_email}",_CERTIFICATE_FILE="${local.certificate_file_string}",_DIGEST_FLAG="${var.digest_flag}",_CERTIFICATE_NAME="${var.certificate_name}" ${var.docker_file_path} )
+    ${local.build_command_string} || ( sleep 45 &&
+    ${local.build_command_string} )
     EOF
   }
 
@@ -43,6 +47,6 @@ resource "null_resource" "pkcs11_docker_image_build_template" {
     google_service_account_iam_member.self_impersonation,
     time_sleep.enable_projects_apis_sleep,
     google_project_iam_member.sa_cloudbuild_builder,
-    google_project_iam_member.cb_service_agent_iam,
+    google_project_iam_member.cb_service_agent_iam
   ]
 }

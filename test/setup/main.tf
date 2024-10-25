@@ -28,8 +28,8 @@ module "project_ci_kms" {
   activate_apis = [
     "cloudkms.googleapis.com",
     "serviceusage.googleapis.com",
-    "iam.googleapis.com",
     "compute.googleapis.com",
+    "iam.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "cloudbilling.googleapis.com"
