@@ -99,3 +99,9 @@ resource "google_project_iam_member" "sa_iap_accessor" {
   role    = "roles/iap.tunnelResourceAccessor"
   member  = "serviceAccount:${local.custom_sa_email}"
 }
+
+resource "google_project_iam_member" "cb_service_agent_iam" {
+  project = var.project_id
+  role    = "roles/cloudbuild.serviceAgent"
+  member  = "serviceAccount:service-${data.google_project.cloudbuild_project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+}
