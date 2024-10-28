@@ -34,6 +34,7 @@ module "project_ci_kms" {
   org_id            = var.org_id
   folder_id         = google_folder.test_folder.folder_id
   billing_account   = var.billing_account
+  deletion_policy   = "DELETE"
 
   activate_apis = [
     "cloudkms.googleapis.com",
