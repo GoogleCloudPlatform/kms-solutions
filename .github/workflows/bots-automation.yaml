@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-name: Dependabot automation
+name: Dependencies bots automation
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
@@ -26,12 +26,12 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
+  bots-automation:
     env:
       PR_URL: ${{github.event.pull_request.html_url}}
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    if: github.actor == 'dependabot[bot]' || github.actor == 'renovate[bot]' || github.actor == 'renovate-bot'
     steps:
       - name: Fetch Dependabot metadata
         id: metadata
@@ -41,5 +41,6 @@ jobs:
       - name: Approve the PR
         run: gh pr review --approve "${PR_URL}"
       - name: Enable auto-merge for PRs
+        if: github.actor == 'dependabot[bot]'
         run: gh pr merge --auto --squash --delete-branch "${PR_URL}"
 ...
