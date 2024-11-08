@@ -14,27 +14,17 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
+output "autokey_key_project_id" {
+  description = "GCP project ID where the KMS Autokey CryptoKeys will be stored."
+  value       = local.autokey_key_project_id
 }
 
-output "folder_id" {
-  value = split("/", google_folder.test_folder.id)[1]
+output "autokey_folder_id" {
+  description = "The GCP folder used for KMS Autokey."
+  value       = local.autokey_folder_id
 }
 
-output "project_number" {
-  value = module.project_ci_kms.project_number
-}
-
-output "billing_account" {
-  value = var.billing_account
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
-
-output "suffix" {
-  value = random_string.suffix.result
+output "random_suffix" {
+  description = "Random suffix created to append the resource names."
+  value       = random_string.suffix.result
 }
