@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+  upper   = false
+}
+
+resource "google_folder" "test_folder" {
+  display_name = "test_kms_fldr_${random_string.suffix.result}"
+  parent       = "folders/${var.folder_id}"
+}
+
 module "project_ci_kms" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 17.0"
@@ -21,7 +32,7 @@ module "project_ci_kms" {
   name              = "ci-kms-module"
   random_project_id = "true"
   org_id            = var.org_id
-  folder_id         = var.folder_id
+  folder_id         = google_folder.test_folder.folder_id
   billing_account   = var.billing_account
   deletion_policy   = "DELETE"
 
