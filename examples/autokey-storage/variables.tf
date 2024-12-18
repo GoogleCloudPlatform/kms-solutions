@@ -14,27 +14,11 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
+variable "folder_id" {
+  description = "The folder ID parent of the GCP folder to be created and used with Autokey feature."
 }
 
-output "folder_id" {
-  value = split("/", google_folder.test_folder.id)[1]
-}
-
-output "project_number" {
-  value = module.project_ci_kms.project_number
-}
-
-output "billing_account" {
-  value = var.billing_account
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
-
-output "suffix" {
-  value = random_string.suffix.result
+variable "billing_account" {
+  description = "The ID of the billing account to associate projects with."
+  type        = string
 }

@@ -23,6 +23,13 @@ locals {
     # Needed to run verifications:
     "roles/owner"
   ]
+
+  int_org_required_roles = [
+    "roles/resourcemanager.projectCreator",
+    "roles/resourcemanager.folderAdmin",
+    "roles/billing.user",
+    "roles/cloudkms.admin"
+  ]
 }
 
 resource "google_service_account" "int_test" {
@@ -31,12 +38,39 @@ resource "google_service_account" "int_test" {
   display_name = "kms-int-test"
 }
 
-resource "google_project_iam_member" "int_test" {
-  count = length(local.int_required_roles)
+resource "google_organization_iam_member" "org_admins_group" {
+  for_each = toset(local.int_org_required_roles)
+  org_id   = var.org_id
+  role     = each.value
+  member   = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_folder_iam_member" "int_test" {
+  for_each = toset(local.int_required_roles)
+
+  folder = google_folder.test_folder.folder_id
+  role   = each.value
+  member = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_project_iam_member" "int_test_prj" {
+  for_each = toset(local.int_required_roles)
 
   project = module.project_ci_kms.project_id
-  role    = local.int_required_roles[count.index]
+  role    = each.value
   member  = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_billing_account_iam_member" "tf_billing_user" {
+  billing_account_id = var.billing_account
+  role               = "roles/billing.admin"
+  member             = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_billing_account_iam_member" "billing_account_log_config" {
+  billing_account_id = var.billing_account
+  role               = "roles/logging.configWriter"
+  member             = "serviceAccount:${google_service_account.int_test.email}"
 }
 
 resource "google_service_account_key" "int_test" {

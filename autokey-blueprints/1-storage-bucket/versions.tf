@@ -14,27 +14,14 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
-}
+terraform {
+  required_version = ">= 1.5.7"
 
-output "folder_id" {
-  value = split("/", google_folder.test_folder.id)[1]
-}
+  provider_meta "google" {
+    module_name = "blueprints/terraform/kms-solutions:autokey-blueprints:1-storage-bucket/v0.2.0"
+  }
 
-output "project_number" {
-  value = module.project_ci_kms.project_number
-}
-
-output "billing_account" {
-  value = var.billing_account
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
-
-output "suffix" {
-  value = random_string.suffix.result
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/kms-solutions:autokey-blueprints:1-storage-bucket/v0.2.0"
+  }
 }
