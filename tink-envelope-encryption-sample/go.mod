@@ -4,7 +4,7 @@ go 1.22.1
 
 require (
 	github.com/google/tink/go v1.7.0
-	google.golang.org/api v0.210.0
+	google.golang.org/api v0.214.0
 )
 
 require (
