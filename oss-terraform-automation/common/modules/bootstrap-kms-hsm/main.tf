@@ -47,7 +47,7 @@ resource "time_sleep" "enable_projects_apis_sleep" {
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "3.2.0"
+  version = "4.0.0"
 
   keyring              = "${var.keyring}-${local.default_suffix}"
   location             = var.location
