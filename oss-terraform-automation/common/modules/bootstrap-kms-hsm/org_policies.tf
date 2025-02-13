@@ -18,7 +18,7 @@ module "restrict-vm-external-ips" {
   count = var.organization_id != "" ? 1 : 0
 
   source  = "terraform-google-modules/org-policy/google//modules/restrict_vm_external_ips"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   policy_for      = "organization"
   organization_id = var.organization_id
@@ -27,7 +27,7 @@ module "restrict-vm-external-ips" {
 module "organization_policies_type_boolean" {
   count   = var.organization_id != "" ? 1 : 0
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   organization_id = var.organization_id
   policy_for      = "organization"
