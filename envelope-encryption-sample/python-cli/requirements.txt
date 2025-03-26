@@ -1,4 +1,4 @@
-google-cloud-kms==3.4.0
+google-cloud-kms==3.4.1
 absl-py==2.1.0
 cryptography==44.0.2
 crcmod==1.7
