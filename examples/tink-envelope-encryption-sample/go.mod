@@ -1,1 +1,5 @@
-../../tink-envelope-encryption-sample/go.mod
+module tink
+
+go 1.23.0
+
+toolchain go1.23.8
