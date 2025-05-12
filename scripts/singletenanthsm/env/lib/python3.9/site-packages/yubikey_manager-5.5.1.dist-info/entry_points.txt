@@ -1,0 +1,3 @@
+[console_scripts]
+ykman=ykman._cli.__main__:main
+
