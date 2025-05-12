@@ -78,14 +78,15 @@ to run the `generate_rsa_keys` and `generate_gcloud_and_keys` operations.
     positional arguments:
       --operation  string
                         The type of setup operation you want to perform. This  includes build_custom_gcloud','generate_rsa_keys','generate_gcloud_and_keys'.
-        --pin int
-                        The pin number associated with the yubikey that you are using to sign the proposal.
-        --management_key int
-                        The management key associated with the yubikey that you are using to sign the proposal.
 
 
     optional arguments:
       -h, --help        show this help message and exit
+      --pin int
+                        The pin number associated with the yubikey that you are using to sign the proposal.
+      --management_key int
+                        The management key associated with the yubikey that you are using to sign the proposal.
+
 
     # Below is an example of using the setup command to generate rsa private keys and the custom gcloud build:
 
