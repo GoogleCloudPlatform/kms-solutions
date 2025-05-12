@@ -76,7 +76,13 @@ to run the `generate_rsa_keys` and `generate_gcloud_and_keys` operations.
     usage: setup.py [-h] [--operation] {build_custom_gcloud,generate_rsa_keys,generate_gcloud_and_keys}      
 
     positional arguments:
-      operation  The type of setup operation you want to perform. This  includes build_custom_gcloud','generate_rsa_keys','generate_gcloud_and_keys'.
+      --operation  string
+                        The type of setup operation you want to perform. This  includes build_custom_gcloud','generate_rsa_keys','generate_gcloud_and_keys'.
+        --pin int
+                        The pin number associated with the yubikey that you are using to sign the proposal.
+        --management_key int
+                        The management key associated with the yubikey that you are using to sign the proposal.
+
 
     optional arguments:
       -h, --help        show this help message and exit
@@ -96,7 +102,7 @@ To run this sample:
 
     $ python3 approve_proposal.py
 
-    usage: approve_proposal.py [-h] [--proposal_resource PROPOSAL_RESOURCE]
+    usage: approve_proposal.py [-h] [--proposal_resource PROPOSAL_RESOURCE] [--pin int] [--management_key int]
 
     This application fetches and approves the single tenant HSM instance proposal 
     specified in the "proposal_resource" field.
@@ -106,6 +112,10 @@ To run this sample:
     positional arguments:
         --proposal_resource PROPOSAL_RESOURCE
                         The full name of the single tenant HSM instance proposal that needs to be approved.
+        --pin int
+                        The pin number associated with the yubikey that you are using to sign the proposal.
+        --management_key int
+                        The management key associated with the yubikey that you are using to sign the proposal.
 
     optional arguments:
         -h, --help            show this help message and exit
