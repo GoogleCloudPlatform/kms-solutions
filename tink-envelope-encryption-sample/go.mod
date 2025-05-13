@@ -2,7 +2,7 @@ module tink
 
 go 1.23.0
 
-toolchain go1.23.8
+toolchain go1.23.9
 
 require (
 	github.com/google/tink/go v1.7.0
