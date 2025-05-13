@@ -65,14 +65,14 @@ docker_test_integration:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_integration.sh
 
-# Execute lint tests within the docker container
-# .PHONY: docker_test_lint
-# docker_test_lint:
-# 	docker run --rm -it \
-# 		-e EXCLUDE_LINT_DIRS="scripts" \
-# 		-v "$(CURDIR)":/workspace \
-# 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
-# 		/usr/local/bin/test_lint.sh
+Execute lint tests within the docker container
+.PHONY: docker_test_lint
+docker_test_lint:
+	docker run --rm -it \
+		-e EXCLUDE_LINT_DIRS="scripts" \
+		-v "$(CURDIR)":/workspace \
+		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
+		/usr/local/bin/test_lint.sh
 
 # Generate documentation
 .PHONY: docker_generate_docs
