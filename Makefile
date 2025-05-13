@@ -21,6 +21,7 @@ SHELL := /usr/bin/env bash
 DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 1
 DOCKER_IMAGE_DEVELOPER_TOOLS := cft/developer-tools
 REGISTRY_URL := gcr.io/cloud-foundation-cicd
+SCRIPTS_DIRECTORY = "scripts"
 
 # Enter docker container for local development
 .PHONY: docker_run
@@ -68,7 +69,7 @@ docker_test_integration:
 .PHONY: docker_test_lint
 docker_test_lint:
 	docker run --rm -it \
-		-e EXCLUDE_LINT_DIRS \
+		-e EXCLUDE_LINT_DIRS="scripts" \
 		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_lint.sh
