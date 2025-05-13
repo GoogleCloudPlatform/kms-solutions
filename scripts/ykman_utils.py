@@ -127,9 +127,11 @@ def populate_challenges_from_files() -> list[Challenge]:
         list[Challenge]: A list of Challenge objects, each containing a challenge
         and its associated public key.
     """
-    public_key_files = list(pathlib.Path.cwd().glob("challenges/public_key*.pem"))
+    public_key_files = list(
+        pathlib.Path.cwd().glob("challenges/public_key*.pem"))
     print(public_key_files)
-    challenge_files = list(pathlib.Path.cwd().glob("challenges/challenge*.bin"))
+    challenge_files = list(
+        pathlib.Path.cwd().glob("challenges/challenge*.bin"))
     print(challenge_files)
 
     challenges = []
@@ -171,7 +173,8 @@ def sign_challenges(
             piv_session.verify_pin(pin)
 
             # Get the public key from slot 82.
-            slot_metadata = piv_session.get_slot_metadata(slot=piv.SLOT.RETIRED1)
+            slot_metadata = piv_session.get_slot_metadata(
+                slot=piv.SLOT.RETIRED1)
             print(slot_metadata.public_key.public_bytes)
 
             # Check to see if any of the challenge public keys matches with the
@@ -252,7 +255,8 @@ def verify_challenge_signatures(challenge_replies: list[ChallengeReply]):
     if not challenge_replies:
         raise ValueError("No signed challenges to verify")
     for challenge_reply in challenge_replies:
-        public_key = load_pem_public_key(challenge_reply.public_key_pem.encode())
+        public_key = load_pem_public_key(
+            challenge_reply.public_key_pem.encode())
         try:
             public_key.verify(
                 challenge_reply.signed_challenge,

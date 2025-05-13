@@ -81,7 +81,8 @@ def parse_challenges_into_files(sthi_output: str) -> List[bytes]:
         try:
             with open("challenges/public_key{0}.pem".format(challenge_count), "w") as f:
                 f.write(
-                    challenge["publicKeyPem"].encode("utf-8").decode("unicode_escape")
+                    challenge["publicKeyPem"].encode(
+                        "utf-8").decode("unicode_escape")
                 )
         except FileNotFoundError:
             logger.exception(

@@ -55,7 +55,8 @@ def build_custom_gcloud():
         logger.info(process.stdout)
     except subprocess.CalledProcessError as e:
         logger.exception(f"gcloud build failed: {e}")
-        raise subprocess.CalledProcessError(e.returncode, e.cmd, e.output, e.stderr)
+        raise subprocess.CalledProcessError(
+            e.returncode, e.cmd, e.output, e.stderr)
     try:
         print("\nAdding gcloud components")
         process = subprocess.run(
@@ -74,7 +75,8 @@ def build_custom_gcloud():
         return process
     except subprocess.CalledProcessError as e:
         logger.info(f"Error executing gcloud components update: {e}")
-        raise subprocess.CalledProcessError(e.returncode, e.cmd, e.output, e.stderr)
+        raise subprocess.CalledProcessError(
+            e.returncode, e.cmd, e.output, e.stderr)
 
 
 command_gcloud_list_proposal = (
@@ -112,7 +114,8 @@ def fetch_challenges(sthi_proposal_resource: str):
         return process
     except subprocess.CalledProcessError as e:
         logger.exception(f"Fetching challenges failed: {e}")
-        raise subprocess.CalledProcessError(e.returncode, e.cmd, e.output, e.stderr)
+        raise subprocess.CalledProcessError(
+            e.returncode, e.cmd, e.output, e.stderr)
 
 
 command_gcloud_approve_proposal = [
@@ -131,9 +134,11 @@ def send_signed_challenges(signed_challenged_files: list[str], proposal_resource
     if signed_challenged_files is None or not signed_challenged_files:
         raise ValueError("signed_challenged_files is empty")
     print("Sending signed challenges")
-    signed_challenge_str = '--challenge_replies="' + str(signed_challenged_files) + '"'
+    signed_challenge_str = '--challenge_replies="' + \
+        str(signed_challenged_files) + '"'
     command_str = " ".join(
-        command_gcloud_approve_proposal + [proposal_resource] + [signed_challenge_str]
+        command_gcloud_approve_proposal +
+        [proposal_resource] + [signed_challenge_str]
     )
     logger.info(command_str)
 
@@ -154,4 +159,5 @@ def send_signed_challenges(signed_challenged_files: list[str], proposal_resource
 
     except subprocess.CalledProcessError as e:
         logger.exception(f"Sending signed challenges failed: {e}")
-        raise subprocess.CalledProcessError(e.returncode, e.cmd, e.output, e.stderr)
+        raise subprocess.CalledProcessError(
+            e.returncode, e.cmd, e.output, e.stderr)

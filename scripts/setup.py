@@ -31,7 +31,8 @@ def validate_operation(operation: str, management_key: str, pin: str):
                 raise ValueError(
                     "--management_key and --pin need to be specified for the generate_rsa_keys operation"
                 )
-            ykman_utils.generate_private_key(management_key=management_key, pin=pin)
+            ykman_utils.generate_private_key(
+                management_key=management_key, pin=pin)
         except Exception as e:
             if not management_key or not pin:
                 raise ValueError(
@@ -52,7 +53,8 @@ def generate_private_keys_build_gcloud(management_key: str, pin: str):
     connected to the local machine and builds the custom gcloud cli.
     """
     try:
-        ykman_utils.generate_private_key(management_key=management_key, pin=pin)
+        ykman_utils.generate_private_key(
+            management_key=management_key, pin=pin)
     except Exception as e:
         raise Exception(f"Generating private keys failed {e}")
     try:
