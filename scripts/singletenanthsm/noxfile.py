@@ -93,9 +93,11 @@ ALL_VERSIONS = ["2.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 # Any default versions that should be ignored.
 IGNORED_VERSIONS = TEST_CONFIG["ignored_versions"]
 
-TESTED_VERSIONS = sorted([v for v in ALL_VERSIONS if v not in IGNORED_VERSIONS])
+TESTED_VERSIONS = sorted(
+    [v for v in ALL_VERSIONS if v not in IGNORED_VERSIONS])
 
-INSTALL_LIBRARY_FROM_SOURCE = bool(os.environ.get("INSTALL_LIBRARY_FROM_SOURCE", False))
+INSTALL_LIBRARY_FROM_SOURCE = bool(
+    os.environ.get("INSTALL_LIBRARY_FROM_SOURCE", False))
 
 # Error if a python version is missing
 nox.options.error_on_missing_interpreters = True
@@ -232,7 +234,8 @@ def _session_tests(
                 ":all",
             )
         else:
-            session.install("-r", "requirements-test.txt", "--only-binary", ":all")
+            session.install("-r", "requirements-test.txt",
+                            "--only-binary", ":all")
 
     if INSTALL_LIBRARY_FROM_SOURCE:
         session.install("-e", _get_repo_root())
@@ -241,7 +244,8 @@ def _session_tests(
         post_install(session)
 
     if "pytest-parallel" in packages:
-        concurrent_args.extend(["--workers", "auto", "--tests-per-worker", "auto"])
+        concurrent_args.extend(
+            ["--workers", "auto", "--tests-per-worker", "auto"])
     elif "pytest-xdist" in packages:
         concurrent_args.extend(["-n", "auto"])
 
@@ -263,7 +267,8 @@ def py(session: nox.sessions.Session) -> None:
         _session_tests(session)
     else:
         session.skip(
-            "SKIPPED: {} tests are disabled for this sample.".format(session.python)
+            "SKIPPED: {} tests are disabled for this sample.".format(
+                session.python)
         )
 
 

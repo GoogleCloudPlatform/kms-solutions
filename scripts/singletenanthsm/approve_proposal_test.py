@@ -139,7 +139,8 @@ def sign_challenges_with_capture(
     signed_challenges = []
     for challenge in challenges:
         private_key = pub_to_priv_key[challenge.public_key_pem]
-        signed_challenge = ykman_fake.sign_data(private_key, challenge.challenge)
+        signed_challenge = ykman_fake.sign_data(
+            private_key, challenge.challenge)
         signed_challenges.append(
             ykman_utils.ChallengeReply(
                 challenge.challenge, signed_challenge, challenge.public_key_pem
@@ -239,7 +240,8 @@ if __name__ == "__main__":
         print(challenge.public_key_pem)
         unsigned_challenges.append(challenge.challenge)
     signed_challenged_files = []
-    signed_challenges = ykman_utils.sign_challenges(challenges, signed_challenged_files)
+    signed_challenges = ykman_utils.sign_challenges(
+        challenges, signed_challenged_files)
     for signed_challenge in signed_challenges:
         print(signed_challenge.signed_challenge)
         print(signed_challenge.public_key_pem)

@@ -59,12 +59,12 @@ Install Dependencies
 Samples
 -------------------------------------------------------------------------------
 
-Create a custom gcloud build to access the Single Tenant HSM service. 
+Create a custom gcloud build to access the Single Tenant HSM service.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 This application creates a custom gcloud build to access the single tenant HSM service. The operation can be specified depending if the user
-wants to just generate rsa keys on all connected yubikeys(generate_rsa_keys), just generate the custom gcloud build to access the 
+wants to just generate rsa keys on all connected yubikeys(generate_rsa_keys), just generate the custom gcloud build to access the
 single-tenant-hsm(build_custom_gcloud), or both generate keys and the custom gcloud build(generate_gcloud_and_keys). Yubikeys will need to be connected
 to run the `generate_rsa_keys` and `generate_gcloud_and_keys` operations.
 
@@ -73,13 +73,20 @@ to run the `generate_rsa_keys` and `generate_gcloud_and_keys` operations.
 
     $ python3 setup.py
 
-    usage: setup.py [-h] [--operation] {build_custom_gcloud,generate_rsa_keys,generate_gcloud_and_keys}      
+    usage: setup.py [-h] [--operation] {build_custom_gcloud,generate_rsa_keys,generate_gcloud_and_keys}
 
     positional arguments:
-      operation  The type of setup operation you want to perform. This  includes build_custom_gcloud','generate_rsa_keys','generate_gcloud_and_keys'.
+      --operation  string
+                        The type of setup operation you want to perform. This  includes build_custom_gcloud','generate_rsa_keys','generate_gcloud_and_keys'.
+
 
     optional arguments:
-      -h, --help        show this help message and exit
+      -h, --help        show this help message and exit.
+      --pin int
+                        The pin number associated with the yubikey that you are using to sign the proposal.
+      --management_key int
+                        The management key associated with the yubikey that you are using to sign the proposal.
+
 
     # Below is an example of using the setup command to generate rsa private keys and the custom gcloud build:
 
@@ -88,7 +95,7 @@ to run the `generate_rsa_keys` and `generate_gcloud_and_keys` operations.
 
 
 
-Approves a Single Tenant HSM Instance Proposal. 
+Approves a Single Tenant HSM Instance Proposal.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 To run this sample:
 
@@ -96,16 +103,20 @@ To run this sample:
 
     $ python3 approve_proposal.py
 
-    usage: approve_proposal.py [-h] [--proposal_resource PROPOSAL_RESOURCE]
+    usage: approve_proposal.py [-h] [--proposal_resource PROPOSAL_RESOURCE] [--pin int] [--management_key int]
 
-    This application fetches and approves the single tenant HSM instance proposal 
+    This application fetches and approves the single tenant HSM instance proposal
     specified in the "proposal_resource" field.
-    
+
     For more information, visit https://cloud.google.com/kms/docs/attest-key.
 
     positional arguments:
         --proposal_resource PROPOSAL_RESOURCE
                         The full name of the single tenant HSM instance proposal that needs to be approved.
+        --pin int
+                        The pin number associated with the yubikey that you are using to sign the proposal.
+        --management_key int
+                        The management key associated with the yubikey that you are using to sign the proposal.
 
     optional arguments:
         -h, --help            show this help message and exit
