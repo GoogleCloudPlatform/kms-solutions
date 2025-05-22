@@ -24,7 +24,7 @@ module "access_context_manager_policy" {
   count = local.create_vpc_sc_resources && var.access_context_manager_policy_id == "" ? 1 : 0
 
   source  = "terraform-google-modules/vpc-service-controls/google"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   parent_id   = var.organization_id
   policy_name = "default policy"
@@ -33,7 +33,7 @@ module "access_context_manager_policy" {
 module "access_level_members" {
   count   = local.create_vpc_sc_resources ? 1 : 0
   source  = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   policy  = local.access_context_manager_policy_id
   name    = var.access_level_members_name
@@ -43,7 +43,7 @@ module "access_level_members" {
 module "regular_service_perimeter_dry_run" {
   count   = local.create_vpc_sc_resources ? 1 : 0
   source  = "terraform-google-modules/vpc-service-controls/google//modules/regular_service_perimeter"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   policy                      = var.access_context_manager_policy_id
   perimeter_name              = var.perimeter_name
