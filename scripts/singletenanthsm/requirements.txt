@@ -10,7 +10,7 @@ distlib==0.3.9
 fido2==1.2.0
 filelock==3.18.0
 importlib_metadata==8.7.0
-iniconfig==2.0.0
+iniconfig==2.1.0
 jaraco.classes==3.4.0
 jaraco.context==6.0.1
 jaraco.functools==4.1.0
