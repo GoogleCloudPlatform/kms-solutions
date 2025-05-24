@@ -17,7 +17,7 @@ jaraco.functools==4.1.0
 jeepney==0.8.0
 keyring==25.6.0
 more-itertools==10.7.0
-nox==2025.2.9
+nox==2025.5.1
 packaging==24.2
 platformdirs==4.3.8
 pluggy==1.5.0
