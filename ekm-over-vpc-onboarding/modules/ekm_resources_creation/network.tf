@@ -35,7 +35,7 @@ module "vpc-network" {
 
 module "firewall_rules" {
   source  = "terraform-google-modules/network/google//modules/firewall-rules"
-  version = "11.0.0"
+  version = "11.1.0"
 
   project_id   = var.vpc_project_id
   network_name = module.vpc-network.network_name
