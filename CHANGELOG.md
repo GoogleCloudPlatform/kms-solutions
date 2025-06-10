@@ -1,5 +1,70 @@
 # Changelog
 
+## [0.4.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.3.0...v0.4.0) (2025-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update dependency fido2 to v2 ([#230](https://github.com/GoogleCloudPlatform/kms-solutions/issues/230))
+* **deps:** Update dependency cryptography to v45 ([#227](https://github.com/GoogleCloudPlatform/kms-solutions/issues/227))
+* **deps:** Update dependency packaging to v25 ([#226](https://github.com/GoogleCloudPlatform/kms-solutions/issues/226))
+* **deps:** Update dependency cryptography to v44 [SECURITY] ([#209](https://github.com/GoogleCloudPlatform/kms-solutions/issues/209))
+* **deps:** Update Terraform terraform-google-modules/vpc-service-controls/google to v7 ([#206](https://github.com/GoogleCloudPlatform/kms-solutions/issues/206))
+* **deps:** Update Terraform terraform-google-modules/network/google to v11 ([#200](https://github.com/GoogleCloudPlatform/kms-solutions/issues/200))
+
+### Features
+
+* **scripts:** Add Single Tenant HSM Scripts ([#204](https://github.com/GoogleCloudPlatform/kms-solutions/issues/204)) ([eeb0a1a](https://github.com/GoogleCloudPlatform/kms-solutions/commit/eeb0a1a3604e9e1689c23150e9aaf0158c785b10))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency absl-py to v2.3.0 ([#236](https://github.com/GoogleCloudPlatform/kms-solutions/issues/236)) ([0c37152](https://github.com/GoogleCloudPlatform/kms-solutions/commit/0c371521aed37af96196095ec11bcd8e65127da0))
+* **deps:** Update dependency click to v8.2.0 ([#215](https://github.com/GoogleCloudPlatform/kms-solutions/issues/215)) ([47dcf3c](https://github.com/GoogleCloudPlatform/kms-solutions/commit/47dcf3c2dcc97b6552dac784a3ad2c4587818238))
+* **deps:** Update dependency click to v8.2.1 ([#224](https://github.com/GoogleCloudPlatform/kms-solutions/issues/224)) ([c802d9b](https://github.com/GoogleCloudPlatform/kms-solutions/commit/c802d9b9c628bbed5dd242365ba9b11afbac71b8))
+* **deps:** Update dependency cryptography to v44 [SECURITY] ([#209](https://github.com/GoogleCloudPlatform/kms-solutions/issues/209)) ([0bae727](https://github.com/GoogleCloudPlatform/kms-solutions/commit/0bae72733fbc085bbc69f0a964d7717905dffdfa))
+* **deps:** Update dependency cryptography to v44.0.3 ([#201](https://github.com/GoogleCloudPlatform/kms-solutions/issues/201)) ([5e48f31](https://github.com/GoogleCloudPlatform/kms-solutions/commit/5e48f31c214779b0d86e5e3d3fa027ee5b0f8cb3))
+* **deps:** Update dependency cryptography to v44.0.3 ([#220](https://github.com/GoogleCloudPlatform/kms-solutions/issues/220)) ([3737332](https://github.com/GoogleCloudPlatform/kms-solutions/commit/3737332cc71bb584e6b27cdb1718e426dbf3b38a))
+* **deps:** Update dependency cryptography to v45 ([#227](https://github.com/GoogleCloudPlatform/kms-solutions/issues/227)) ([44a345b](https://github.com/GoogleCloudPlatform/kms-solutions/commit/44a345b489a3a1e937aace8f3bc226a1f64ce8d0))
+* **deps:** Update dependency cryptography to v45.0.2 ([#228](https://github.com/GoogleCloudPlatform/kms-solutions/issues/228)) ([fceca40](https://github.com/GoogleCloudPlatform/kms-solutions/commit/fceca402d111af1f0b446e99b83df46b112bcda3))
+* **deps:** Update dependency cryptography to v45.0.3 ([#231](https://github.com/GoogleCloudPlatform/kms-solutions/issues/231)) ([0b080cf](https://github.com/GoogleCloudPlatform/kms-solutions/commit/0b080cff5b9327bfc08a2dffe70bc2060cc762c9))
+* **deps:** Update dependency dependency-groups to v1.3.1 ([#210](https://github.com/GoogleCloudPlatform/kms-solutions/issues/210)) ([3e3fa03](https://github.com/GoogleCloudPlatform/kms-solutions/commit/3e3fa036ec6839811b77052ebc33f6c26b9f1271))
+* **deps:** Update dependency fido2 to v2 ([#230](https://github.com/GoogleCloudPlatform/kms-solutions/issues/230)) ([d9a4a00](https://github.com/GoogleCloudPlatform/kms-solutions/commit/d9a4a00396a8e1cc46f9db2ab85a315b37f55e09))
+* **deps:** Update dependency go to v1.23.9 ([#202](https://github.com/GoogleCloudPlatform/kms-solutions/issues/202)) ([01c36f9](https://github.com/GoogleCloudPlatform/kms-solutions/commit/01c36f9d2b78f3bd9912411dfefc1bcb01a23d23))
+* **deps:** Update dependency go to v1.24.3 ([#233](https://github.com/GoogleCloudPlatform/kms-solutions/issues/233)) ([30f359c](https://github.com/GoogleCloudPlatform/kms-solutions/commit/30f359c0d0bad340635c0ee285aa8532db638ac4))
+* **deps:** Update dependency google-cloud-kms to v3.5.0 ([#208](https://github.com/GoogleCloudPlatform/kms-solutions/issues/208)) ([073aac1](https://github.com/GoogleCloudPlatform/kms-solutions/commit/073aac170dbba77c9a95275021aef573c21ea4d9))
+* **deps:** Update dependency google-cloud-kms to v3.5.1 ([#214](https://github.com/GoogleCloudPlatform/kms-solutions/issues/214)) ([7610bfa](https://github.com/GoogleCloudPlatform/kms-solutions/commit/7610bfab3ab4aae700864220e478e4a0cbbfa6ef))
+* **deps:** Update dependency importlib_metadata to v8.7.0 ([#216](https://github.com/GoogleCloudPlatform/kms-solutions/issues/216)) ([086cf28](https://github.com/GoogleCloudPlatform/kms-solutions/commit/086cf28510e1fbc28dc29271f4a706d416fddb41))
+* **deps:** Update dependency iniconfig to v2.1.0 ([#217](https://github.com/GoogleCloudPlatform/kms-solutions/issues/217)) ([e5fff22](https://github.com/GoogleCloudPlatform/kms-solutions/commit/e5fff2210c64399d11372767576b5371e59f9a99))
+* **deps:** Update dependency jeepney to v0.9.0 ([#218](https://github.com/GoogleCloudPlatform/kms-solutions/issues/218)) ([b58e693](https://github.com/GoogleCloudPlatform/kms-solutions/commit/b58e693e9e4141ea4cbd9a5d3803dc5c00556ad7))
+* **deps:** Update dependency more-itertools to v10.7.0 ([#219](https://github.com/GoogleCloudPlatform/kms-solutions/issues/219)) ([1e2ea2d](https://github.com/GoogleCloudPlatform/kms-solutions/commit/1e2ea2dc4aa9ca3bb986b76d73e05a054f28a750))
+* **deps:** Update dependency nox to v2025.5.1 ([#221](https://github.com/GoogleCloudPlatform/kms-solutions/issues/221)) ([90106a8](https://github.com/GoogleCloudPlatform/kms-solutions/commit/90106a8b20832226618b84c373f4beb4ccd8f5f9))
+* **deps:** Update dependency packaging to v25 ([#226](https://github.com/GoogleCloudPlatform/kms-solutions/issues/226)) ([bbc50ce](https://github.com/GoogleCloudPlatform/kms-solutions/commit/bbc50ce9feb49db1124f221ae224ab00ffbad551))
+* **deps:** Update dependency platformdirs to v4.3.8 ([#211](https://github.com/GoogleCloudPlatform/kms-solutions/issues/211)) ([7e9c782](https://github.com/GoogleCloudPlatform/kms-solutions/commit/7e9c7823bcb48a200f78cb9dfc7d2454531e2da1))
+* **deps:** Update dependency pluggy to v1.6.0 ([#222](https://github.com/GoogleCloudPlatform/kms-solutions/issues/222)) ([5cc8480](https://github.com/GoogleCloudPlatform/kms-solutions/commit/5cc8480bf78cea4199d2f0d8acce82bc095b8a6d))
+* **deps:** Update dependency pyscard to v2.2.2 ([#212](https://github.com/GoogleCloudPlatform/kms-solutions/issues/212)) ([13fa543](https://github.com/GoogleCloudPlatform/kms-solutions/commit/13fa5437a0ce341b04e7bb498d9d36fe5e3c8bec))
+* **deps:** Update dependency pytest to v8.3.5 ([#213](https://github.com/GoogleCloudPlatform/kms-solutions/issues/213)) ([f953f8b](https://github.com/GoogleCloudPlatform/kms-solutions/commit/f953f8b3e38b1d960304657f0a939ffa819a5dd5))
+* **deps:** Update dependency pytest to v8.4.0 ([#239](https://github.com/GoogleCloudPlatform/kms-solutions/issues/239)) ([dd8d5d7](https://github.com/GoogleCloudPlatform/kms-solutions/commit/dd8d5d73950fd12fb125139528871f9635da26b3))
+* **deps:** Update dependency pytest-mock to v3.14.1 ([#232](https://github.com/GoogleCloudPlatform/kms-solutions/issues/232)) ([62c8736](https://github.com/GoogleCloudPlatform/kms-solutions/commit/62c8736f371b8553475b75d4d1c8118da4064cbb))
+* **deps:** Update dependency virtualenv to v20.31.2 ([#223](https://github.com/GoogleCloudPlatform/kms-solutions/issues/223)) ([09ca51f](https://github.com/GoogleCloudPlatform/kms-solutions/commit/09ca51f29301009529c52385fe4d38395e8e8142))
+* **deps:** Update dependency yubikey-manager to v5.6.1 ([#225](https://github.com/GoogleCloudPlatform/kms-solutions/issues/225)) ([af83126](https://github.com/GoogleCloudPlatform/kms-solutions/commit/af831264f85cf3f3631cd23edd1a9da4a340ee21))
+* **deps:** Update dependency yubikey-manager to v5.7.0 ([#238](https://github.com/GoogleCloudPlatform/kms-solutions/issues/238)) ([019af70](https://github.com/GoogleCloudPlatform/kms-solutions/commit/019af7004e403c0a63e03344d557335996feda88))
+* **deps:** Update dependency zipp to v3.22.0 ([#234](https://github.com/GoogleCloudPlatform/kms-solutions/issues/234)) ([4186cf5](https://github.com/GoogleCloudPlatform/kms-solutions/commit/4186cf591b1cfa5fc40ca01ec45b07ea3ba4e399))
+* **deps:** Update module google.golang.org/api to v0.229.0 ([#193](https://github.com/GoogleCloudPlatform/kms-solutions/issues/193)) ([687c75b](https://github.com/GoogleCloudPlatform/kms-solutions/commit/687c75bab0ece0c63153b70aae8e4cd45edf1cd5))
+* **deps:** Update module google.golang.org/api to v0.230.0 ([#197](https://github.com/GoogleCloudPlatform/kms-solutions/issues/197)) ([7dbea99](https://github.com/GoogleCloudPlatform/kms-solutions/commit/7dbea9915fd55ab44f00d27c2f7d257a511383dd))
+* **deps:** Update module google.golang.org/api to v0.231.0 ([#198](https://github.com/GoogleCloudPlatform/kms-solutions/issues/198)) ([1002dc3](https://github.com/GoogleCloudPlatform/kms-solutions/commit/1002dc39e3c0289194f0cd98827ada6f1fda4526))
+* **deps:** Update module google.golang.org/api to v0.233.0 ([#205](https://github.com/GoogleCloudPlatform/kms-solutions/issues/205)) ([236c432](https://github.com/GoogleCloudPlatform/kms-solutions/commit/236c432bcf895a4b564ca5bf4f6fd04bd5c530ef))
+* **deps:** Update module google.golang.org/api to v0.234.0 ([#207](https://github.com/GoogleCloudPlatform/kms-solutions/issues/207)) ([e664321](https://github.com/GoogleCloudPlatform/kms-solutions/commit/e66432133734a6d02b26db55f801b4dcf1e63e07))
+* **deps:** Update module google.golang.org/api to v0.235.0 ([#235](https://github.com/GoogleCloudPlatform/kms-solutions/issues/235)) ([9187471](https://github.com/GoogleCloudPlatform/kms-solutions/commit/91874712da6f3e178348a1ad8131d45a99e19697))
+* **deps:** Update module google.golang.org/api to v0.236.0 ([#240](https://github.com/GoogleCloudPlatform/kms-solutions/issues/240)) ([2e42c68](https://github.com/GoogleCloudPlatform/kms-solutions/commit/2e42c68cef8d3476fef8fdd53d9a0f71fe8baf71))
+* **deps:** Update Terraform null to v3.2.4 ([#196](https://github.com/GoogleCloudPlatform/kms-solutions/issues/196)) ([595aaf9](https://github.com/GoogleCloudPlatform/kms-solutions/commit/595aaf9e2b3049af3746232f230c699d6eb29dba))
+* **deps:** Update Terraform random to v3.7.2 ([#194](https://github.com/GoogleCloudPlatform/kms-solutions/issues/194)) ([b275c4a](https://github.com/GoogleCloudPlatform/kms-solutions/commit/b275c4a16d726bed7ddac604df0439fc17c76d78))
+* **deps:** Update Terraform terraform-google-modules/network/google to v11 ([#200](https://github.com/GoogleCloudPlatform/kms-solutions/issues/200)) ([d60f54b](https://github.com/GoogleCloudPlatform/kms-solutions/commit/d60f54b36702e13889655f9ff6a3ec29d247b928))
+* **deps:** Update Terraform terraform-google-modules/network/google to v11.1.0 ([#229](https://github.com/GoogleCloudPlatform/kms-solutions/issues/229)) ([173cd3f](https://github.com/GoogleCloudPlatform/kms-solutions/commit/173cd3f74dcce18c00d82701a6cf91d8016a6d06))
+* **deps:** Update Terraform terraform-google-modules/network/google to v11.1.1 ([#237](https://github.com/GoogleCloudPlatform/kms-solutions/issues/237)) ([0aef12d](https://github.com/GoogleCloudPlatform/kms-solutions/commit/0aef12d9511ddd6cc6477f8b4934abf66b873100))
+* **deps:** Update Terraform terraform-google-modules/vpc-service-controls/google to v7 ([#206](https://github.com/GoogleCloudPlatform/kms-solutions/issues/206)) ([da27d97](https://github.com/GoogleCloudPlatform/kms-solutions/commit/da27d976f4447bae1c9eb38a4e43dbe21b3dcf3d))
+* **deps:** Update Terraform time to v0.13.1 ([#199](https://github.com/GoogleCloudPlatform/kms-solutions/issues/199)) ([d335c18](https://github.com/GoogleCloudPlatform/kms-solutions/commit/d335c18c0c05fa91e6d3d0f90fd79585625bd3a5))
+
 ## [0.3.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.2.0...v0.3.0) (2025-04-14)
 
 
