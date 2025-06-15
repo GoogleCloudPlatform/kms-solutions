@@ -28,4 +28,4 @@ pytest-mock==3.14.1
 SecretStorage==3.3.3
 virtualenv==20.31.2
 yubikey-manager==5.7.0
-zipp==3.22.0
+zipp==3.23.0
