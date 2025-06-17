@@ -1,2 +1,2 @@
-cryptography==45.0.3
+cryptography==45.0.4
 google-cloud-kms==3.5.1
