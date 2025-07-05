@@ -6,7 +6,7 @@ toolchain go1.24.4
 
 require (
 	github.com/google/tink/go v1.7.0
-	google.golang.org/api v0.238.0
+	google.golang.org/api v0.239.0
 )
 
 require (
