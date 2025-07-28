@@ -26,6 +26,6 @@ pyscard==2.2.2
 pytest==8.4.1
 pytest-mock==3.14.1
 SecretStorage==3.3.3
-virtualenv==20.31.2
+virtualenv==20.32.0
 yubikey-manager==5.7.2
 zipp==3.23.0
