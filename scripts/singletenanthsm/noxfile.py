@@ -143,7 +143,8 @@ FLAKE8_COMMON_ARGS = [
     "--max-complexity=20",
     "--import-order-style=google",
     "--exclude=.nox,.cache,env,lib,generated_pb2,*_pb2.py,*_pb2_grpc.py",
-    "--ignore=ANN101,ANN102,E121,E123,E126,E203,E226,E24,E266,E501,E704,W503,W504,I202",
+    "--ignore=ANN101,ANN102,E121,E123,E126,E203,E226,E24,E266,E501,E704,"
+    "W503,W504,I202",
     "--max-line-length=88",
 ]
 
@@ -306,5 +307,6 @@ def readmegen(session: nox.sessions.Session, path: str) -> None:
 
     in_file = os.path.join(dir_, "README.rst.in")
     session.run(
-        "python", _get_repo_root() + "/scripts/readme-gen/readme_gen.py", in_file
+        "python", _get_repo_root() + "/scripts/readme-gen/readme_gen.py",
+        in_file
     )

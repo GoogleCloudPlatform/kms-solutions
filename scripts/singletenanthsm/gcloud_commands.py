@@ -30,8 +30,9 @@ command_build_custom_gcloud = """
 
 
 command_add_components = """
-  ~/sthi/google-cloud-sdk/bin/gcloud components repositories add https://storage.googleapis.com/single-tenant-hsm-private/components-2.json
-  ~/sthi/google-cloud-sdk/bin/gcloud components update
+  ~/sthi/google-cloud-sdk/bin/gcloud components repositories add \
+https://storage.googleapis.com/single-tenant-hsm-private/components-2.json \
+~/sthi/google-cloud-sdk/bin/gcloud components update
   """
 
 
@@ -127,7 +128,8 @@ command_gcloud_approve_proposal = [
 ]
 
 
-def send_signed_challenges(signed_challenged_files: list[str], proposal_resource: str):
+def send_signed_challenges(
+        signed_challenged_files: list[str], proposal_resource: str):
     """Sends signed challenges to the server."""
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)

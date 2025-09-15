@@ -26,7 +26,8 @@ import ykman_utils
 
 
 def make_directory(directory_path: str) -> None:
-    """Creates a directory with the passed in path if it does not already exist.
+    """Creates a directory with the passed in path if it does not already
+       exist.
 
     Args:
         directory_path: The path of the directory to be created.
@@ -45,7 +46,8 @@ def make_directory(directory_path: str) -> None:
 
 
 def parse_challenges_into_files(sthi_output: str) -> List[bytes]:
-    """Parses the STHI output and writes the challenges and public keys to files.
+    """Parses the STHI output and writes the challenges and public keys to
+       files.
 
     Args:
         sthi_output: The output of the STHI command.
@@ -67,7 +69,8 @@ def parse_challenges_into_files(sthi_output: str) -> List[bytes]:
     for challenge in challenges:
         challenge_count += 1
         try:
-            with open("challenges/challenge{0}.txt".format(challenge_count), "wb") as f:
+            with open("challenges/challenge{0}.txt".format(challenge_count),
+                      "wb") as f:
                 binary_challenge = ykman_utils.urlsafe_base64_to_binary(
                     challenge["challenge"]
                 )
@@ -79,7 +82,8 @@ def parse_challenges_into_files(sthi_output: str) -> List[bytes]:
         except Exception as e:
             logger.exception(f"An error occurred: {e}")
         try:
-            with open("challenges/public_key{0}.pem".format(challenge_count), "w") as f:
+            with open("challenges/public_key{0}.pem".format(challenge_count),
+                      "w") as f:
                 f.write(
                     challenge["publicKeyPem"].encode(
                         "utf-8").decode("unicode_escape")
@@ -152,7 +156,8 @@ def signed_challenges_to_files(
 
 
 def approve_proposal():
-    """Approves a proposal by fetching challenges, signing them, and sending them back to gcloud."""
+    """Approves a proposal by fetching challenges, signing them, and sending
+       them back to gcloud."""
     parser = parse_args(sys.argv[1:])
 
     # Fetch challenges

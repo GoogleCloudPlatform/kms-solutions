@@ -54,7 +54,8 @@ def generate_test_challenge_files():
 
 
 # A yubikey connected to your local machine will be needed to run these tests.
-# The generate_private_key() method will rewrite the key saved on slot 82(Retired1).
+# The generate_private_key() method will rewrite the key saved on slot
+# 82(Retired1).
 @pytest.fixture(autouse=True)
 def key_setup():
     ykman_utils.generate_private_key()
@@ -63,7 +64,8 @@ def key_setup():
 def challenges():
     public_key_files = [
         key_file
-        for key_file in pathlib.Path.cwd().glob("generated_public_keys/public_key*.pem")
+        for key_file in pathlib.Path.cwd().glob(
+            "generated_public_keys/public_key*.pem")
     ]
     challenges = []
 
