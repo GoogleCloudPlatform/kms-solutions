@@ -67,8 +67,8 @@ def generate_private_key(
                 print(f"Directory '{directory_path}' created.")
 
             with open(
-                f"generated_public_keys/public_key_{
-                    device_info.serial}.pem", "wb"
+                f"generated_public_keys/public_key_{device_info.serial}.pem",
+                "wb",
             ) as binary_file:
 
                 # Write bytes to file
@@ -77,8 +77,7 @@ def generate_private_key(
                     format=_serialization.PublicFormat.SubjectPublicKeyInfo,
                 ))
             print(
-                f"Private key pair generated on device {
-                    device_info.serial} on key"
+                f"Private key pair generated on device {device_info.serial} on key"
                 f" slot: {piv.SLOT.RETIRED1}"
             )
 
