@@ -21,7 +21,7 @@ nox==2025.5.1
 packaging==25.0
 platformdirs==4.4.0
 pluggy==1.6.0
-pycparser==2.22
+pycparser==2.23
 pyscard==2.3.0
 pytest==8.4.1
 pytest-mock==3.14.1
