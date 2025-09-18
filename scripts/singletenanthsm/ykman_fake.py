@@ -21,7 +21,8 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 
 
 def generate_rsa_keys(key_size=2048):
-    """Generates a private and public RSA key pair with the specified key size."""
+    """Generates a private and public RSA key pair with the
+    specified key size."""
     private_key = rsa.generate_private_key(
         public_exponent=65537,
         key_size=key_size,
@@ -38,7 +39,8 @@ def sign_data(private_key, data, hash_algorithm=hashes.SHA256()):
     return signature
 
 
-def verify_signature(public_key, data, signature, hash_algorithm=hashes.SHA256()):
+def verify_signature(public_key, data, signature,
+                     hash_algorithm=hashes.SHA256()):
     """Verifies the signature of the data using the public key."""
     if not isinstance(data, bytes):
         raise TypeError("Data must be of type bytes")

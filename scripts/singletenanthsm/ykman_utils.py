@@ -67,19 +67,18 @@ def generate_private_key(
                 print(f"Directory '{directory_path}' created.")
 
             with open(
-                f"generated_public_keys/public_key_{device_info.serial}.pem", "wb"
+                f"generated_public_keys/public_key_{device_info.serial}.pem",
+                "wb",
             ) as binary_file:
 
                 # Write bytes to file
-                binary_file.write(
-                    public_key.public_bytes(
-                        encoding=_serialization.Encoding.PEM,
-                        format=_serialization.PublicFormat.SubjectPublicKeyInfo,
-                    )
-                )
+                binary_file.write(public_key.public_bytes(
+                    encoding=_serialization.Encoding.PEM,
+                    format=_serialization.PublicFormat.SubjectPublicKeyInfo,
+                ))
             print(
-                f"Private key pair generated on device {device_info.serial} on key"
-                f" slot: {piv.SLOT.RETIRED1}"
+                f"Private key pair generated on device {device_info.serial}"
+                f" on key slot: {piv.SLOT.RETIRED1}"
             )
 
 
@@ -124,8 +123,8 @@ def populate_challenges_from_files() -> list[Challenge]:
     numeric IDs in the filenames.
 
     Returns:
-        list[Challenge]: A list of Challenge objects, each containing a challenge
-        and its associated public key.
+        list[Challenge]: A list of Challenge objects, each containing a
+        challenge and its associated public key.
     """
     public_key_files = list(
         pathlib.Path.cwd().glob("challenges/public_key*.pem"))
@@ -152,7 +151,8 @@ def populate_challenges_from_files() -> list[Challenge]:
 
 
 def sign_challenges(
-    challenges: list[Challenge], management_key=DEFAULT_MANAGEMENT_KEY, pin=DEFAULT_PIN
+    challenges: list[Challenge], management_key=DEFAULT_MANAGEMENT_KEY,
+    pin=DEFAULT_PIN
 ) -> list[ChallengeReply]:
     """Signs a proposal's challenges using a Yubikey."""
     if not challenges:
@@ -233,7 +233,8 @@ def urlsafe_base64_to_binary(urlsafe_string: str) -> bytes:
         # Check if the input string contains only URL-safe base64 characters
         if not re.match(r"^[a-zA-Z0-9_-]*$", urlsafe_string):
             raise ValueError("Input string contains invalid characters")
-        # Add padding if necessary. Base64 requires padding to be a multiple of 4
+        # Add padding if necessary. Base64 requires padding to be a multiple of
+        # 4
         missing_padding = len(urlsafe_string) % 4
         if missing_padding:
             urlsafe_string += "=" * (4 - missing_padding)

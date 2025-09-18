@@ -36,16 +36,40 @@ sample_sthi_output = """
  "quorumParameters": {
     "challenges": [
       {
-        "challenge": "tiOz64M_rJ34yOvweHBBltRrm3k34bou4m2JKlz9BmhrR7yU6S6ram8o1VQhyPU1",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3WK/NpZ4DJ68lOR7JINL\nyODwrRanATJNepJi1LYDDO4ZqQvaOvbv8RR47YBlHYAwEDuUC0Vy9g03T0G7V/TV\nTFNQU+I2wIm6VQFFbhjFYYCECILHPNwRp8XN0VKSiTqj5ilPa2wdPsBEgwNKlILn\nv9iTx9IdyFeMmCqIWgeFX5sHddvgq5Dep7kBRVh7ZM1+hOS8kw2qmZgKX8Zwgz3E\n0En/2r+3YgWtMxTz6iqW/Op0UagrlR5EgysjrNgakJEJQA/x23SataJOpVvSE9pH\nSCyzrIaseg1gtz5huDVO5GOK3Xg/VUr2n3sk98MQtHWWaEfcpstSrrefjTC4IYN5\n2QIDAQAB\n-----END PUBLIC KEY-----\n"
+        "challenge": "tiOz64M_rJ34yOvweHBBltRrm3k34bou4m2JK\
+lz9BmhrR7yU6S6ram8o1VQhyPU1",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\n\
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3WK/NpZ4DJ68lOR7JINL\n\
+yODwrRanATJNepJi1LYDDO4ZqQvaOvbv8RR47YBlHYAwEDuUC0Vy9g03T0G7V/TV\n\
+TFNQU+I2wIm6VQFFbhjFYYCECILHPNwRp8XN0VKSiTqj5ilPa2wdPsBEgwNKlILn\n\
+v9iTx9IdyFeMmCqIWgeFX5sHddvgq5Dep7kBRVh7ZM1+hOS8kw2qmZgKX8Zwgz3E\n\
+0En/2r+3YgWtMxTz6iqW/Op0UagrlR5EgysjrNgakJEJQA/x23SataJOpVvSE9pH\n\
+SCyzrIaseg1gtz5huDVO5GOK3Xg/VUr2n3sk98MQtHWWaEfcpstSrrefjTC4IYN5\n\
+2QIDAQAB\n-----END PUBLIC KEY-----\n"
       },
       {
-        "challenge": "6bfZOoD9L35qO1GIzVHcv9sX0UEzKCTru8yz1U7NK4o7y0gnXoU3Ak47sFFY4Yzb",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwpxT5iX72pkd/m8Fb3mg\nMkCQMoWb3FKAjHsutKpUEMA0ts1atZe7WFBRcCxV2mTDeWFpSwWjuYYSNNrEgk9e\nBRiLJ/36hCewnzw9PZMPcnWv+QLbyLsr4jAEVHk2pWln2HkVbAmK2OWEhvlUjxyT\nfB0b1UsBP3uy5f+SLb8iltvwWZGauT64JrLpbIwhk6SbXOCZSZtsXVZ5mVPEIxik\nZ4iBT3r+9Fc3fgKN/16bjdHw+qbWxovEYejG10Yp1yO4QjSzkxQsXTFvsWxaTKF2\ncZa5GF19b9ZkY3SRxHF6emA720F+N4oeGuV0Zu/ACYfMqRUSkh5GiOpv6VxvuXRD\n0wIDAQAB\n-----END PUBLIC KEY-----\n"
+        "challenge": "6bfZOoD9L35qO1GIzVHcv9sX0UEzKCTru8yz1\
+U7NK4o7y0gnXoU3Ak47sFFY4Yzb",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\n\
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwpxT5iX72pkd/m8Fb3mg\n\
+MkCQMoWb3FKAjHsutKpUEMA0ts1atZe7WFBRcCxV2mTDeWFpSwWjuYYSNNrEgk9e\n\
+BRiLJ/36hCewnzw9PZMPcnWv+QLbyLsr4jAEVHk2pWln2HkVbAmK2OWEhvlUjxyT\n\
+fB0b1UsBP3uy5f+SLb8iltvwWZGauT64JrLpbIwhk6SbXOCZSZtsXVZ5mVPEIxik\n\
+Z4iBT3r+9Fc3fgKN/16bjdHw+qbWxovEYejG10Yp1yO4QjSzkxQsXTFvsWxaTKF2\n\
+cZa5GF19b9ZkY3SRxHF6emA720F+N4oeGuV0Zu/ACYfMqRUSkh5GiOpv6VxvuXRD\n\
+0wIDAQAB\n-----END PUBLIC KEY-----\n"
       },
       {
-        "challenge": "NNH3Pt3F-OvaeYR_Dynp_nbHMuLaVYBnkG7uJtwz2-lShyLaHNjOyjBnL-eGjoRY",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsrrPGkxbk08x5CpkUk5y\nfWBmfiE4qU4IWaSO9HCBv5uRWJvDqXkKjkcBptwmGFsnzT+owfSe+21nWLOLZqwW\nmPbV0bW3e7l3ZUw/4fUga+KJDR5OfkkXWSos1cEMhxsSMnGykhx2/ge9bqY0Edbr\nzckOT2un87ThdawveS3hOxTczE+JcgzoI+CUxlPV0c9yJ5iNFZXf1p7wj3Rq2I8X\nAl4XyMP/+0TLR5+UTrrxLC4ds4m9EjMPRv4aNJFqzBfb3WBM/DFVvNR82Mt2pfF8\nlv6RyZU/vls6vjDl42NK3hckOhEGqQpPmifKgPCaOwdLHg68CjQZ54GWGqyFGzNx\nHwIDAQAB\n-----END PUBLIC KEY-----\n"
+        "challenge": "NNH3Pt3F-OvaeYR_Dynp_nbHMuLaVYBnkG7uJ\
+twz2-lShyLaHNjOyjBnL-eGjoRY",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\n\
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsrrPGkxbk08x5CpkUk5y\n\
+fWBmfiE4qU4IWaSO9HCBv5uRWJvDqXkKjkcBptwmGFsnzT+owfSe+21nWLOLZqwW\n\
+mPbV0bW3e7l3ZUw/4fUga+KJDR5OfkkXWSos1cEMhxsSMnGykhx2/ge9bqY0Edbr\n\
+zckOT2un87ThdawveS3hOxTczE+JcgzoI+CUxlPV0c9yJ5iNFZXf1p7wj3Rq2I8X\n\
+Al4XyMP/+0TLR5+UTrrxLC4ds4m9EjMPRv4aNJFqzBfb3WBM/DFVvNR82Mt2pfF8\n\
+lv6RyZU/vls6vjDl42NK3hckOhEGqQpPmifKgPCaOwdLHg68CjQZ54GWGqyFGzNx\n\
+HwIDAQAB\n-----END PUBLIC KEY-----\n"
       }
     ],
     "requiredApproverCount": 3
@@ -69,7 +93,8 @@ class QuorumParameters:
 
 mock_signed_challenges = []
 
-test_resource = "projects/my-project/locations/us-east1/singleTenantHsmInstances/mysthi/proposals/my_proposal"
+test_resource = "projects/my-project/locations/us-east1/" \
+                "singleTenantHsmInstances/mysthi/proposals/my_proposal"
 # mock_completed_process = subprocess.CompletedProcess
 
 
@@ -89,15 +114,18 @@ def create_json(public_key_pem_1, public_key_pem_2, public_key_pem_3):
             "quorumParameters": {
                 "challenges": [
                     {
-                        "challenge": "tiOz64M_rJ34yOvweHBBltRrm3k34bou4m2JKlz9BmhrR7yU6S6ram8o1VQhyPU1",
+                        "challenge": "tiOz64M_rJ34yOvweHBBltRrm3k34bou"
+                        "4m2JKlz9BmhrR7yU6S6ram8o1VQhyPU1",
                         "publicKeyPem": public_key_pem_1,
                     },
                     {
-                        "challenge": "6bfZOoD9L35qO1GIzVHcv9sX0UEzKCTru8yz1U7NK4o7y0gnXoU3Ak47sFFY4Yzb",
+                        "challenge": "6bfZOoD9L35qO1GIzVHcv9sX0UEzKCTr"
+                        "u8yz1U7NK4o7y0gnXoU3Ak47sFFY4Yzb",
                         "publicKeyPem": public_key_pem_2,
                     },
                     {
-                        "challenge": "NNH3Pt3F-OvaeYR_Dynp_nbHMuLaVYBnkG7uJtwz2-lShyLaHNjOyjBnL-eGjoRY",
+                        "challenge": "NNH3Pt3F-OvaeYR_Dynp_nbHMuLaVYBn"
+                        "kG7uJtwz2-lShyLaHNjOyjBnL-eGjoRY",
                         "publicKeyPem": public_key_pem_3,
                     },
                 ],
