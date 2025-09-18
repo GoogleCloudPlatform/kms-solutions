@@ -77,8 +77,8 @@ def generate_private_key(
                     format=_serialization.PublicFormat.SubjectPublicKeyInfo,
                 ))
             print(
-                f"Private key pair generated on device {device_info.serial} on key"
-                f" slot: {piv.SLOT.RETIRED1}"
+                f"Private key pair generated on device {device_info.serial}"
+                f" on key slot: {piv.SLOT.RETIRED1}"
             )
 
 
