@@ -24,7 +24,7 @@ pluggy==1.6.0
 pycparser==2.22
 pyscard==2.3.0
 pytest==8.4.1
-pytest-mock==3.14.1
+pytest-mock==3.15.0
 SecretStorage==3.3.3
 virtualenv==20.34.0
 yubikey-manager==5.7.2
