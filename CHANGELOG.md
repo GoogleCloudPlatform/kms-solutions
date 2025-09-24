@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.4.0...v0.4.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4.1.0 ([#298](https://github.com/GoogleCloudPlatform/kms-solutions/issues/298)) ([333b749](https://github.com/GoogleCloudPlatform/kms-solutions/commit/333b749b84deebff86385e9b379f808c5b10bdb4))
+
 ## [0.4.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.3.0...v0.4.0) (2025-09-22)
 
 
