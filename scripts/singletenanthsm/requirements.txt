@@ -1,5 +1,5 @@
 argcomplete==3.6.2
-attrs==25.3.0
+attrs==25.4.0
 backports.tarfile==1.2.0
 cffi==1.17.1
 click==8.2.1
