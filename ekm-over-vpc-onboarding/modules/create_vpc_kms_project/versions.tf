@@ -25,6 +25,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:ekm-over-vpc-onboarding-submodule-create-projects/v0.4.0"
+    module_name = "blueprints/terraform/kms-solutions:ekm-over-vpc-onboarding-submodule-create-projects/v0.5.0"
   }
 }
