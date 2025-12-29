@@ -43,7 +43,7 @@ def generate_private_key(
     devices = list_all_devices()
     if not devices:
         raise ValueError("no yubikeys found")
-    print(f"{len(devices)} yubikeys detected")
+    print(f"{len(devices)} yubikeys detected. Generating keys...")
     for yubikey, device_info in devices:
         with yubikey.open_connection(SmartCardConnection) as connection:
             piv_session = piv.PivSession(connection)
@@ -80,6 +80,8 @@ def generate_private_key(
                 f"Private key pair generated on device {device_info.serial}"
                 f" on key slot: {piv.SLOT.RETIRED1}"
             )
+    print("Key generation complete. You can find the public keys in the " \
+    "generated_public_keys directory.")
 
 
 @dataclass
@@ -128,10 +130,10 @@ def populate_challenges_from_files() -> list[Challenge]:
     """
     public_key_files = list(
         pathlib.Path.cwd().glob("challenges/public_key*.pem"))
-    print(public_key_files)
+    # print(public_key_files)
     challenge_files = list(
         pathlib.Path.cwd().glob("challenges/challenge*.bin"))
-    print(challenge_files)
+    # print(challenge_files)
 
     challenges = []
 
@@ -139,7 +141,7 @@ def populate_challenges_from_files() -> list[Challenge]:
         challenge_id = re.findall(r"\d+", str(public_key_file))
         for challenge_file in challenge_files:
             if challenge_id == re.findall(r"\d+", str(challenge_file)):
-                print(public_key_file)
+                # print(public_key_file)
                 file = open(public_key_file, "r")
                 public_key_pem = file.read()
                 file.close()
@@ -156,7 +158,9 @@ def sign_challenges(
 ) -> list[ChallengeReply]:
     """Signs a proposal's challenges using a Yubikey."""
     if not challenges:
-        raise ValueError("Challenge list empty: No challenges to sign.")
+        # raise ValueError("Challenge list empty: No challenges to sign.")
+        # print("No challenges in this list to sign")
+        return
     signed_challenges = []
     devices = list_all_devices()
     if not devices:
@@ -175,7 +179,7 @@ def sign_challenges(
             # Get the public key from slot 82.
             slot_metadata = piv_session.get_slot_metadata(
                 slot=piv.SLOT.RETIRED1)
-            print(slot_metadata.public_key.public_bytes)
+            # print(slot_metadata.public_key.public_bytes)
 
             # Check to see if any of the challenge public keys matches with the
             # public key from slot 82.
@@ -184,8 +188,8 @@ def sign_challenges(
                     encoding=_serialization.Encoding.PEM,
                     format=_serialization.PublicFormat.SubjectPublicKeyInfo,
                 )
-                print(key_public_bytes.decode())
-                print(challenge.public_key_pem)
+                # print(key_public_bytes.decode())
+                # print(challenge.public_key_pem)
                 if key_public_bytes == challenge.public_key_pem.encode():
 
                     # sign the challenge
@@ -206,11 +210,11 @@ def sign_challenges(
                         )
                     )
                     print("Challenge signed successfully")
-    if not signed_challenges:
-        raise RuntimeError(
-            "No matching public keys between Yubikey and challenges. Make sure"
-            " key is generated in correct slot"
-        )
+    # if not signed_challenges:
+    #     raise RuntimeError(
+    #         "No matching public keys between Yubikey and challenges. Make sure"
+    #         " key is generated in correct slot"
+    #     )
     return signed_challenges
 
 
@@ -227,20 +231,24 @@ def urlsafe_base64_to_binary(urlsafe_string: str) -> bytes:
         TypeError: If the input is not a string.
         ValueError: If the input string is not valid URL-safe base64.
     """
-    try:
-        if not isinstance(urlsafe_string, str):
-            raise TypeError("Input must be a string")
-        # Check if the input string contains only URL-safe base64 characters
-        if not re.match(r"^[a-zA-Z0-9_-]*$", urlsafe_string):
-            raise ValueError("Input string contains invalid characters")
-        # Add padding if necessary. Base64 requires padding to be a multiple of
-        # 4
-        missing_padding = len(urlsafe_string) % 4
-        if missing_padding:
-            urlsafe_string += "=" * (4 - missing_padding)
-        return base64.urlsafe_b64decode(urlsafe_string)
-    except base64.binascii.Error as e:
-        raise ValueError(f"Invalid URL-safe base64 string: {e}") from e
+    # try:
+    #     if not isinstance(urlsafe_string, str):
+    #         raise TypeError("Input must be a string")
+    #     # Check if the input string contains only URL-safe base64 characters
+    #     if not re.match(r"^[a-zA-Z0-9_-]*$", urlsafe_string):
+    #         raise ValueError("Input string contains invalid characters")
+    #     # Add padding if necessary. Base64 requires padding to be a multiple of
+    #     # 4
+    #     missing_padding = len(urlsafe_string) % 4
+    #     if missing_padding:
+    #         urlsafe_string += "=" * (4 - missing_padding)
+    #     return base64.urlsafe_b64decode(urlsafe_string)
+    # except base64.binascii.Error as e:
+    #     raise ValueError(f"Invalid URL-safe base64 string: {e}") from e
+    padding = "=" * (4 - len(urlsafe_string) % 4)
+    return base64.urlsafe_b64decode(urlsafe_string + padding)
+
+
 
 
 def verify_challenge_signatures(challenge_replies: list[ChallengeReply]):

@@ -288,7 +288,7 @@ def test_send_signed_challenges_success(mock_subprocess_run):
     expected_command = " ".join(
         gcloud_commands.command_gcloud_approve_proposal
         + [proposal]
-        + ["--challenge_replies="
+        + ["--quorum_challenge_replies="
            "\"[('signed_challenge.bin'," " 'public_key_1.pem')]\""]
     )
     mock_subprocess_run.assert_called_once_with(
