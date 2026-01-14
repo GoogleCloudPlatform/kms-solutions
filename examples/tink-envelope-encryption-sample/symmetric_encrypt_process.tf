@@ -18,7 +18,7 @@
 
 module "symmetric_kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "4.1.0"
+  version = "4.1.1"
 
   keyring         = local.keyring
   location        = local.location
