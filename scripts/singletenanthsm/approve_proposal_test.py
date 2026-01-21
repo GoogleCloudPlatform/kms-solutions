@@ -78,20 +78,39 @@ HwIDAQAB\n-----END PUBLIC KEY-----\n"
 
 """
 
-
-sample_nonces = [
-    "NNH3Pt3F-OvaeYR_Dynp_nbHMuLaVYBnkG7uJtwz2-lShyLaHNjOyjBnL-eGjoRY",
-    "tiOz64M_rJ34yOvweHBBltRrm3k34bou4m2JKlz9BmhrR7yU6S6ram8o1VQhyPU1",
-    "6bfZOoD9L35qO1GIzVHcv9sX0UEzKCTru8yz1U7NK4o7y0gnXoU3Ak47sFFY4Yzb",
-]
-
+sample_required_challenge_output = """
+  "requiredActionQuorumParameters": {
+    "quorumChallenges": [
+      {
+        "challenge": "AAEAAwAAAAAAAAAAAAAAAF7mB8z2T7l2LK04a18IVsNncGNvMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABpRIdeAAAAAAAAAAA=",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA06SZvu7M9BkgPD0rYVtl\n9IeMuzgrmaQvLxu5eABT80TznT5u/FRCuwjXSb6YZNOCSoo/kC71u/oi2sq8v27w\nPppjes7KRpylHrT5kVgUnwxmPw/+Ur2RvvX4JbzkTIQmwm+7nGafN+A/1dOGctg3\njnG11qrIo7/eMv43mJvml9kTWP+TExwjUwOBgyMvfa/cEYA/JihRRwKTAHETkCf5\nzlPoDEUM2PzM7OE/QknFIGMdryIe1mXRT5w+E5bXpBEC2ajPnFNfXzeH27gaZzsZ\npC1FdtJpnzn+fJefPSKp/mhO7tWu/jeoEwSYNA9oxd9TcAqT2vaScoPriQ04qwdX\niwIDAQAB\n-----END PUBLIC KEY-----\n"
+      },
+      {
+        "challenge": "AAEAAwAAAAAAAAAAAAAAAF7mB8z2T7l2LK04a18IVsNncGNvMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABpRIdeAAAAAAAAAAA=",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7deo23m4agm3w5svL0wp\nAbAEPK54wx/6bwvNt7wPFo0H91VW27tXtoZ/+GGPIitOoDz9LTHoObIFdJDG3b9w\nqfKtIL79D25YvSiaX+AXB/W4Y6hv27noAODL8E5DvuRxRLEgvCk7/McMq2a2EtEc\nXrv1qljZk1qwfelhLQl9VyjXfujPiBoxjFH3/H34/xHFYSAq9cC2G1BkUgCuH6n5\nE0gMN3BrexJSSlqBnx+6+jP8bBDZRVoOgzuTxzuVMVGpUNZVxSu4uBaQw73P5sQ5\noJdt0D6FR5S/PFlokfMfyrCJj3gMNTHJaQ4divSMU8l3Qr8evlPv34iG4P72/1Rd\nbwIDAQAB\n-----END PUBLIC KEY-----\n"
+      },
+      {
+        "challenge": "AAEAAwAAAAAAAAAAAAAAAF7mB8z2T7l2LK04a18IVsNncGNvMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABpRIdeAAAAAAAAAAA=",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtalWgpoRePYDLRlkRQeO\nWyBKiZ6lHiiDeA2IDReEMjEvym9DEXogl6HRpSgvESHyzcrwmHd5b292Wh+Q1PhC\n+YRwZB0g280/zugA1yX5KQFKnRl7QuyGVEZL6CmhgtWzpcJoB87siJb43XhTnAcC\nhy3Mr0pyfN1jhk/Noh/xd7Tez8Z6yoihE6iJVxkaHL5N9nR5AKjP2jIo4Uko+XAh\npXTfkk0KTDvBYgbHTDKiliyPKQl0qbPNqBnZijaXRnI9BQpIKi+9ex90tF472pNF\nASaFFi8jHgY19IKfQvYPCKCst2Zyl9rDnYwDfDIeUDIJTLeycUTDgM2IgqrMQNHA\nawIDAQAB\n-----END PUBLIC KEY-----\n"
+      }
+    ],
+    "requiredApproverCount": 2,
+    "requiredChallenges": [
+      {
+        "challenge": "M9hHtA6mQ7WeRXUplBQDUF13KBmD2EHC06ypuNHWK9BK3v05dgbVBvlIaWtw5Smn",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Dxt9ptrzHiXclVwOBin\nKhjdWX/a6sIKXKKnItlmc6gN+CfzUetQ7bEih/INtNrrVW75p5jM1uUTmjrrQ5Yh\n2H+p2EgHs3NS9CK2aMJxFoSRMc12BQGSpXwWhH9F9HVIcCretM70TrnOFr+6FBIq\nVM1efRKbUTvA1gsXt235Swv35u0CsGXmebaWU+sFSloQuXro+O9f32XN+Ff/MNEA\nxZb1+ae/z5+NeXriIBKmMBGNBVE/se5L/mdC27LLRZi+A2xSlbaQB6nta8kzw0gn\n3RYJ7KqLtbXDISROvUEUp3iX6qmjiIWsxM/HhO7+5y5URdUqFVtRTl3FGKMPmweh\nRwIDAQAB\n-----END PUBLIC KEY-----\n"
+      }
+    ]
+  }
+"""
 
 @dataclass
 class QuorumParameters:
     challenges: list[ykman_utils.Challenge]
 
 
-mock_signed_challenges = []
+mock_signed_quorum_challenges = []
+mock_signed_required_challenges = []
 
 test_resource = "projects/my-project/locations/us-east1/" \
                 "singleTenantHsmInstances/mysthi/proposals/my_proposal"
@@ -174,27 +193,35 @@ def sign_challenges_with_capture(
                 challenge.challenge, signed_challenge, challenge.public_key_pem
             )
         )
-    mock_signed_challenges.extend(signed_challenges)
+    mock_signed_required_challenges.extend(signed_challenges)
     return signed_challenges
 
 
-def verify_with_fake(pub_to_priv_key, signed_challenges):
-    for signed_challenge in signed_challenges:
-        priv_key = pub_to_priv_key[signed_challenge.public_key_pem]
+def verify_with_fake(pub_to_priv_key, signed_required_challenges, signed_quorum_challenges):
+    for signed_required_challenge in signed_required_challenges:
+        priv_key = pub_to_priv_key[signed_required_challenge.public_key_pem]
         assert ykman_fake.verify_signature(
             priv_key.public_key(),
-            signed_challenge.unsigned_challenge,
-            signed_challenge.signed_challenge,
+            signed_required_challenge.unsigned_challenge,
+            signed_required_challenge.signed_challenge,
+        )
+    for signed_quorum_challenge in signed_quorum_challenges:
+        priv_key = pub_to_priv_key[signed_quorum_challenge.public_key_pem]
+        assert ykman_fake.verify_signature(
+            priv_key.public_key(),
+            signed_quorum_challenge.unsigned_challenge,
+            signed_quorum_challenge.signed_challenge,
         )
     print("Signed verified successfully")
 
 
-def test_get_challenges_mocked(mocker, monkeypatch):
+def test_get_quorum_challenges_mocked(mocker, monkeypatch):
     # Verify signed challenges
     monkeypatch.setattr(
         "gcloud_commands.send_signed_challenges",
-        lambda signed_challenges, proposal_resource: verify_with_fake(
-            pub_to_priv_key, mock_signed_challenges
+        lambda signed_required_challenge_files, signed_quorum_challenge_files,  proposal_resource: verify_with_fake(
+            pub_to_priv_key, mock_signed_quorum_challenges,
+            mock_signed_required_challenges,
         ),
     )
 
@@ -225,25 +252,24 @@ def test_get_challenges_mocked(mocker, monkeypatch):
 
     # assert challenge files created
     challenge_files = [
-        "challenges/challenge1.txt",
-        "challenges/challenge2.txt",
-        "challenges/challenge3.txt",
+        "quorum_challenges/challenge1.txt",
+        "quorum_challenges/challenge2.txt",
+        "quorum_challenges/challenge3.txt",
     ]
     for file_path in challenge_files:
         assert os.path.exists(
             file_path
         ), f"File '{file_path}' should exist but does not."
 
-
-if __name__ == "__main__":
-    # Parse challenges into files
+def test_approve_quorum_challenges():
+        # Parse challenges into files
     unsigned_challenges = approve_proposal.parse_challenges_into_files(
         sample_sthi_output
     )
     created_signed_files = [
-        "signed_challenges/signed_challenge1.txt",
-        "signed_challenges/signed_challenge2.txt",
-        "signed_challenges/signed_challenge3.txt",
+        "signed_quorum_challenges/signed_challenge1.bin",
+        "signed_quorum_challenges/signed_challenge2.bin",
+        "signed_quorum_challenges/signed_challenge3.bin",
     ]
     for file_path in created_signed_files:
         assert os.path.exists(
@@ -252,9 +278,9 @@ if __name__ == "__main__":
 
     # assert signed challenge files created
     signed_challenge_files = [
-        "signed_challenges/signed_challenge1.txt",
-        "signed_challenges/signed_challenge2.txt",
-        "signed_challenges/signed_challenge3.txt",
+        "signed_quorum_challenges/signed_challenge1.bin",
+        "signed_quorum_challenges/signed_challenge2.bin",
+        "signed_quorum_challenges/signed_challenge3.bin",
     ]
     for file_path in signed_challenge_files:
         assert os.path.exists(
@@ -264,14 +290,12 @@ if __name__ == "__main__":
     # Parse files into challenge list
     challenges = ykman_utils.populate_challenges_from_files()
     for challenge in challenges:
-        print(challenge.challenge)
-        print(challenge.public_key_pem)
         unsigned_challenges.append(challenge.challenge)
     signed_challenged_files = []
     signed_challenges = ykman_utils.sign_challenges(
         challenges, signed_challenged_files)
-    for signed_challenge in signed_challenges:
-        print(signed_challenge.signed_challenge)
-        print(signed_challenge.public_key_pem)
-    print("--challenge_replies=" + str(signed_challenged_files))
+    # for signed_challenge in signed_challenges:
+    #     print(signed_challenge.signed_challenge)
+    #     print(signed_challenge.public_key_pem)
     ykman_utils.verify_challenge_signatures(signed_challenges)
+

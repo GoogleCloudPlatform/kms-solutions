@@ -19,13 +19,37 @@ import gcloud_commands
 import ykman_utils
 
 
+def confirm_action(prompt: str) -> bool:
+  """Asks the user for confirmation before proceeding.
+
+  Args:
+    prompt: The message to display to the user.
+
+  Returns:
+    True if the user confirms, False otherwise.
+  """
+  while True:
+    response = input(f"{prompt} [y/N]: ").lower().strip()
+    if response in ('y', 'yes'):
+      return True
+    elif response in ('n', 'no', ''):  # Default to 'no'
+      return False
+    else:
+      print("Invalid input. Please enter 'y' or 'n'.")
+
+
 def validate_operation(operation: str, management_key: str, pin: str):
-    if operation == "build_custom_gcloud":
-        try:
-            gcloud_commands.build_custom_gcloud()
-        except Exception as e:
-            raise Exception(f"Generating custom gcloud build failed {e}")
-    elif operation == "generate_rsa_keys":
+    if operation == "generate_rsa_keys":
+        confirmation_prompt = (
+            "WARNING: You are about to regenerate the RSA keys. This action is "
+            "irreversible and may lead to loss of access to encrypted data.\n"
+            "Are you sure you want to continue?"
+        )
+
+        if not confirm_action(confirmation_prompt):
+            print("RSA key regeneration cancelled.")
+            return
+
         try:
             if not management_key or not pin:
                 raise ValueError(
@@ -41,13 +65,10 @@ def validate_operation(operation: str, management_key: str, pin: str):
                     "generate_rsa_keys operation"
                 )
             raise Exception(f"Generating private keys failed {e}")
-    elif operation == "generate_gcloud_and_keys":
-        generate_private_keys_build_gcloud()
     else:
         raise Exception(
             "Operation type not valid. Operation flag value must be "
-            "build_custom_gcloud,  generate_rsa_keys, or "
-            "generate_gcloud_and_keys"
+            "generate_rsa_keys "
         )
 
 
@@ -72,9 +93,7 @@ if __name__ == "__main__":
         "--operation",
         type=str,
         choices=[
-            "build_custom_gcloud",
             "generate_rsa_keys",
-            "generate_gcloud_and_keys",
         ],
         required=True,
     )
