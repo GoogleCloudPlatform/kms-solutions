@@ -1,5 +1,48 @@
 # Changelog
 
+## [0.5.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.4.0...v0.5.0) (2026-02-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/network/google to v13 ([#333](https://github.com/GoogleCloudPlatform/kms-solutions/issues/333))
+
+### Bug Fixes
+
+* **deps:** Update dependency absl-py to v2.4.0 ([#380](https://github.com/GoogleCloudPlatform/kms-solutions/issues/380)) ([2159fde](https://github.com/GoogleCloudPlatform/kms-solutions/commit/2159fde1e7c856fe95ceea0eade4e33c689f3e7f))
+* **deps:** Update dependency cryptography to v46.0.2 ([#305](https://github.com/GoogleCloudPlatform/kms-solutions/issues/305)) ([be07dab](https://github.com/GoogleCloudPlatform/kms-solutions/commit/be07dab0604c8d0d9c0c18a974172807b732c226))
+* **deps:** Update dependency cryptography to v46.0.3 ([#315](https://github.com/GoogleCloudPlatform/kms-solutions/issues/315)) ([a14ff67](https://github.com/GoogleCloudPlatform/kms-solutions/commit/a14ff6768e6af0b9781976530339dd9e9591252d))
+* **deps:** Update dependency go to v1.24.10 ([#328](https://github.com/GoogleCloudPlatform/kms-solutions/issues/328)) ([0e3379a](https://github.com/GoogleCloudPlatform/kms-solutions/commit/0e3379a31ca68313100c4760c123c065dabff974))
+* **deps:** Update dependency go to v1.24.11 ([#343](https://github.com/GoogleCloudPlatform/kms-solutions/issues/343)) ([30de8f3](https://github.com/GoogleCloudPlatform/kms-solutions/commit/30de8f3acc9dff9ef12d110a6bb2ee2632e8edbf))
+* **deps:** Update dependency go to v1.24.12 ([#366](https://github.com/GoogleCloudPlatform/kms-solutions/issues/366)) ([3ef0f79](https://github.com/GoogleCloudPlatform/kms-solutions/commit/3ef0f79f362e1adf0bc1b422ac8d2cdfa3c8edde))
+* **deps:** Update dependency go to v1.24.8 ([#308](https://github.com/GoogleCloudPlatform/kms-solutions/issues/308)) ([dc4c583](https://github.com/GoogleCloudPlatform/kms-solutions/commit/dc4c583830f5f225a96b27974f3b3bb228fc7013))
+* **deps:** Update dependency go to v1.24.9 ([#309](https://github.com/GoogleCloudPlatform/kms-solutions/issues/309)) ([55d6781](https://github.com/GoogleCloudPlatform/kms-solutions/commit/55d678161a48f3b1bc9baeb48afdf2fbc8d7ee9d))
+* **deps:** Update dependency google-cloud-kms to v3.10.0 ([#373](https://github.com/GoogleCloudPlatform/kms-solutions/issues/373)) ([f2e226f](https://github.com/GoogleCloudPlatform/kms-solutions/commit/f2e226f97e88c5da450df356d8159640fc44ce44))
+* **deps:** Update dependency google-cloud-kms to v3.6.0 ([#302](https://github.com/GoogleCloudPlatform/kms-solutions/issues/302)) ([7cd3e3e](https://github.com/GoogleCloudPlatform/kms-solutions/commit/7cd3e3e039aca0f9d842e90930de1e326c14a4ed))
+* **deps:** Update dependency google-cloud-kms to v3.7.0 ([#317](https://github.com/GoogleCloudPlatform/kms-solutions/issues/317)) ([c45a811](https://github.com/GoogleCloudPlatform/kms-solutions/commit/c45a8118405d2245e475cf40f118d803a70186c2))
+* **deps:** Update dependency google-cloud-kms to v3.8.0 ([#367](https://github.com/GoogleCloudPlatform/kms-solutions/issues/367)) ([2d0003f](https://github.com/GoogleCloudPlatform/kms-solutions/commit/2d0003fabf5d0005d9a01560ee079683532613fa))
+* **deps:** Update dependency google-cloud-kms to v3.9.0 ([#368](https://github.com/GoogleCloudPlatform/kms-solutions/issues/368)) ([4cd334f](https://github.com/GoogleCloudPlatform/kms-solutions/commit/4cd334f504de29d051770b847795e67c341e7fad))
+* **deps:** Update module google.golang.org/api to v0.250.0 ([#303](https://github.com/GoogleCloudPlatform/kms-solutions/issues/303)) ([23d828d](https://github.com/GoogleCloudPlatform/kms-solutions/commit/23d828d9e41acae9099e413cbe6368a164612890))
+* **deps:** Update module google.golang.org/api to v0.251.0 ([#304](https://github.com/GoogleCloudPlatform/kms-solutions/issues/304)) ([5c4e867](https://github.com/GoogleCloudPlatform/kms-solutions/commit/5c4e86780d6976bfbe0a3939d06bd7a9701108c6))
+* **deps:** Update module google.golang.org/api to v0.252.0 ([#311](https://github.com/GoogleCloudPlatform/kms-solutions/issues/311)) ([b227b37](https://github.com/GoogleCloudPlatform/kms-solutions/commit/b227b37630bf5b0c0629708291adeeca8bc8cf30))
+* **deps:** Update module google.golang.org/api to v0.253.0 ([#321](https://github.com/GoogleCloudPlatform/kms-solutions/issues/321)) ([d8d2ab8](https://github.com/GoogleCloudPlatform/kms-solutions/commit/d8d2ab8a2c17d99ed091009e19168b9a2ca58639))
+* **deps:** Update module google.golang.org/api to v0.254.0 ([#322](https://github.com/GoogleCloudPlatform/kms-solutions/issues/322)) ([91b96df](https://github.com/GoogleCloudPlatform/kms-solutions/commit/91b96dfbed9a636a9417a5ca2eba6ddabb7349e2))
+* **deps:** Update module google.golang.org/api to v0.255.0 ([#326](https://github.com/GoogleCloudPlatform/kms-solutions/issues/326)) ([d13aabd](https://github.com/GoogleCloudPlatform/kms-solutions/commit/d13aabdea1ba11773b6d0d01882b44eddc6f0b48))
+* **deps:** Update module google.golang.org/api to v0.256.0 ([#331](https://github.com/GoogleCloudPlatform/kms-solutions/issues/331)) ([af13b9a](https://github.com/GoogleCloudPlatform/kms-solutions/commit/af13b9acf8142a3f1fc34a542557799619d1a2d0))
+* **deps:** Update module google.golang.org/api to v0.258.0 ([#344](https://github.com/GoogleCloudPlatform/kms-solutions/issues/344)) ([97b2d85](https://github.com/GoogleCloudPlatform/kms-solutions/commit/97b2d853ce5846f144ac4b01b291f257fcd318d7))
+* **deps:** Update module google.golang.org/api to v0.259.0 ([#354](https://github.com/GoogleCloudPlatform/kms-solutions/issues/354)) ([f2e325e](https://github.com/GoogleCloudPlatform/kms-solutions/commit/f2e325e301e6fc42477af9693404e879f1cfab56))
+* **deps:** Update module google.golang.org/api to v0.260.0 ([#365](https://github.com/GoogleCloudPlatform/kms-solutions/issues/365)) ([cec0a2b](https://github.com/GoogleCloudPlatform/kms-solutions/commit/cec0a2b549e3029e4bb946f49d268fbffe857c75))
+* **deps:** Update module google.golang.org/api to v0.261.0 ([#371](https://github.com/GoogleCloudPlatform/kms-solutions/issues/371)) ([4ae5be2](https://github.com/GoogleCloudPlatform/kms-solutions/commit/4ae5be249409fe24e9b2c8346f53102fa9d990fd))
+* **deps:** Update module google.golang.org/api to v0.262.0 ([#375](https://github.com/GoogleCloudPlatform/kms-solutions/issues/375)) ([cc72df2](https://github.com/GoogleCloudPlatform/kms-solutions/commit/cc72df2259618d223ae92266451ca6b7200b3e1c))
+* **deps:** Update module google.golang.org/api to v0.264.0 ([#378](https://github.com/GoogleCloudPlatform/kms-solutions/issues/378)) ([3b239c9](https://github.com/GoogleCloudPlatform/kms-solutions/commit/3b239c93188a67216eacfb5f26f8d1016e0c9661))
+* **deps:** Update Terraform random to v3.8.0 ([#363](https://github.com/GoogleCloudPlatform/kms-solutions/issues/363)) ([3f7db4e](https://github.com/GoogleCloudPlatform/kms-solutions/commit/3f7db4e82f8a8943758f12c080eed3b10c2e848e))
+* **deps:** Update Terraform random to v3.8.1 ([#377](https://github.com/GoogleCloudPlatform/kms-solutions/issues/377)) ([6f2b6ee](https://github.com/GoogleCloudPlatform/kms-solutions/commit/6f2b6ee8a1f1e7cbc9d7e9b8865ee561034828c6))
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4.1.0 ([#298](https://github.com/GoogleCloudPlatform/kms-solutions/issues/298)) ([333b749](https://github.com/GoogleCloudPlatform/kms-solutions/commit/333b749b84deebff86385e9b379f808c5b10bdb4))
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4.1.1 ([#359](https://github.com/GoogleCloudPlatform/kms-solutions/issues/359)) ([5250abb](https://github.com/GoogleCloudPlatform/kms-solutions/commit/5250abbb5c25bfa5ec774f4b212ccf2f22c95a66))
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4.1.2 ([#376](https://github.com/GoogleCloudPlatform/kms-solutions/issues/376)) ([a5eba09](https://github.com/GoogleCloudPlatform/kms-solutions/commit/a5eba09e19d5d63a7ed0326c856f2463463c6af9))
+* **deps:** Update Terraform terraform-google-modules/network/google to v13 ([#333](https://github.com/GoogleCloudPlatform/kms-solutions/issues/333)) ([98b1e2e](https://github.com/GoogleCloudPlatform/kms-solutions/commit/98b1e2e5e5d5a22ef8664945460177018784457c))
+* **deps:** Update Terraform terraform-google-modules/network/google to v13.0.1 ([#349](https://github.com/GoogleCloudPlatform/kms-solutions/issues/349)) ([a435f62](https://github.com/GoogleCloudPlatform/kms-solutions/commit/a435f62d41bd8d5f9a433c6fcf473ab45152aadb))
+
 ## [0.4.0](https://github.com/GoogleCloudPlatform/kms-solutions/compare/v0.3.0...v0.4.0) (2025-09-22)
 
 
