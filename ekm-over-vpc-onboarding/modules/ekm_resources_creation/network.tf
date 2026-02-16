@@ -17,7 +17,7 @@
 #Network & Subnet creation
 module "vpc-network" {
   source       = "terraform-google-modules/network/google"
-  version      = "~> 13.0"
+  version      = "~> 15.0"
   project_id   = var.vpc_project_id
   network_name = var.network_name
   mtu          = 1460
@@ -35,7 +35,7 @@ module "vpc-network" {
 
 module "firewall_rules" {
   source  = "terraform-google-modules/network/google//modules/firewall-rules"
-  version = "13.0.1"
+  version = "15.2.0"
 
   project_id   = var.vpc_project_id
   network_name = module.vpc-network.network_name
