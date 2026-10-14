@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+  upper   = false
+}
+
 module "pqr_signing" {
   source = "../../pqr-kms-signing/0-bootstrap"
 
   project_id      = var.project_id
   location        = var.location
-  keyring_name    = var.keyring_name
-  key_name        = var.key_name
+  keyring_name    = "${var.keyring_name}-${random_string.suffix.result}"
+  key_name        = "${var.key_name}-${random_string.suffix.result}"
   prevent_destroy = var.prevent_destroy
 }

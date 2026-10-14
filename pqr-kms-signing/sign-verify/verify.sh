@@ -46,8 +46,13 @@ if ! command -v gcloud &>/dev/null; then
   exit 1
 fi
 
-if ! command -v docker &>/dev/null; then
-  echo "Error: docker not found."
+# Prefer a local OpenSSL with ML-DSA support (3.5+); otherwise fall back to Docker.
+USE_LOCAL_OPENSSL=false
+if command -v openssl &>/dev/null && \
+  openssl list -signature-algorithms 2>/dev/null | grep -qi "ML-DSA-87"; then
+  USE_LOCAL_OPENSSL=true
+elif ! command -v docker &>/dev/null; then
+  echo "Error: OpenSSL 3.5+ (with ML-DSA support) or docker is required."
   echo "Please install Docker: https://docs.docker.com/engine/install/"
   exit 1
 fi
@@ -88,22 +93,31 @@ PUB_KEY=$(gcloud kms keys versions get-public-key "$VERSION" \
   --format="value(pem)")
 echo ""
 
-echo "Verifying with OpenSSL (alpine/openssl:latest)..."
 WORK_DIR=$(mktemp -d /tmp/ml_dsa_verify_XXXXXX)
 trap 'rm -rf "$WORK_DIR"' EXIT
 echo "$PUB_KEY" > "$WORK_DIR/pubkey.pem"
 
-VERIFY_RESULT=$(docker run --rm \
-  -v "$WORK_DIR/pubkey.pem:/verify/pubkey.pem:ro" \
-  -v "$(realpath "$PDF_FILE"):/verify/document.pdf:ro" \
-  -v "$(realpath "$SIG_FILE"):/verify/document.sig:ro" \
-  --entrypoint openssl \
-  alpine/openssl:latest \
-  pkeyutl -verify -pubin \
-  -inkey /verify/pubkey.pem \
-  -sigfile /verify/document.sig \
-  -in /verify/document.pdf \
-  2>&1 || true)
+if [[ "$USE_LOCAL_OPENSSL" == true ]]; then
+  echo "Verifying with local $(openssl version | awk '{print $1, $2}')..."
+  VERIFY_RESULT=$(openssl pkeyutl -verify -pubin \
+    -inkey "$WORK_DIR/pubkey.pem" \
+    -sigfile "$SIG_FILE" \
+    -in "$PDF_FILE" \
+    2>&1 || true)
+else
+  echo "Verifying with OpenSSL (alpine/openssl:latest)..."
+  VERIFY_RESULT=$(docker run --rm \
+    -v "$WORK_DIR/pubkey.pem:/verify/pubkey.pem:ro" \
+    -v "$(realpath "$PDF_FILE"):/verify/document.pdf:ro" \
+    -v "$(realpath "$SIG_FILE"):/verify/document.sig:ro" \
+    --entrypoint openssl \
+    alpine/openssl:latest \
+    pkeyutl -verify -pubin \
+    -inkey /verify/pubkey.pem \
+    -sigfile /verify/document.sig \
+    -in /verify/document.pdf \
+    2>&1 || true)
+fi
 
 if echo "$VERIFY_RESULT" | grep -q "Signature Verified Successfully"; then
   echo "Signature is VALID!"

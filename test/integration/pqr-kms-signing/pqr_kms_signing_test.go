@@ -15,29 +15,26 @@
 package pqr_kms_signing
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
-	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/shell"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPQRSigningModule(t *testing.T) {
-	randID := random.UniqueId()
-	keyringName := fmt.Sprintf("pqr-test-keyring-%s", randID)
-	keyName := fmt.Sprintf("pqr-test-key-%s", randID)
+// samplePdf is a minimal PDF document used as the payload to sign.
+const samplePdf = `%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] >> endobj
+trailer << /Root 1 0 R >>
+%%EOF
+`
 
-	pqrT := tft.NewTFBlueprintTest(t,
-		tft.WithVars(map[string]interface{}{
-			"keyring_name":    keyringName,
-			"key_name":        keyName,
-			"prevent_destroy": false,
-		}),
-	)
+func TestPQRSigningModule(t *testing.T) {
+	pqrT := tft.NewTFBlueprintTest(t)
 	pqrT.DefineVerify(func(assert *assert.Assertions) {
 		pqrT.DefaultVerify(assert)
 
@@ -46,7 +43,6 @@ func TestPQRSigningModule(t *testing.T) {
 		absPath, _ := filepath.Abs("../../../pqr-kms-signing/sign-verify")
 		signScript := filepath.Join(absPath, "sign.sh")
 		verifyScript := filepath.Join(absPath, "verify.sh")
-		samplePdf := filepath.Join(absPath, "sample.pdf")
 
 		tmpDir, err := os.MkdirTemp("", "pqr_test")
 		assert.NoError(err)
@@ -55,8 +51,7 @@ func TestPQRSigningModule(t *testing.T) {
 		testPdf := filepath.Join(tmpDir, "sample.pdf")
 		testSig := filepath.Join(tmpDir, "sample.sig")
 
-		input, err := os.ReadFile(samplePdf)
-		assert.NoError(err)
+		input := []byte(samplePdf)
 		err = os.WriteFile(testPdf, input, 0644)
 		assert.NoError(err)
 

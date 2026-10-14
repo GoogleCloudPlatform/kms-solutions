@@ -10,16 +10,16 @@ ML-DSA-87 (Module Lattice Digital Signature Algorithm, security level 3) is a NI
 
 Verifying ML-DSA-87 signatures requires **OpenSSL 3.5 or later**, as it is the first version to include native support for the NIST post-quantum signature algorithms.
 
-If your operating system does not ship with OpenSSL 3.5+ (e.g. older Ubuntu versions), you can still run the verification using the provided **Docker image based on `alpine:latest`**, which already includes OpenSSL 3.5. The `verify.sh` script handles this automatically — no manual setup required.
+If your operating system ships with OpenSSL 3.5+, `verify.sh` uses it directly. Otherwise (e.g. older Ubuntu versions), it falls back to the **`alpine/openssl:latest` Docker image**, which already includes OpenSSL 3.5. The script handles this automatically, no manual setup required.
 
 ## Prerequisites
 
 - [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.5.7
 - [Google Cloud CLI (`gcloud`)](https://cloud.google.com/sdk/docs/install-sdk)
-- [Docker](https://docs.docker.com/engine/install/) (used to run OpenSSL 3.5 via `alpine:latest` for signature verification)
+- [OpenSSL](https://openssl-library.org/) 3.5+ **or** [Docker](https://docs.docker.com/engine/install/) (used to run OpenSSL 3.5 via `alpine/openssl:latest` for signature verification)
 - A Google Cloud project with billing enabled
 
-> **Note:** Docker is required only for signature verification. If your system already has OpenSSL 3.5+ installed, the Docker image will still be used by `verify.sh` to ensure a consistent and reproducible environment across different operating systems.
+> **Note:** Docker is required only for signature verification, and only when your system does not have OpenSSL 3.5+ installed.
 
 
 ## Authenticate with Google Cloud
@@ -116,9 +116,7 @@ If your operating system does not ship with OpenSSL 3.5+ (e.g. older Ubuntu vers
 
 ## Verify the Signature
 
-The verification requires **OpenSSL 3.5+**. The `verify.sh` script runs OpenSSL 3.5 inside a Docker container based on `alpine:latest`, which ships with OpenSSL 3.5 by default. This approach works on any operating system regardless of the locally installed OpenSSL version.
-
-The Docker image is built automatically on the first run and reused on subsequent runs.
+The verification requires **OpenSSL 3.5+**. The `verify.sh` script uses the local `openssl` when it supports ML-DSA-87; otherwise it runs OpenSSL 3.5 inside the `alpine/openssl:latest` Docker container. This approach works on any operating system regardless of the locally installed OpenSSL version.
 
 1. Make the script executable.
     ```sh
@@ -135,11 +133,6 @@ The Docker image is built automatically on the first run and reused on subsequen
     ./verify.sh sample.pdf sample.sig
     ```
 
-    On the **first run**, the Docker image will be built automatically:
-    ```
-    Building Docker image (ml-dsa-verifier) with OpenSSL 3.5 (alpine:latest)...
-    ```
-
     The expected output is:
     ```
     Verifying ML-DSA-87 signature...
@@ -154,7 +147,7 @@ The Docker image is built automatically on the first run and reused on subsequen
     Exporting public key from KMS...
       Public key saved to: /tmp/ml_dsa_verify_XXXXXX/pubkey.pem
 
-    Verifying with OpenSSL 3.5 (alpine:latest Docker container)...
+    Verifying with local OpenSSL 3.5.x...
     Signature is VALID!
     ```
 
@@ -176,7 +169,7 @@ This test confirms that the verification correctly rejects a document that has b
     ```
     Verifying ML-DSA-87 signature...
     ...
-    Verifying with OpenSSL 3.5 (alpine:latest Docker container)...
+    Verifying with local OpenSSL 3.5.x...
     Signature is INVALID!
     ```
 
