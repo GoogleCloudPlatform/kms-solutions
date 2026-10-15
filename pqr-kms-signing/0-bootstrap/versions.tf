@@ -24,6 +24,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:pqr-kms-signing-bootstrap/v0.1.0"
+    module_name = "blueprints/terraform/kms-solutions:pqr-kms-signing-bootstrap/v0.5.0"
   }
 }

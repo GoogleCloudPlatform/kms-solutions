@@ -26,6 +26,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:tink-envelope-encryption-sample-encrypt/v0.4.0"
+    module_name = "blueprints/terraform/kms-solutions:tink-envelope-encryption-sample-encrypt/v0.5.0"
   }
 }
