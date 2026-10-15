@@ -25,6 +25,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/kms-solutions:oss-nginx-ssl-offloading/v0.4.0"
+    module_name = "blueprints/terraform/kms-solutions:oss-nginx-ssl-offloading/v0.5.0"
   }
 }
